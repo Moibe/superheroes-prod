@@ -23,14 +23,18 @@ jobs:
         - name: Killer bash
           run: |
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x killer.sh && ./killer.sh"
+
+        - name: Launch Gradio Server
+          run: |
+              ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x launcher.sh && ./launcher.sh"
         
         # - name: stop running gradio app
         #   run: |
         #       ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pkill python"      
 
-        - name: activate enviroment and run 
-          run: |
-              ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && source venv/bin/activate && python app.py \& && exit"      
+        # - name: activate enviroment and run 
+        #   run: |
+        #       ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && source venv/bin/activate && python app.py \& && exit"      
                 
         - name: cleanup
           run: rm -rf ~/.ssh
