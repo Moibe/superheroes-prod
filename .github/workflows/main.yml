@@ -19,10 +19,14 @@ jobs:
 
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
-        
-        - name: stop running gradio app
+
+        - name: kiler bash
           run: |
-              ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pkill python"      
+              ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x killer.sh && ./killer.sh
+        
+        # - name: stop running gradio app
+        #   run: |
+        #       ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pkill python"      
 
         - name: activate enviroment and run 
           run: |
