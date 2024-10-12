@@ -24,12 +24,9 @@ jobs:
           run: |
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pkill python"      
 
-        - name: activate enviroment
+        - name: activate enviroment and run 
           run: |
-              ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && source venv/bin/activate"      
-        
-        - name: rerun gradio
-          run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && python app.py"
-        
+              ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && source venv/bin/activate && python app.py"      
+                
         - name: cleanup
           run: rm -rf ~/.ssh
