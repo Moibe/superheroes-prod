@@ -7,7 +7,7 @@ echo "voy a hacer ls"
 ls
 echo "ls realizado"
 echo "voy a hacer el deploy"
-python app.py \& 
+python app.py 
 echo "deploy en background hecho"
 echo "finalmente voy hacia la salida"
 exit
