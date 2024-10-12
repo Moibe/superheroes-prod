@@ -1,3 +1,3 @@
 #!/bin/bash
-source venv/bin/activate && python app.py \& && exit
+source venv/bin/activate && python app.py \&
 ls
