@@ -1,8 +1,11 @@
 #!/bin/bash
 echo "Entrando"
+which python
 echo "Voy a ejecutar la activación del venv"
 source venv/bin/activate 
 echo "venv activado"
+echo "Haré which python otra vez"
+which python
 echo "voy a hacer ls"
 ls
 echo "ls realizado"
