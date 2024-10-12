@@ -22,10 +22,12 @@ jobs:
 
         - name: Killer bash
           run: |
+              set -x
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x killer.sh && ./killer.sh"
 
         - name: Launch Gradio Server
           run: |
+              set -x
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x launcher.sh && ./launcher.sh"
         
         # - name: stop running gradio app
