@@ -10,8 +10,9 @@ class MyHandler(FileSystemEventHandler):
             print("Creo que llegué aquí porque hubo un cambio1.")
             print("Y ésto es el observer:")
             print(observer)
-            demo.close()
-            demo.launch(root_path="/gradio-demo")
+            # demo.close()
+            # demo.launch(root_path="/gradio-demo")
+            print("Detecté un cambio...")
 
 def greet(name):
     print("Normal logging...")
