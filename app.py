@@ -8,6 +8,8 @@ class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path == 'app.py':
             print("Creo que llegué aquí porque hubo un cambio.")
+            print("Y ésto es el observer:")
+            print(observer)
             demo.close()
             demo.launch(root_path="/gradio-demo")
 
@@ -19,7 +21,7 @@ print("Inicio del programa...")
 observer = Observer()
 observer.schedule(MyHandler(), path='app.py')
 observer.start()
-print("Observador iniciado")
+print("Observador iniciado, es este:", observer)
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
