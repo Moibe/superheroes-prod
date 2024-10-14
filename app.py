@@ -3,8 +3,11 @@ import gradio as gr
 def greet(name):
     return f"Hello, Hola, Tervetuloa, Cheers, Danke {name}."
 
-demo = gr.Interface(fn=greet, inputs="text", outputs="text").launch(root_path="/gradio-demo")
-
+try:
+    demo = gr.Interface(fn=greet, inputs="text", outputs="text").launch(root_path="/gradio-demo")
+except:
+    raise gr.Error("ERROR 182")
+    
 #import gradio as gr
 #import time
 
