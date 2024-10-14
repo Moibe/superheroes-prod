@@ -24,8 +24,8 @@ demo.launch(root_path="/gradio-demo")
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path == 'app.py':
-            main_block.stop()
-            main_block.launch()
+            demo.stop()
+            demo.launch()
 
 observer = Observer()
 observer.schedule(MyHandler(), path='app.py')
