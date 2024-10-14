@@ -14,7 +14,7 @@ class MyHandler(FileSystemEventHandler):
         if event.src_path == 'app.py':
             print("Creo que llegué aquí porque hubo un cambio.")
             demo.close()
-            demo.launch()
+            demo.launch(root_path="/gradio-demo")
 
 def greet(name):
     print("Normal logging...")
