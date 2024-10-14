@@ -6,7 +6,7 @@ from watchdog.events import FileSystemEventHandler
 # Watch for changes in your Python file
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
-        if event.src_path == 'app.py':
+        if event.src_path == 'hola.py':
             print("Creo que llegué aquí porque hubo un cambio1.")
             print("Y ésto es el observer:")
             print(observer)
@@ -19,7 +19,7 @@ def greet(name):
 
 print("Inicio del programa...")
 observer = Observer()
-observer.schedule(MyHandler(), path='app.py')
+observer.schedule(MyHandler(), path='hola.py')
 observer.start()
 print("Observador iniciado, es este:", observer)
 
