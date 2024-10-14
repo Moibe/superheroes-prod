@@ -5,7 +5,6 @@ def iniciar():
     demo.launch(root_path="/gradio-demo")   
 
 def greet(name):
-    print("Normal logging...")
     return f"Hello, Hola {name}."
 
 
