@@ -1,4 +1,11 @@
 import gradio as gr
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+def slow_echo(message, history):
+    for i in range(len(message)):
+        time.sleep(0.05)
+        yield "You typed: " + message[: i + 1]
 
 def greet(name):
     return f"Hello, Hola, Tervetuloa, Cheers {name}."
@@ -11,7 +18,20 @@ with gr.Blocks() as demo:
 
 demo.launch(root_path="/gradio-demo")
 
-# try:
-#     demo = gr.Interface(fn=greet, inputs="text", outputs="text").launch(root_path="/gradio-demo")
-# except:
-#     raise gr.Error("ERROR 182")
+# Watch for changes in your Python file
+class MyHandler(FileSystemEventHandler):
+    def on_modified(self, event):
+        if event.src_path == 'app.py':
+            main_block.stop()
+            main_block.launch()
+
+observer = Observer()
+observer.schedule(MyHandler(), path='app.py')
+observer.start()
+
+try:
+    while True:
+        time.sleep(5)
+except KeyboardInterrupt:
+    observer.stop()
+observer.join()
