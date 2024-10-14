@@ -18,7 +18,7 @@ class MyHandler(FileSystemEventHandler):
 
 def greet(name):
     print("Normal logging...")
-    return f"Hello, Hola, Tervetuloa, Danke, Spasiva {name}."
+    return f"Hello, Hola, Tervetuloa, Danke {name}."
 
 print("Inicio del programa...")
 observer = Observer()
