@@ -25,7 +25,10 @@ class MyHandler(FileSystemEventHandler):
             print("Creo que llegué aquí porque hubo un cambio1.")
             print("Y ésto es el observer:")
             print(observer)
-            demo.close()
+            if demo.close():
+                print("Si se pudo cerrar del demo...")
+            
+            print("Demo closed...")
             print("Detecté un cambio...")
             crearObserver()
             demo.launch(root_path="/gradio-demo")
