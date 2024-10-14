@@ -17,17 +17,19 @@ def greet(name):
     print("Normal logging...")
     return f"Hello, Hola, Tervetuloa, Danke, Spasiva {name}."
 
-print("Inicio del programa...")
-observer = Observer()
-observer.schedule(MyHandler(), path='hola.py')
-observer.start()
-print("Observador iniciado, es este:", observer)
-
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
     output = gr.Textbox(label="Output Box")
     greet_btn = gr.Button("Greet")
     greet_btn.click(fn=greet, inputs=name, outputs=output, api_name="greet")
+
+
+
+print("Inicio del programa...")
+observer = Observer()
+observer.schedule(MyHandler(), path='hola.py')
+observer.start()
+print("Observador iniciado, es este:", observer)
 
 print("Lanzando bloque.")
 demo.launch(root_path="/gradio-demo")
