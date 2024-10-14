@@ -26,7 +26,7 @@ class MyHandler(FileSystemEventHandler):
             print("Y ésto es el observer:")
             print(observer)
             demo.close()
-            time.sleep(7)
+            time.sleep(60)
             
             print("Demo closed...")
             print("Detecté un cambio...")
