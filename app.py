@@ -7,7 +7,7 @@ from watchdog.events import FileSystemEventHandler
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path == 'app.py':
-            print("Creo que llegué aquí porque hubo un cambio.")
+            print("Creo que llegué aquí porque hubo un cambio1.")
             print("Y ésto es el observer:")
             print(observer)
             demo.close()
