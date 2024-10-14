@@ -25,7 +25,7 @@ class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path == 'app.py':
             print("Creo que llegué aquí porque hubo un cambio.")
-            demo.stop()
+            demo.close()
             demo.launch()
 
 observer = Observer()
