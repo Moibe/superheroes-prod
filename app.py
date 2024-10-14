@@ -5,7 +5,7 @@ def iniciar():
     demo.launch(root_path="/gradio-demo")   
 
 def greet(name):
-    return f"Hello, Hola cambio con reload {name}."
+    return f"Hello, Hola cambio con autoreload {name}."
 
 
 with gr.Blocks() as demo:
