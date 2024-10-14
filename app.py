@@ -23,19 +23,16 @@ with gr.Blocks() as demo:
     greet_btn = gr.Button("Greet")
     greet_btn.click(fn=greet, inputs=name, outputs=output, api_name="greet")
 
-
-
-print("Inicio del programa...")
-observer = Observer()
-observer.schedule(MyHandler(), path='hola.py')
-observer.start()
-print("Observador iniciado, es este:", observer)
-
-print("Lanzando bloque.")
-demo.launch(root_path="/gradio-demo")
-
-
 try:
+    print("Inicio del programa...")
+    observer = Observer()
+    observer.schedule(MyHandler(), path='hola.py')
+    observer.start()
+    print("Observador iniciado, es este:", observer)
+    
+    print("Lanzando bloque.")
+    demo.launch(root_path="/gradio-demo")
+    
     while True:
         print("Durmiendo 5 segundos...")
         time.sleep(5)
