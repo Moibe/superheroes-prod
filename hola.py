@@ -1,1 +1,1 @@
-print("Change under reordered observer...")
+print("Royal Test Under Reorder...")
