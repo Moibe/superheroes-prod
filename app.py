@@ -10,7 +10,7 @@ def slow_echo(message, history):
 
 def greet(name):
     print("Normal logging...")
-    return f"Hello, Hola {name}."
+    return f"Hello, Hola, Tervetuloa {name}."
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
