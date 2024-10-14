@@ -1,1 +1,1 @@
-do print("2do reordenamiento...")
+do print("2C 2do reordenamiento...")
