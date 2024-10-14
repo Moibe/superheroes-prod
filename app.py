@@ -18,7 +18,9 @@ with gr.Blocks() as demo:
     greet_btn = gr.Button("Greet")
     greet_btn.click(fn=greet, inputs=name, outputs=output, api_name="greet")
 
-demo.launch(root_path="/gradio-demo")
+demo.launch(root_path="/gradio-demo
+
+print("Demo lanzado, llegamos a éste punto??")
 
 # Watch for changes in your Python file
 class MyHandler(FileSystemEventHandler):
