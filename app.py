@@ -24,10 +24,11 @@ class MyHandler(FileSystemEventHandler):
         if event.src_path == 'hola.py':
             print("Creo que llegué aquí porque hubo un cambio1.")
             print("Y ésto es el observer:")
-            #print(observer)
+            print(observer)
             demo.close()
             demo.launch(root_path="/gradio-demo")
             print("Detecté un cambio...")
+            crearObserver()
 
 def greet(name):
     print("Normal logging...")
