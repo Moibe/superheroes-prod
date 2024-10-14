@@ -25,8 +25,8 @@ class MyHandler(FileSystemEventHandler):
             print("Creo que llegué aquí porque hubo un cambio1.")
             print("Y ésto es el observer:")
             print(observer)
-            if demo.close():
-                print("Si se pudo cerrar del demo...")
+            demo.close()
+            time.sleep(7)
             
             print("Demo closed...")
             print("Detecté un cambio...")
