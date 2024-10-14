@@ -1,1 +1,1 @@
-print("2C Change Under Sleep...")
+print("60 seconds to close...")
