@@ -3,11 +3,6 @@ import gradio as gr
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-def slow_echo(message, history):
-    for i in range(len(message)):
-        time.sleep(0.05)
-        yield "You typed: " + message[: i + 1]
-
 # Watch for changes in your Python file
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
