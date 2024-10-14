@@ -1,7 +1,7 @@
 import gradio as gr
 
 def greet(name):
-    return f"Hello, Hola, Tervetuloa, Cheers, Danke {name}."
+    return f"Hello, Hola, Tervetuloa, Cheers {name}."
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
