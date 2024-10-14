@@ -33,6 +33,7 @@ observer.start()
 
 try:
     while True:
+        print("Durmiendo 5 segundos...")
         time.sleep(5)
 except KeyboardInterrupt:
     observer.stop()
