@@ -8,7 +8,7 @@ def slow_echo(message, history):
         yield "You typed: " + message[: i + 1]
 
 def greet(name):
-    return f"Hello, Hola, Tervetuloa, Cheers {name}."
+    return f"Hello, Hola, Tervetuloa {name}."
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
