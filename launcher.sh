@@ -1,7 +1,12 @@
 #!/bin/bash
+echo "Revisaré si tiene tmux"
+which tmux
 echo "Activaré source"
 source venv/bin/activate
 echo "Source Activado"
+echo "Volveré a checar si tiene tmux"
+which tmux
+echo "Tmux checado"
 echo "Crearé sesión royal" 
 tmux new -s sesionRoyal
 echo "Sesión creada"
