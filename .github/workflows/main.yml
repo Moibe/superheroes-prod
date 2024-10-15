@@ -25,6 +25,7 @@ jobs:
               set -x
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x killer.sh && ./killer.sh"
 
+        - uses: actions/checkout@v3
         - name: Start Server
           uses: ./.github/actions/start-server
 
