@@ -8,7 +8,8 @@ echo "Volveré a checar si tiene tmux"
 which tmux
 echo "Tmux checado"
 echo "Crearé sesión royal" 
-tmux new -s sesionRoyal
+# tmux new -s sesionRoyal
+tmux
 echo "Sesión creada"
 echo "Dormiré 3"
 sleep 3
