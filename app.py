@@ -1,13 +1,13 @@
 import gradio as gr
 import subprocess
 
-def release_port(): 
+# def release_port(): 
     
-    try:
-        k = subprocess.check_output('lsof -i :7860 | kill xargs', shell=True, text=True)
-        print("Processes on port 7860 killed successfully.")
-    except subprocess.CalledProcessError as e:
-        print("Error killing processes:", e)
+#     try:
+#         k = subprocess.check_output('lsof -i :7860 | kill xargs', shell=True, text=True)
+#         print("Processes on port 7860 killed successfully.")
+#     except subprocess.CalledProcessError as e:
+#         print("Error killing processes:", e)
 
 def iniciar():    
     print("Lanzando bloque.")
@@ -23,5 +23,5 @@ with gr.Blocks() as demo:
     greet_btn = gr.Button("Greet")
     greet_btn.click(fn=greet, inputs=name, outputs=output, api_name="greet")
 
-release_port()
+#release_port()
 iniciar()
