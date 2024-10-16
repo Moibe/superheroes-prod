@@ -6,7 +6,7 @@ def iniciar():
     demo.launch(root_path="/gradio-demo", server_port=7860)   
 
 def greet(name):
-    return f"Idempotencia: {name}."
+    return f"3rd Print: {name}."
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
