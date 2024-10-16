@@ -2,15 +2,15 @@ import gradio as gr
 import subprocess
 import os
 
-hf_key = os.getenv('HF_KEY')
-print(hf_key)
+hf_token = os.getenv('HF_TOKEN')
+print(hf_token)
 
 def iniciar():    
     print("Lanzando bloque.")
     demo.launch(root_path="/gradio-demo", server_port=7860)   
 
 def greet(name):
-    return f"3rd Print: {hf_key} - {name}."
+    return f"3rd Print: {hf_token} - {name}."
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
