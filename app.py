@@ -2,9 +2,6 @@ import gradio as gr
 import subprocess
 import os
 
-# Para obtener el valor de una variable de entorno:
-mi_variable = os.getenv('NOMBRE_DE_LA_VARIABLE')
-
 hf_key = os.getenv('HF_KEY')
 print(hf_key)
 
