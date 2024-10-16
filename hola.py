@@ -2,5 +2,5 @@ import os
 
 print("Hola, adiós")
 
-hf_key = os.getenv('HF_KEY')
-print(hf_key)
+hf_token = os.getenv('HF_TOKEN')
+print(hf_token)
