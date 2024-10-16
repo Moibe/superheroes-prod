@@ -19,7 +19,7 @@ jobs:
 
         - name: Enviar variable al servidor
           run: |
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'export API_TOKEN=${{ secrets.HF_TOKEN }}' >> ~/.bashrc"
+           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'export HF_TOKEN=${{ secrets.HF_TOKEN }}' >> ~/.bashrc"
 
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
