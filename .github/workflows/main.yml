@@ -19,8 +19,8 @@ jobs:
 
         - name: Enviar variable al servidor
           run: |
-           # ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "export HF_TOKEN=${{ secrets.HF_TOKEN }}"
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo holaadios"
+           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "export HF_TOKEN=${{ secrets.HF_TOKEN }} && echo $HF_TOKEN"
+           # ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo holaadios"
 
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
