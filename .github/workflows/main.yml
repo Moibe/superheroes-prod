@@ -35,10 +35,6 @@ jobs:
         #       set -x
         #       ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -tt "cd ${{ secrets.WORK_DIR }} && chmod +x launcher.sh && ./launcher.sh"
         
-        # - name: stop running gradio app
-        #   run: |
-        #       ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pkill python"      
-
         # - name: activate enviroment and run 
         #   run: |
         #       ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && source venv/bin/activate && python app.py \& && exit"      
