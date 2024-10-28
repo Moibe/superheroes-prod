@@ -20,8 +20,7 @@ jobs:
         - name: Enviar variable al servidor
           run: |
            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && ls"
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo $HF_TOKEN"
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "printenv $HF_TOKEN"
+           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo Hola Mundo > hola.txt"
 
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
