@@ -25,6 +25,12 @@ jobs:
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
 
+        - name: Run Redeploy
+          run: |
+               set -x
+               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x deploy.sh && ./deploy.sh"
+
+        
         # - name: Killer bash
         #   run: |
         #       set -x
