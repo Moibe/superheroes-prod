@@ -17,18 +17,18 @@ jobs:
             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
             ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
-        - name: Enviar variable al servidor
-          run: |
-           # ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "export HF_TOKEN=${{ secrets.HF_TOKEN }} && echo $HF_TOKEN"
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo $HF_TOKEN"
+        # - name: Enviar variable al servidor
+        #   run: |
+        #    # ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "export HF_TOKEN=${{ secrets.HF_TOKEN }} && echo $HF_TOKEN"
+        #    ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo $HF_TOKEN"
 
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
 
-        - name: Run Redeploy
-          run: |
-               set -x
-               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x deploy.sh && ./deploy.sh"
+        # - name: Run Redeploy
+        #   run: |
+        #        set -x
+        #        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && chmod +x deploy.sh && ./deploy.sh"
 
         
         # - name: Killer bash
