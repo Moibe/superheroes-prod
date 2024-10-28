@@ -19,7 +19,7 @@ jobs:
 
         - name: Enviar variable al servidor
           run: |
-           # ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd scripts && ls"
+           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd scripts && ls"
            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo $HF_TOKEN"
 
         - name: connect and pull
