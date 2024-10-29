@@ -6,7 +6,7 @@ Esto es un texto en *cursiva 🐬*.
 **Esto es un texto en negrita 🐬.**<br>
 __Esto es un texto en negrita 🐬.__
 
-![Mi gato](gato.jpg "Un gato muy lindo" width="50%")
+![Mi gato](gato.avif "Un gato muy lindo" width="50%")
 
 También puedes combinar ambos: ***Esto está en negrita y cursiva 🐬 ***.
 
