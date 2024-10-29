@@ -17,7 +17,7 @@ jobs:
 
         - name: Enviar variable al servidor
           run: |
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && ls && echo HF_TOKEN=\"hola\" > llave.py"
+           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && ls && echo HF_TOKEN={{ secrets.HF_TOKEN }} > llave.py"
            
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
