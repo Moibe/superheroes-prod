@@ -14,7 +14,7 @@ def iniciar():
     demo.launch(root_path="/gradio-demo", server_port=7860)   
 
 def greet(name):
-    return f"Hola, hello, tervetuloa, danke: {hf_token} - {name}."
+    return f"Hola, quote S: {hf_token} - {name}."
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")
