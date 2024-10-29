@@ -1,5 +1,4 @@
 name: Standalone Operations
-
 on:
     push:
         branches:
@@ -19,7 +18,7 @@ jobs:
 
         - name: Enviar variable al servidor
           run: |
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && ls && echo export HF_TOKEN=${{ secrets.HF_TOKEN}} > hola.txt"
+           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && ls && echo export HF_TOKEN=${{ secrets.HF_TOKEN}} > llave.sh"
            
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
