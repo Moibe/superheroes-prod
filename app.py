@@ -7,7 +7,7 @@ hf_token = os.getenv('HF_TOKEN')
 print(hf_token)
 
 parametro = llave.HF_TOKEN
-print(f"El parámetro obtenido es: {HF_TOKEN}")
+print(f"El parámetro obtenido es: {parametro}")
 
 def iniciar():    
     print("Lanzando bloque.")
