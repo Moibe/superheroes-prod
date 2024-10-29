@@ -12,7 +12,7 @@ print(hug)
 
 def iniciar():
     print("Lanzando bloque.")
-    demo.launch(root_path="/gradio-demo", server_port=7860)
+    demo.launch(root_path="/mango", server_port=7860)
 
 def greet(name):
     return f"Hola, hug  es {hug} - {name}."
