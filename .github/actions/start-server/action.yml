@@ -1,7 +1,0 @@
-# action.yml
-name: 'Start Python Server'
-description: 'Starts a Python server in the background'
-runs:
-  using: 'docker'
-  image: 'ubuntu-latest-python:3.9'
-  args: ['-c', 'python app.py &']
