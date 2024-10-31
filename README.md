@@ -20,17 +20,22 @@ Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeL
 - WORK_DIR es la ubicación de tu repositorio, por ejemplo en éste caso: code/ocean-astro-blend
 - MAIN_BRANCH main
 
-6.- Ahora necesitas agregar el nuevo sitio a la configuración de nginx, hay dos formas de hacerlo:<br>
-a) agregarlo como un path así: tudominio.com/path
+6.- Ahora necesitas agregar el nuevo sitio a la configuración de nginx, hay dos formas de hacerlo:
+
+**a) agregarlo como un path así: tudominio.com/path**
 
 Para agregarlo como un path, debes de agregar la parte correspondiente al archivo de nginx de tu dominio ya existente que se encuentra en /etc/ngingx/sites-available.<br>
 Una vez agregado debes hacer reload así: **systemctl reload nginx**
 
-b) agregarlo como otro dominio: otrodominio.com
+**b) agregarlo como otro dominio: otrodominio.com**
 
 Para agregarlo como otro dominio, en cambio, debes de copiar el archivo de dominio de nginx que se encuentra en /etc/nginx/sites-available y crear uno nuevo. 
 Una vez hecho ésto debes de crear el link simbólico hacia sites-enabled así: **ln -s /etc/nginx/sites-available/otro dominio.com /etc/nginx/sites-enabled/**
 Una vez agregado debes hacer reload así: **systemctl reload nginx**
 
-
-**Esto es un texto en negrita 🐬.**<br>
+Finalmente requerimos activar los certificados SSL. 🔒
+**sudo certbot --nginx -d example.com -d www.example.com**
+El proceso de renovación es automático y lo puedes checar aquí así: <br>
+**sudo systemctl status certbot.timer**
+Para probar si está funcionando correctamente puedes hacer una simulación de la renovación así:<br> 
+**sudo certbot renew --dry-run**
