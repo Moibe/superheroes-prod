@@ -18,11 +18,6 @@ jobs:
            
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
-
-        # - name: Launch Gradio Server
-        #   run: |
-        #       set -x
-        #       ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -tt "cd ${{ secrets.WORK_DIR }} && chmod +x launcher.sh && ./launcher.sh"
         
         # - name: activate enviroment and run 
         #   run: |
