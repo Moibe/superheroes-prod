@@ -1,7 +1,9 @@
 #### Gradio App en un Droplet de Digital Ocean 🐬
 Instrucciones para su intalación.
 
-Esto es un texto en *cursiva 🐬*.
+1.- Clona éste repositorio en la dropplet en donde quieres otra app de gradio corriendo.<br>
+git clone 
+
 
 **Esto es un texto en negrita 🐬.**<br>
 __Esto es un texto en negrita 🐬.__
