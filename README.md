@@ -5,8 +5,13 @@
 **git clone git@github.com:Moibe/gradio-standalone-do.git astro-blend**
 
 2.- Crea en Github un nuevo repositorio de producción desde donde manejarás ésta app.
+La nomenclatura será ocean- como prefijo, con lo que indicas que es el fornt de Digital Ocean para determinada app, en éste caso Astro-Blend.
 
 3.- Cambia el remoto del directorio recién clonado para que ahora manejes ésta nueva app desde el repositorio que acabas de crear en Github.
+
+4.- Haz git push origin main, para probar y subir el repositorio a su nuevo lugar en Github. 
+
+5.- Agrega las variables en settings: MAIN_BRANCH, SSH_HOST, SSH_PRIVATE_KEY, SSH_USER, WORK_DIR.
 
 **git remote set-url origin git@github.com:Moibe/ocean-astro-blend.git**
 
