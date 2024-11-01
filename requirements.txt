@@ -1,2 +1,3 @@
 fastapi
 gradio
+gradio_client
