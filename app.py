@@ -4,12 +4,12 @@ import hug
 
 def iniciar():
     print("Lanzando bloque.")
-    cliente = funciones.consulta()
-    print("Cliente: ", cliente)
     demo.launch(root_path="/mango", server_port=7860)
 
 def greet(name):
-    return f"Hola, hug  es {hug} - {name}."
+    #Conexión con API principal: 
+    result = funciones.consulta(name)
+    return f"Hola, el resultado es {result} - {name}."
 
 with gr.Blocks() as demo:
     name = gr.Textbox(label="Name")

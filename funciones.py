@@ -1,7 +1,7 @@
 import gradio_client
 import hug
 
-def consulta(): 
+def consulta(texto): 
 
     abrazo = hug.hug
     print(abrazo)
@@ -11,4 +11,6 @@ def consulta():
     print("Ésto es el cliente obtenido: ")
     print(client)
 
-    return client
+    result = client.predict(texto, api_name="/predict")
+
+    return result
