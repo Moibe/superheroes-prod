@@ -3,13 +3,18 @@ import sulkuPypi
 from funciones import mass
 import SulkuFront
 import autorizador
+import time
 
-#Funciones
+def iniciar():
+    demo.launch(auth=autorizador.authenticate, root_path="/mango", server_port=7860)
 
 #Función principal
 def perform(input1, input2, request: gr.Request):
     
-    tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8")) #Todo en una línea.
+    # tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8")) #Todo en una línea.
+    # print("Tokens es igual a: ", tokens)
+    # print("Y gr.tokens es igual a :", gr.State.tokens)
+    # time.sleep(18)
         
     #Después autoriza.
     #Si está autorizada puede ejecutar la tarea, ésta lógica si está a cargo aquí, por parte de la app y su desarrollador, no de Sulku.
@@ -50,8 +55,7 @@ def perform(input1, input2, request: gr.Request):
         #No se hizo un proceso, por lo tanto no debitaremos.
         #En el futuro, como regla de negocio, podría cambiar y que si debitemos.  
     
-    return path, info_window, html_credits, btn_buy
-
+    return path, info_window, html_credits, btn_buy, creditos
 
 
 #Inputs
@@ -59,7 +63,7 @@ source_image = gr.Image(label="Source", type="filepath")
 destination_image = gr.Image(label="Destination", type="filepath")
 
 #Outputs
-creditos = None 
+creditos = None
 result_image = gr.Image(label="Blend Result")
 txt_credits = gr.Textbox(label="Credits Available", value="", interactive=False)
 html_credits = gr.HTML()
@@ -69,7 +73,7 @@ btn_buy = gr.Button("Buy More", visible=False, size='lg')
 with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}") as main:
    
     #Cargado en Load, Función, input, output
-    main.load(display_tokens, None, html_credits) 
+    main.load(SulkuFront.display_tokens, None, html_credits) 
    
     with gr.Row():
         demo = gr.Interface(
@@ -77,6 +81,6 @@ with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}") as main:
             inputs=[source_image, destination_image], 
             outputs=[result_image, lbl_console, html_credits, btn_buy], 
             allow_flagging='never'
-            )        
-        
-main.launch(auth=autorizador.authenticate)
+            )     
+
+iniciar()
