@@ -1,7 +1,7 @@
 import gradio as gr
 import sulkuPypi
 from funciones import mass
-import tools
+import SulkuFront
 import autorizador
 
 #Funciones
@@ -39,30 +39,20 @@ def perform(input1, input2, request: gr.Request):
         #...de todos y es ahí donde radica el problema: 
         capsule = sulkuPypi.encripta(request.username).decode("utf-8") #decode es para quitarle el 'b
         tokens = sulkuPypi.debitTokens(capsule, "picswap")
-        html_credits = tools.actualizar_creditos(tokens, request.username)
+        html_credits = SulkuFront.actualizar_creditos(tokens, request.username)
         print(f"html credits quedó como : {html_credits} y es del tipo: {type(html_credits)}")
         info_window = "Image ready!"
         
     else:
         print("No se detectó un rostro...")
         info_window = "No face in source path detected."
-        html_credits = tools.actualizar_creditos(tokens, request.username)        
+        html_credits = SulkuFront.actualizar_creditos(tokens, request.username)        
         #No se hizo un proceso, por lo tanto no debitaremos.
         #En el futuro, como regla de negocio, podría cambiar y que si debitemos.  
     
     return path, info_window, html_credits, btn_buy
 
-def display_tokens(request: gr.Request):
 
-    #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
-    flag = sulkuPypi.getFlag(sulkuPypi.encripta(request.username).decode("utf-8"))
-    print("La flag obtenida es: ", flag)
-    #FUTURE quizá das doble vuelta decodificando porque haya lo vuelves a encodear, prueba enviando sin decode...
-    #...llegaría codificado a encripta y prueba allá no encode.
-    tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
-    display = tools.actualizar_creditos(tokens, request.username)
-    
-    return display
 
 #Inputs
 source_image = gr.Image(label="Source", type="filepath")
