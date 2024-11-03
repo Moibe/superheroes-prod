@@ -1,10 +1,10 @@
 import gradio_client
-import hug
+import bridges
 
-def consulta(texto): 
+abrazo = bridges.hug
+print(abrazo)
 
-    abrazo = hug.hug
-    print(abrazo)
+def consulta(texto):     
 
     client = gradio_client.Client("Moibe/basico", hf_token=abrazo)
 
@@ -12,5 +12,18 @@ def consulta(texto):
     print(client)
 
     result = client.predict(texto, api_name="/predict")
+
+    return result
+
+def mass(input1, input2): 
+
+    imagenSource = gradio_client.handle_file(input1) 
+    imagenDestiny = gradio_client.handle_file(input2)       
+
+    client = gradio_client.Client("Moibe/image-blend", hf_token=abrazo)
+    result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
+
+    print("Ésto es el cliente obtenido: ")
+    print(client)
 
     return result

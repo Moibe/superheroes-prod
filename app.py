@@ -1,6 +1,6 @@
 import gradio as gr
 import funciones
-import hug
+import bridges
 
 def iniciar():
     print("Lanzando bloque.")

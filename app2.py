@@ -2,7 +2,7 @@ import gradio as gr
 import sulkuPypi
 from funciones import mass
 import tools
-import auth
+import autorizador
 
 #Funciones
 
@@ -65,8 +65,8 @@ def display_tokens(request: gr.Request):
     return display
 
 #Inputs
-source_image = gr.Image(label="Source")
-destination_image = gr.Image(label="Destination")
+source_image = gr.Image(label="Source", type="filepath")
+destination_image = gr.Image(label="Destination", type="filepath")
 
 #Outputs
 creditos = None 
@@ -89,4 +89,4 @@ with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}") as main:
             allow_flagging='never'
             )        
         
-main.launch(auth=auth.authenticate)
+main.launch(auth=autorizador.authenticate)
