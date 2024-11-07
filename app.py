@@ -16,7 +16,6 @@ def perform(input1, input2, request: gr.Request):
     autorizacion = sulkuPypi.authorize(gr.State.tokens, 'picswap')
     if autorizacion is True:
         #IMPORTANTE: EJECUCIÓN DE LA APP EXTERNA: mass siempre será la aplicación externa que consultamos via API.   
-        #Ojo, como regla general, no siempre regresará un path (podría ser un texto).
         resultado = mass(input1,input2)
     else:
         info_window, resultado = SulkuFront.noCredit()

@@ -10,8 +10,10 @@ def noCredit():
     return info_window, path
 
 def presentacionFinal(usuario, accion):
-    #Si el path NO tiene no-result, todo funcionó bien, por lo tanto debita.
-    
+
+    print("Ent´re a presentación final....")
+    print("La acción es: ", accion)
+        
     #IMPORTANTE: Tienes que reconstruir capsule ahora que ya se obtiene del request, sino, capsule sera un State para el uso...
     #...de todos y es ahí donde radica el problema: 
     capsule = sulkuPypi.encripta(usuario).decode("utf-8") #decode es para quitarle el 'b
@@ -21,6 +23,8 @@ def presentacionFinal(usuario, accion):
         info_window = "Image ready!"        
     else: 
         info_window = "No face in source path detected."
+        tokens = gr.State.tokens
+
     
     html_credits = actualizar_creditos(tokens, usuario)       
     
@@ -28,13 +32,10 @@ def presentacionFinal(usuario, accion):
 
 def display_tokens(request: gr.Request):
 
-    print("182: Hola estoy en display_tokens y gr.Request.username es: ")
-    print(request.username)
-    time.sleep(18)
-
     #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
     flag = sulkuPypi.getFlag(sulkuPypi.encripta(request.username).decode("utf-8"))
     print("La flag obtenida es: ", flag)
+    
     #FUTURE quizá das doble vuelta decodificando porque haya lo vuelves a encodear, prueba enviando sin decode...
     #...llegaría codificado a encripta y prueba allá no encode.
     tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))

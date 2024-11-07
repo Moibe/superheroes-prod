@@ -1,3 +1,4 @@
+import time
 import bridges
 import globales
 import gradio_client
