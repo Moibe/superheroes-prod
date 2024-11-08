@@ -4,7 +4,7 @@ import sulkuPypi
 import ast 
 
 def authenticate(username, password):        
-    #Future: Obten el dict usuarios desde la API no localmente en ésta app. OK!
+
     cadena_usuarios = sulkuPypi.getData()    
     #Convertir la cadena en una lista de tuplas
     lista_usuarios = ast.literal_eval(cadena_usuarios)        
@@ -12,7 +12,6 @@ def authenticate(username, password):
     for u, p in lista_usuarios:
         #Si el usuario y la contraseña son correctas...
         if username == u and password == p:
-            #Future: Considerar que a más usuarios, más se tardará en repasar ésta lista.
             #Future, pensar como se va a corelacionar con login via Firebase.
 
             #Capsule es el usuario encriptado que enviarás a la API de Sulku.

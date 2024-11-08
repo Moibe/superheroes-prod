@@ -11,7 +11,7 @@ def noCredit():
 
 def presentacionFinal(usuario, accion):
 
-    print("Ent´re a presentación final....")
+    print("Entré a presentación final....")
     print("La acción es: ", accion)
         
     #IMPORTANTE: Tienes que reconstruir capsule ahora que ya se obtiene del request, sino, capsule sera un State para el uso...
@@ -35,6 +35,11 @@ def display_tokens(request: gr.Request):
     #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
     flag = sulkuPypi.getFlag(sulkuPypi.encripta(request.username).decode("utf-8"))
     print("La flag obtenida es: ", flag)
+
+    print("182: Ésto es request.username: ", request.username)
+    print(request.state)
+    print(request.kwargs)
+    print(request.session_hash)
     
     #FUTURE quizá das doble vuelta decodificando porque haya lo vuelves a encodear, prueba enviando sin decode...
     #...llegaría codificado a encripta y prueba allá no encode.
