@@ -51,9 +51,9 @@ def getData():
 
     return data
 
-def getFlag(userfile):
+def getNovelty(userfile):
 
-    method = "getUserFlag/"
+    method = "getUserNovelty/"
     params = userfile
 
     api_url = base_url + method + params
@@ -65,12 +65,14 @@ def getFlag(userfile):
         novelty = response.json()
 
         print("Esto es la flag de novelty obtenida: ", novelty)
-        time.sleep(4)
+        time.sleep(2)
+        return novelty
               
     else:
         print("Error al obtener el elemento todo:", response.status_code)
+        return "{error}"
 
-    return novelty
+    
 
 def getTokens(userfile):
 

@@ -38,7 +38,7 @@ def display_tokens(request: gr.Request):
     #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
     novelty = sulkuPypi.getFlag(sulkuPypi.encripta(request.username).decode("utf-8"))
     print("La flag de novelty obtenida es: ", novelty)
-    time.sleep(8)
+    time.sleep(4)
     
     #FUTURE quizá das doble vuelta decodificando porque haya lo vuelves a encodear, prueba enviando sin decode...
     #...llegaría codificado a encripta y prueba allá no encode.
