@@ -65,12 +65,11 @@ def getNovelty(userfile):
         novelty = response.json()
 
         print("Esto es la flag de novelty obtenida: ", novelty)
-        time.sleep(2)
         return novelty
               
     else:
         print("Error al obtener el elemento todo:", response.status_code)
-        return "{error}"
+        return "f{error:}"
 
     
 
