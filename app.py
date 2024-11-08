@@ -48,10 +48,9 @@ source_image = gr.Image(label="Source", type="filepath")
 destination_image = gr.Image(label="Destination", type="filepath")
 
 #Outputs
-html_tokens = gr.HTML()
 result_image = gr.Image(label="Blend Result")
 txt_credits = gr.Textbox(label="Credits Available", value="", interactive=False)
-html_credits = gr.HTML()
+html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
 btn_buy = gr.Button("Buy More", visible=False, size='lg')
 

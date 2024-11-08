@@ -9,7 +9,7 @@ def noCredit(usuario):
     tokens = gr.State.tokens
     print("Estoy en no-credit, no debería recalcular porque es cero, pero gr.State.tokens es: ", gr.State.tokens)
     #Importante, ojo con que si sirve gr.State.tokens
-    html_credits = actualizar_creditos(tokens, usuario)   
+    html_credits = visualizar_creditos(tokens, usuario)   
 
     return info_window, path, html_credits
 
@@ -29,25 +29,31 @@ def presentacionFinal(usuario, accion):
         tokens = gr.State.tokens
 
     
-    html_credits = actualizar_creditos(tokens, usuario)       
+    html_credits = visualizar_creditos(tokens, usuario)       
     
     return html_credits, info_window
 
+def invisibiliza():
+    return gr.Textbox(visible=bool(1)) 
+
 def display_tokens(request: gr.Request):
+   
 
     #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
     novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"))
     print("La flag de novelty obtenida es: ", novelty)
-    time.sleep(2)
-    
-    #FUTURE quizá das doble vuelta decodificando porque haya lo vuelves a encodear, prueba enviando sin decode...
-    #...llegaría codificado a encripta y prueba allá no encode.
-    tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
-    display = actualizar_creditos(tokens, request.username)
+
+    if novelty == "new_user": 
+        print("INVISIBILIZA")
+        display = gr.Textbox(visible=False)
+        time.sleep(2)
+    else: 
+        tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
+        display = visualizar_creditos(tokens, request.username)      
     
     return display
 
-def actualizar_creditos(nuevos_creditos, usuario):
+def visualizar_creditos(nuevos_creditos, usuario):
 
      html_credits = f"""
      <div>

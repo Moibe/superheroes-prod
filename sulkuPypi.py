@@ -70,7 +70,6 @@ def getNovelty(userfile):
     else:
         print("Error al obtener el elemento todo:", response.status_code)
         return "f{error:}"
-
     
 
 def getTokens(userfile):
