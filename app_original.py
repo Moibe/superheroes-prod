@@ -3,7 +3,6 @@ import funciones
 
 
 def iniciar():
-    print("Lanzando bloque.")
     demo.launch(root_path="/mango", server_port=7860)
 
 def greet(name):

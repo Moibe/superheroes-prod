@@ -27,9 +27,8 @@ def perform(input1, input2, request: gr.Request):
         #IMPORTANTE: EJECUCIÓN DE LA APP EXTERNA: mass siempre será la aplicación externa que consultamos via API.   
         resultado = mass(input1,input2)
     else:
-        info_window, resultado = SulkuFront.noCredit()
-
-    return resultado, info_window, btn_buy
+        info_window, resultado, html_credits = SulkuFront.noCredit(request.username)
+        return resultado, info_window, html_credits, btn_buy
     
     #**SE EJECUTA EL LLAMADO Y OFRECE UN RESULTADO.**
     
@@ -65,7 +64,7 @@ with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}") as main:
         demo = gr.Interface(
             fn=perform,
             inputs=[source_image, destination_image], 
-            outputs=[result_image, lbl_console, btn_buy], 
+            outputs=[result_image, lbl_console, html_credits, btn_buy], 
             allow_flagging='never'
             )     
 

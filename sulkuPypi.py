@@ -102,7 +102,7 @@ def authorize(tokens, work):
         autorizacion = response.json()
         print("Autorización:", autorizacion)
         print("Y AUTORIZACIÓN es del tipo: ", type(autorizacion))
-        time.sleep(4)
+        
     else:
         print("Error al obtener el elemento todo:", response.status_code)
 

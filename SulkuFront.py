@@ -3,15 +3,18 @@ import gradio as gr
 import time
 
 #Controla lo que se depliega en el frontend y que tiene que ver con llamados a Sulku.
-def noCredit():
+def noCredit(usuario):
     info_window = "Out of credits..."
     path = 'no-credits.png'
+    tokens = gr.State.tokens
+    print("Estoy en no-credit, no debería recalcular porque es cero, pero gr.State.tokens es: ", gr.State.tokens)
+    #Importante, ojo con que si sirve gr.State.tokens
+    html_credits = actualizar_creditos(tokens, usuario)   
 
-    return info_window, path
+    return info_window, path, html_credits
 
 def presentacionFinal(usuario, accion):
 
-    print("Entré a presentación final....")
     print("La acción es: ", accion)
         
     #IMPORTANTE: Tienes que reconstruir capsule ahora que ya se obtiene del request, sino, capsule sera un State para el uso...
