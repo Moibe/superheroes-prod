@@ -62,14 +62,15 @@ def getFlag(userfile):
 
     if response.status_code == 200:
         print("Conexión a Sulku successful...")
-        flag = response.json()
+        novelty = response.json()
 
-        print("Esto es la flag obtenida: ", flag)
+        print("Esto es la flag de novelty obtenida: ", novelty)
+        time.sleep(4)
               
     else:
-        print("182: Error al obtener el elemento todo:", response.status_code)
+        print("Error al obtener el elemento todo:", response.status_code)
 
-    return flag
+    return novelty
 
 def getTokens(userfile):
 
