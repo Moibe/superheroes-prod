@@ -52,9 +52,18 @@ result_image = gr.Image(label="Blend Result")
 txt_credits = gr.Textbox(label="Credits Available", value="", interactive=False)
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
-btn_buy = gr.Button("Buy More", visible=False, size='lg')
+btn_buy = gr.Button("Get Credits", visible=True, size='lg')
 
-with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}") as main:
+#ESPACIO MOMENTANEO PARA JS
+js = """
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="Moibe" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" >
+    HOLA
+     var gradioContainer = document.querySelector('.gradio-container');
+    gradioContainer.insertBefore(container, gradioContainer.firstChild);
+    </script>
+    """
+
+with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}", js=js) as main:
    
     #Cargado en Load: Función, input, output
     main.load(SulkuFront.display_tokens, None, html_credits) 
