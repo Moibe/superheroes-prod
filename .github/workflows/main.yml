@@ -21,7 +21,7 @@ jobs:
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
               "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} \
               && git pull \
-              && source venv/bin/activate
+              && source venv/bin/activate \
               && exit"     
                 
         - name: cleanup
