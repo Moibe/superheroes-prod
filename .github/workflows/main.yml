@@ -20,7 +20,9 @@ jobs:
           run: | 
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
               "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} \
-              && git pull && exit"     
+              && git pull \
+              && source venv/bin/activate
+              && exit"     
                 
         - name: cleanup
           run: rm -rf ~/.ssh
