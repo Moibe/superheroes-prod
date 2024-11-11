@@ -7,16 +7,19 @@ import debit_rules
 from funciones import mass
 
 def iniciar():    
-    main.launch(auth=autorizador.authenticate, root_path="/mango", server_port=7860)
+    app_path = "/mango"
+    main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=7860)
     #Future: Si la app está dormida, no hay reacción de éste lado para avisar que está dormida.
 
 #Función principal
 def perform(input1, input2, request: gr.Request):  
 
-    #Maneja una excepción para el concurrent.futures._base.CancelledError
+    #Future: Maneja una excepción para el concurrent.futures._base.CancelledError
 
     print("Dentro de perform, request.username es: ", request.username)
-    print("Estoy por pedir la autorización, y gr.State.tokens es:  ", gr.State.tokens)           
+    print("Estoy por pedir la autorización, y gr.State.tokens es:  ", gr.State.tokens)  
+
+    #Future: Que no se vea el resultado anterior al cargar el nuevo resultado!         
 
     #Importante: El uso de gr.State.tokens lo dejo en duda porque al parecer es compartido por la app para todos los usuarios!
     #Otra opción es usar una variable, para evitar ir hasta el servidor. 

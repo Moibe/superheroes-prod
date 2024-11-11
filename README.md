@@ -22,6 +22,8 @@ Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeL
 
 6.- Ahora necesitas agregar el nuevo sitio a la configuración de nginx, hay dos formas de hacerlo:
 
+**Importante: Antes de agregar el path a las configuraciones de nginx, recuerda que ese path esté especificado en 
+
 **a) agregarlo como un path así: tudominio.com/path**
 
 Para agregarlo como un path, debes de agregar la parte correspondiente al archivo de nginx de tu dominio ya existente que se encuentra en /etc/ngingx/sites-available.<br>
@@ -39,3 +41,8 @@ El proceso de renovación es automático y lo puedes checar aquí así: <br>
 **sudo systemctl status certbot.timer**
 Para probar si está funcionando correctamente puedes hacer una simulación de la renovación así:<br> 
 **sudo certbot renew --dry-run**
+
+Éste repositorio cuenta con github actions para autodesplegarlo cada que hay cambios.<br>
+Sin embargo, para que corre la app de gradio lo que se usa es un cron dentro del servidor.<br>
+Éste cron activa a deploy.sh que apaga el proceso anterior y reactiva el nuevo.<br>
+Todo ésto se guarda dentro de logs/deploy.log.
