@@ -8,9 +8,12 @@ from funciones import mass
 
 def iniciar():    
     main.launch(auth=autorizador.authenticate, root_path="/mango", server_port=7860)
+    #Future: Si la app está dormida, no hay reacción de éste lado para avisar que está dormida.
 
 #Función principal
 def perform(input1, input2, request: gr.Request):  
+
+    #Maneja una excepción para el concurrent.futures._base.CancelledError
 
     print("Dentro de perform, request.username es: ", request.username)
     print("Estoy por pedir la autorización, y gr.State.tokens es:  ", gr.State.tokens)           
@@ -50,6 +53,7 @@ destination_image = gr.Image(label="Destination", type="filepath")
 #Outputs
 result_image = gr.Image(label="Blend Result")
 txt_credits = gr.Textbox(label="Credits Available", value="", interactive=False)
+#Future: Que función tiene txt_credits?
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
 btn_buy = gr.Button("Get Credits", visible=True, size='lg')
@@ -63,7 +67,7 @@ js = """
     </script>
     """
 
-with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}", js=js) as main:
+with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}") as main:
    
     #Cargado en Load: Función, input, output
     main.load(SulkuFront.display_tokens, None, html_credits) 

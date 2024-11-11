@@ -38,7 +38,7 @@ def invisibiliza():
 
 def display_tokens(request: gr.Request):
    
-
+    print("Ya llegué a display_tokens...")
     #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
     novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"))
     print("La flag de novelty obtenida es: ", novelty)
