@@ -1,13 +1,14 @@
-import gradio as gr
 import sulkuPypi
 import SulkuFront
 import autorizador
 import time
 import debit_rules
+import gradio as gr
 from funciones import mass
+import globales
 
 def iniciar():    
-    app_path = "/mango"
+    app_path = globales.app_path
     main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=7860)
     #Future: Si la app está dormida, no hay reacción de éste lado para avisar que está dormida.
 
