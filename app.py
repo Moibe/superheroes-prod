@@ -9,7 +9,7 @@ import globales
 
 def iniciar():    
     app_path = globales.app_path
-    main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=7860)
+    main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
     #Future: Si la app está dormida, no hay reacción de éste lado para avisar que está dormida.
 
 #INTERFAZ
