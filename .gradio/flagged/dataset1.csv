@@ -1,0 +1,6 @@
+Source,Destination,Blend Result,AI Terminal Messages,output 2,output 3,username,timestamp
+.gradio\flagged\Source\fedc7778c109ccd23f42\KierstenStokes.png,.gradio\flagged\Destination\79cdfe49a43457990404\Ml.png,.gradio\flagged\Blend Result\de2232dbcc3ba13fd821\no-credits.png,"{""label"": ""Out of credits..."", ""confidences"": null}","'
+    <div>
+    <div style=""text-align: left;"">👤<b>Username: </b> ella</div><div style=""text-align: right;"">💶<b>Credits Available: </b> 0</div>
+    </div>
+                    ",Get Credits,ella,2024-11-12 03:22:15.770872

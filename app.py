@@ -31,7 +31,7 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:
             fn=funciones.perform,
             inputs=[source_image, destination_image], 
             outputs=[result_image, lbl_console, html_credits, btn_buy], 
-            allow_flagging='never'
+            flagging_mode='auto'
             )     
 
 iniciar()
