@@ -4,7 +4,6 @@ import funciones
 import sulkuFront
 import autorizador
 import gradio as gr
-import inputs
 
 def iniciar():    
     app_path = globales.app_path
@@ -19,11 +18,9 @@ lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...",
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #Customizable Inputs and Outputs
-input1, result, *resto = inputs.inputs_selector("splashmix")
-
-for valor in resto:
-    # Procesar cada valor adicional
-    print(valor)
+source_image = gr.Image(label="Source", type="filepath")
+destination_image = gr.Image(label="Destination", type="filepath")
+result_image = gr.Image(label="Blend Result")
 
 with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
     #Cargado en Load: Función, input, output
@@ -32,8 +29,8 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:
     with gr.Row():
         demo = gr.Interface(
             fn=funciones.perform,
-            inputs=[input1] + resto, #Éste es el que podría variar entre 1 o 2 inputs.
-            outputs=[result, lbl_console, html_credits, btn_buy], 
+            inputs=[source_image, destination_image], 
+            outputs=[result_image, lbl_console, html_credits, btn_buy], 
             flagging_mode='never'
             )     
 

@@ -1,9 +1,11 @@
 import time
+import inputs
 import globales
 import funciones
 import sulkuFront
 import autorizador
 import gradio as gr
+
 
 def iniciar():    
     app_path = globales.app_path
@@ -18,9 +20,14 @@ lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...",
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #Customizable Inputs and Outputs
-source_image = gr.Image(label="Source", type="filepath")
-destination_image = gr.Image(label="Destination", type="filepath")
-result_image = gr.Image(label="Blend Result")
+input1, result, *resto = inputs.inputs_selector("image-blend")
+
+#Por alguna razón, los elementos que pasan como *resto, pierden su type filepath y se vuelven numpy.
+#Así es que la asignación del tipo la hago hasta acá.
+for elemento in resto:
+    print("Lo convertiré:")
+    elemento.type = "filepath"
+    print("Convertido.")
 
 with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
     #Cargado en Load: Función, input, output
@@ -29,8 +36,8 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:
     with gr.Row():
         demo = gr.Interface(
             fn=funciones.perform,
-            inputs=[source_image, destination_image], 
-            outputs=[result_image, lbl_console, html_credits, btn_buy], 
+            inputs=[input1] + resto, #Éste es el que podría variar entre 1 o 2 inputs.
+            outputs=[result, lbl_console, html_credits, btn_buy], 
             flagging_mode='never'
             )     
 
