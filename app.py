@@ -1,11 +1,9 @@
-import sulkuPypi
 import sulkuFront
 import autorizador
 import time
-import debit_rules
-import gradio as gr
 import funciones
 import globales
+import gradio as gr
 
 def iniciar():    
     app_path = globales.app_path
@@ -14,20 +12,17 @@ def iniciar():
 
 #INTERFAZ
 
-#Inputs
-source_image = gr.Image(label="Source", type="filepath")
-destination_image = gr.Image(label="Destination", type="filepath")
-
-#Outputs
-result_image = gr.Image(label="Blend Result")
-txt_credits = gr.Textbox(label="Credits Available", value="", interactive=False)
-#Future: Que función tiene txt_credits?
+#Credit Related Elements
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
 btn_buy = gr.Button("Get Credits", visible=True, size='lg')
 
-with gr.Blocks(theme=gr.themes.Base(), css="footer {visibility: True}") as main:
-   
+#Customizable Inputs and Outputs
+source_image = gr.Image(label="Source", type="filepath")
+destination_image = gr.Image(label="Destination", type="filepath")
+result_image = gr.Image(label="Blend Result")
+
+with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
     #Cargado en Load: Función, input, output
     main.load(sulkuFront.display_tokens, None, html_credits) 
    
