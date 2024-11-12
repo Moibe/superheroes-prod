@@ -31,7 +31,9 @@ jobs:
               "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} \
               && git pull \
               && source venv/bin/activate \
-              && python app.py &
+              && python app.py & \
+              && echo 'Moi' \
+              && exit"
                 
         - name: cleanup
           run: rm -rf ~/.ssh
