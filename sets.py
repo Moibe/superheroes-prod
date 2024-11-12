@@ -3,9 +3,9 @@ import gradio as gr
 # Diccionario para mapear los sets a sus respectivas configuraciones
 configuraciones = {
     "image-blend": {
-        "input1": gr.Image(label="Source", type="filepath"),
-        "input2": gr.Image(label="Destination", type="filepath"),
-        "result": gr.Image(label="Result"),
+        "input1": gr.Image(label="Arriba", type="filepath"),
+        "input2": gr.Image(label="Abajo", type="filepath"),
+        "result": gr.Image(label="Derecha"),
     },
     "video-blend": {
         "input1": gr.Image(label="Source", type="filepath"),
