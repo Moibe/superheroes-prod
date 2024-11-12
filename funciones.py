@@ -1,4 +1,3 @@
-import time
 import bridges
 import globales
 import sulkuPypi

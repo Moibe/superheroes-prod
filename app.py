@@ -25,9 +25,8 @@ input1, result, *resto = inputs.inputs_selector("image-blend")
 #Por alguna razón, los elementos que pasan como *resto, pierden su type filepath y se vuelven numpy.
 #Así es que la asignación del tipo la hago hasta acá.
 for elemento in resto:
-    print("Lo convertiré:")
     elemento.type = "filepath"
-    print("Convertido.")
+    print("Elemento designado filepath.")
 
 with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
     #Cargado en Load: Función, input, output

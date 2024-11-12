@@ -46,7 +46,6 @@ def display_tokens(request: gr.Request):
     if novelty == "new_user": 
         print("INVISIBILIZA")
         display = gr.Textbox(visible=False)
-        time.sleep(2)
     else: 
         tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
         display = visualizar_creditos(tokens, request.username)      
