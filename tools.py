@@ -11,4 +11,6 @@ def theme_selector():
         gr.themes.Soft()
     ]
 
-    return random.choice(temas_posibles)
+    tema = random.choice(temas_posibles)
+
+    return tema
