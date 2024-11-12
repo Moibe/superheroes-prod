@@ -1,8 +1,8 @@
+import time
+import globales
+import funciones
 import sulkuFront
 import autorizador
-import time
-import funciones
-import globales
 import gradio as gr
 
 def iniciar():    
@@ -15,7 +15,7 @@ def iniciar():
 #Credit Related Elements
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
-btn_buy = gr.Button("Get Credits", visible=True, size='lg')
+btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #Customizable Inputs and Outputs
 source_image = gr.Image(label="Source", type="filepath")

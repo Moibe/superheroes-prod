@@ -5,7 +5,7 @@ import time
 #Controla lo que se depliega en el frontend y que tiene que ver con llamados a Sulku.
 def noCredit(usuario):
     info_window = "Out of credits..."
-    path = 'no-credits.png'
+    path = 'images/no-credits.png'
     tokens = gr.State.tokens
     print("Estoy en no-credit, no debería recalcular porque es cero, pero gr.State.tokens es: ", gr.State.tokens)
     #Importante, ojo con que si sirve gr.State.tokens
