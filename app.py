@@ -6,7 +6,6 @@ import sulkuFront
 import autorizador
 import gradio as gr
 
-
 def iniciar():    
     app_path = globales.app_path
     main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
@@ -20,13 +19,12 @@ lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...",
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #Customizable Inputs and Outputs
-input1, result, *resto = inputs.inputs_selector("image-blend")
+input1, result, *resto = inputs.inputs_selector(globales.seto)
 
 #Por alguna razón, los elementos que pasan como *resto, pierden su type filepath y se vuelven numpy.
 #Así es que la asignación del tipo la hago hasta acá.
 for elemento in resto:
     elemento.type = "filepath"
-    print("Elemento designado filepath.")
 
 with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
     #Cargado en Load: Función, input, output
