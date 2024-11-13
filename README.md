@@ -5,7 +5,7 @@
 **git clone git@github.com:Moibe/gradio-standalone-do.git astro-blend**
 
 2.- Crea en Github un nuevo repositorio de producción desde donde manejarás ésta app.
-La nomenclatura será ocean- como prefijo, con lo que indicas que es el fornt de Digital Ocean para determinada app, en éste caso Astro-Blend.
+La nomenclatura será ocean- como prefijo, con lo que indicas que es el front de Digital Ocean para determinada app, en éste caso Astro-Blend.
 
 3.- Cambia el remoto del directorio recién clonado para que ahora manejes ésta nueva app desde el repositorio que acabas de crear en Github.<br>
 **git remote set-url origin git@github.com:Moibe/ocean-astro-blend.git**
@@ -22,7 +22,7 @@ Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeL
 
 6.- Ahora necesitas agregar el nuevo sitio a la configuración de nginx, hay dos formas de hacerlo:
 
-**Importante: Antes de agregar el path a las configuraciones de nginx, recuerda que ese path esté especificado en 
+**Importante: Antes de agregar el path a las configuraciones de nginx, recuerda que ese path esté especificado en <br>
 
 **a) agregarlo como un path así: tudominio.com/path**
 
@@ -34,6 +34,9 @@ Una vez agregado debes hacer reload así: **systemctl reload nginx**
 Para agregarlo como otro dominio, en cambio, debes de copiar el archivo de dominio de nginx que se encuentra en /etc/nginx/sites-available y crear uno nuevo. 
 Una vez hecho ésto debes de crear el link simbólico hacia sites-enabled así: **ln -s /etc/nginx/sites-available/otro dominio.com /etc/nginx/sites-enabled/**
 Una vez agregado debes hacer reload así: **systemctl reload nginx**
+
+Cada dominio necesitará una landing page, para cuando no vas hacia algun /sitio , la forma en que designé hacerlo es que se redireccione via nginx y que no viva esa página en gradio. 
+Por lo tanto, esas páginas deberan vivir en el directorio ** /usr/share/nginx/html ** por nomenclatura, con el nombre del sitio precedido por .html.
 
 Finalmente requerimos activar los certificados SSL. 🔒
 **sudo certbot --nginx -d example.com -d www.example.com**
