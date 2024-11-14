@@ -12,6 +12,5 @@ cd code/gradio-standalone-do/
 source venv/bin/activate
 python app.py &
 PID=$(pgrep -f "python app.py")
-echo "El PID del proceso es: $PID"
-timestamp=$(date +"%d-%m-%Y %H:%M:%S")
-echo "Proceso reiniciado: "
+timestamp2=$(date +"%d-%m-%Y %H:%M:%S")
+echo "Proceso reiniciado: $PID @ $timestamp2"
