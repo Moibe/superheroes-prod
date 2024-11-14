@@ -27,7 +27,7 @@ def presentacionFinal(usuario, accion):
         info_window = "Image ready!"        
     else: 
         info_window = "No face in source path detected."
-        tokens = gr.State.tokens
+        tokens = sulkuPypi.getTokens(capsule)
 
     
     html_credits = visualizar_creditos(tokens, usuario)       

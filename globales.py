@@ -13,6 +13,5 @@ app_path = "/boilerplate"
 server_port=7861
 tema = tools.theme_selector()
 
-
 print("El tema seleccionado es: ", tema)
 print("Y su tipo es: ", type(tema))
