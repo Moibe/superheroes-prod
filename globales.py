@@ -9,7 +9,7 @@ seto = "image-blend"
 #seto = "zhi"
 
 work = "picswap"
-app_path = "/mango"
+app_path = "/boilerplate"
 server_port=7860
 tema = tools.theme_selector()
 
