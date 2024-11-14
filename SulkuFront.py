@@ -1,6 +1,7 @@
 import sulkuPypi
 import gradio as gr
 import time
+import globales
 
 #Controla lo que se depliega en el frontend y que tiene que ver con llamados a Sulku.
 def noCredit(usuario):
@@ -22,7 +23,7 @@ def presentacionFinal(usuario, accion):
     capsule = sulkuPypi.encripta(usuario).decode("utf-8") #decode es para quitarle el 'b
     
     if accion == "debita":        
-        tokens = sulkuPypi.debitTokens(capsule, "picswap")
+        tokens = sulkuPypi.debitTokens(capsule, globales.work)
         info_window = "Image ready!"        
     else: 
         info_window = "No face in source path detected."

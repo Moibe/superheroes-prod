@@ -102,9 +102,7 @@ def authorize(tokens, work):
     if response.status_code == 200:
         print("Conexión a Sulku successful...")
         autorizacion = response.json()
-        print("Autorización:", autorizacion)
-        print("Y AUTORIZACIÓN es del tipo: ", type(autorizacion))
-        
+        print("Autorización:", autorizacion)        
     else:
         print("Error al obtener el elemento todo:", response.status_code)
 
@@ -148,5 +146,5 @@ def debitTokensQ(userfile, work):
 
 if __name__ == "__main__":
     getTokens(userfile)
-    authorize(18,'picswap')
+    authorize(18, globales.work)
     debitTokens(userfile, work)
