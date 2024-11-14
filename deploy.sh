@@ -1,5 +1,5 @@
 #!/bin/bash
-pid=$(lsof -i :7860 | awk 'NR==2 {print $2}')
+pid=$(lsof -i :7861 | awk 'NR==2 {print $2}')
 kill $pid
 
 sleep 5
