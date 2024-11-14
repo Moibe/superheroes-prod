@@ -5,24 +5,25 @@ import ast
 
 def authenticate(username, password):        
 
+    #Uno es el tiempo en que se tarda en obtener la cadena.
     cadena_usuarios = sulkuPypi.getData()    
     #Convertir la cadena en una lista de tuplas
     lista_usuarios = ast.literal_eval(cadena_usuarios)        
         
+    #Y otro el que se tarda en repasar la cadena.    
     for u, p in lista_usuarios:
         #Si el usuario y la contraseña son correctas...
         if username == u and password == p:
             #Future, pensar como se va a corelacionar con login via Firebase.
 
             #Capsule es el usuario encriptado que enviarás a la API de Sulku.
-            capsule = sulkuPypi.encripta(username).decode("utf-8") #decode es para quitarle el 'b
+            #capsule = sulkuPypi.encripta(username).decode("utf-8") #decode es para quitarle el 'b
      
             #Checa cuantos tokens tiene ese usuario via la API de Sulku: 
             #FUTURE: Checa si vale la pena guardar éstos estados.
-            gr.State.tokens = sulkuPypi.getTokens(capsule)
+            #gr.State.tokens = sulkuPypi.getTokens(capsule)
 
-            print("Auth completa.")
-                                    
+            print("Auth completa.")                                    
             return True
 
     #Si no hubo coincidencia regresas un false.    
