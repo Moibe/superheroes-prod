@@ -5,7 +5,6 @@ def inputs_selector(set):
 
     # Obtener la configuración según el valor de 'set'
     config = sets.configuraciones.get(set)
-    print("El tamaño del set config es:", len(config))
 
     # Si la configuración existe, usarla
     if config:

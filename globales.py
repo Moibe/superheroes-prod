@@ -10,7 +10,7 @@ seto = "image-blend"
 
 work = "picswap"
 app_path = "/boilerplate"
-server_port=7860
+server_port=7861
 tema = tools.theme_selector()
 
 
