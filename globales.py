@@ -1,14 +1,18 @@
 import gradio as gr
 import tools
 
-#aplicacion = "Moibe/image-blend"
-aplicacion = "Kwai-Kolors/Kolors-Character-With-Flux"
+#MAIN
+aplicacion = "Moibe/image-blend"
+#aplicacion = "Kwai-Kolors/Kolors-Character-With-Flux"
+#aplicacion = "Kwai-Kolors/Kolors-Portrait-with-Flux"
+seto = "image-blend"
+#seto = "zhi"
+
 work = "picswap"
 app_path = "/mango"
 server_port=7860
 tema = tools.theme_selector()
-#seto = "image-blend"
-seto = "zhi"
+
 
 print("El tema seleccionado es: ", tema)
 print("Y su tipo es: ", type(tema))

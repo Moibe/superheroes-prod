@@ -40,7 +40,7 @@ def perform(input1, request: gr.Request, *args):
     return resultado, info_window, html_credits, btn_buy
 
 #MASS es la que ejecuta la aplicación EXTERNA
-def mass2(input1, input2): 
+def mass(input1, input2): 
 
     imagenSource = gradio_client.handle_file(input1) 
     imagenDestiny = gradio_client.handle_file(input2)       
@@ -50,7 +50,7 @@ def mass2(input1, input2):
 
     return result
 
-def mass(input1, input2): 
+def mass_zhi(input1, input2): 
 
     imagenSource = gradio_client.handle_file(input1) 
     #imagenDestiny = gradio_client.handle_file(input2)       
@@ -66,10 +66,10 @@ def mass(input1, input2):
 		height=1024,
 		width=1024,
 		api_name="/character_gen"
-)
+        )
     
     print(result)
     print(result[0])
-    time.sleep(18)
+    
 
     return result[0]
