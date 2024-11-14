@@ -32,8 +32,11 @@ Una vez agregado debes hacer reload así: **systemctl reload nginx**
 **b) agregarlo como otro dominio: otrodominio.com**
 
 Para agregarlo como otro dominio, en cambio, debes de copiar el archivo de dominio de nginx que se encuentra en /etc/nginx/sites-available y crear uno nuevo. 
-Una vez hecho ésto debes de crear el link simbólico hacia sites-enabled así: **ln -s /etc/nginx/sites-available/otro dominio.com /etc/nginx/sites-enabled/**
-Una vez agregado debes hacer reload así: **systemctl reload nginx**
+Una vez hecho ésto debes de crear el link simbólico hacia sites-enabled así: 
+
+Estándo en sites-enabled: <br>
+**ln -s /etc/nginx/sites-available/otrodominio.com otrodominio.com** <br>
+Una vez agregado debes hacer reload así: **systemctl reload nginx** 
 
 Cada dominio necesitará una landing page, para cuando no vas hacia algun /sitio , la forma en que designé hacerlo es que se redireccione via nginx y que no viva esa página en gradio. 
 Por lo tanto, esas páginas deberan vivir en el directorio ** /usr/share/nginx/html ** por nomenclatura, con el nombre del sitio precedido por .html.
