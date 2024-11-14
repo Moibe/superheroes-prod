@@ -10,5 +10,5 @@ echo "Proceso eliminado: $pid @ $timestamp"
 cd
 cd code/gradio-standalone-do/
 source venv/bin/activate
-python app.py
+python app.py &
 echo "Proceso reiniciado."
