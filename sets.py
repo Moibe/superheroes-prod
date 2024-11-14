@@ -29,4 +29,9 @@ configuraciones = {
         "input1": gr.Textbox(),
         "result": gr.Video(),
     },
+    "zhi": {
+        "input1": gr.Image(label="Source", type="filepath"),
+        "input2": gr.Textbox(),
+        "result": gr.Image(label="Derecha"),
+    },
 }

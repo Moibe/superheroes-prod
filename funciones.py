@@ -5,6 +5,7 @@ import sulkuFront
 import debit_rules
 import gradio as gr
 import gradio_client
+import time
 
 abrazo = bridges.hug
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
@@ -39,7 +40,7 @@ def perform(input1, request: gr.Request, *args):
     return resultado, info_window, html_credits, btn_buy
 
 #MASS es la que ejecuta la aplicación EXTERNA
-def mass(input1, input2): 
+def mass2(input1, input2): 
 
     imagenSource = gradio_client.handle_file(input1) 
     imagenDestiny = gradio_client.handle_file(input2)       
@@ -48,3 +49,27 @@ def mass(input1, input2):
     result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
 
     return result
+
+def mass(input1, input2): 
+
+    imagenSource = gradio_client.handle_file(input1) 
+    #imagenDestiny = gradio_client.handle_file(input2)       
+
+    client = gradio_client.Client(globales.aplicacion)
+    #result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
+
+    result = client.predict(
+		prompt="A hot girl in sexy cocktail dress topless.",
+		person_img=imagenSource,
+		seed=486992,
+		randomize_seed=False,
+		height=1024,
+		width=1024,
+		api_name="/character_gen"
+)
+    
+    print(result)
+    print(result[0])
+    time.sleep(18)
+
+    return result[0]
