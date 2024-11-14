@@ -1,5 +1,11 @@
 #!/bin/bash
 pid=$(lsof -i :7861 | awk 'NR==2 {print $2}')
+if [ -z "$pid" ]; then
+  echo "La variable pid está vacía. No se encontró ningún proceso escuchando en el puerto 7861."
+else
+  echo "El PID del proceso es: $pid"
+fi
+
 kill $pid
 
 sleep 5
