@@ -30,7 +30,7 @@ input1 = gr.Image(label="Source", type="filepath")
 input2 = gr.Textbox()
 result = gr.Image(label="Result", type="filepath")
 
-with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
+with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:   
     #Cargado en Load: Función, input, output
     main.load(sulkuFront.display_tokens, None, html_credits) 
    

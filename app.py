@@ -30,7 +30,7 @@ input1, input2, result = inputs.inputs_selector(globales.seto)
 #     elemento.type = "filepath"
 #     elemento.label = "Labello"
 
-with gr.Blocks(theme=globales.tema, css="footer {visibility: False}") as main:   
+with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:   
     #Cargado en Load: Función, input, output
     main.load(sulkuFront.display_tokens, None, html_credits) 
    
