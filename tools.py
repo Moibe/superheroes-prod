@@ -12,6 +12,6 @@ def theme_selector():
     ]
 
     tema = random.choice(temas_posibles)
-    print("Tema listo")
+    print("Tema random: ", tema)
 
     return tema
