@@ -21,7 +21,7 @@ def encripta(username):
     fernet = Fernet(key)
     string_original = username
     string_encriptado = fernet.encrypt(string_original.encode("utf-8"))
-    
+
     # string_desencriptado = fernet.decrypt(string_encriptado).decode("utf-8")
     # print("String original:", string_original)
     # print("String encriptado:", string_encriptado)
@@ -39,11 +39,7 @@ def getData():
     if response.status_code == 200:
         print("Conexión a Sulku successful...")
         data = response.json()
-        # print("Ésto es la lista de accesos: ")
-        # print(data)
-        
-        #IMPORTANTE: Aquí se obtuvo la lista completa de accesos.
-        #Future, ¿se puede optimizar eso en cuanto a seguridad?        
+
     else:
         print("Error al obtener el elemento todo:", response.status_code)
 
