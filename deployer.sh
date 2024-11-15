@@ -1,6 +1,6 @@
 #!/bin/bash
 timestamp=$(date +"%d-%m-%Y %H:%M:%S")
-pid=$(lsof -i :7861 | awk 'NR==2 {print $2}')
+pid=$(lsof -i :7860 | awk 'NR==2 {print $2}')
 kill $pid
 echo "Proceso eliminado: $pid @ $timestamp"
 
