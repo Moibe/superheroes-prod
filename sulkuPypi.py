@@ -1,13 +1,13 @@
-import requests
 import time
 import bridges
-from cryptography.fernet import Fernet
 import globales
+import requests
+from cryptography.fernet import Fernet
 
 #Sulkupypi será el que en un futuro se volverá un paquete de python que instalarás y en el futuro quizá comercializarás.
 
 base_url = "https://moibe-sulku-fastapi-docker.hf.space/"
-userfile = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw=="
+#userfile = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw=="
 #Ojo, cuando el userfile termina con símbolo igual y supongo que también si empieza, causa problemas, la solución, ...
 #... implementar más adelante desde ser agregar un caractér delimitador y despúes quitarlo, esto para evitar problemas...
 #... con el símbolo =, ? y &. Dicho problema solo sucede cuando lo recibe como query params no como path params.
@@ -17,17 +17,15 @@ work = globales.work
 #lo que le vas a enviar a la API.
 def encripta(username):
 
-    print("Estoy en encripta y ésto recibí para trabajarlo: ", username)
-
     key = bridges.key
     fernet = Fernet(key)
-
     string_original = username
     string_encriptado = fernet.encrypt(string_original.encode("utf-8"))
-    string_desencriptado = fernet.decrypt(string_encriptado).decode("utf-8")
-    print("String original:", string_original)
-    print("String encriptado:", string_encriptado)
-    print("String desencriptado:", string_desencriptado)
+    
+    # string_desencriptado = fernet.decrypt(string_encriptado).decode("utf-8")
+    # print("String original:", string_original)
+    # print("String encriptado:", string_encriptado)
+    # print("String desencriptado:", string_desencriptado)
 
     return string_encriptado
 
