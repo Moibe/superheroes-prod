@@ -13,7 +13,3 @@ if [ -z "$pid" ]; then
 else
   echo "El PID del proceso es: $pid o sea que hay un proceso corriendo, no hay necesidad de matarlo ni hacer nada más que avisar: ALIVE. $timestamp"
 fi
-
-# Pasar esto a un nuevo deply que matará y arrancará pero solo ante cambios.
-# kill $pid
-#echo "Proceso eliminado: $pid @ $timestamp"
