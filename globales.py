@@ -9,7 +9,7 @@ seto = "image-blend"
 
 work = "picswap"
 app_path = "/boilerplate"
-server_port=7861
+server_port=7860
 tema = tools.theme_selector()
 tema = gr.themes.Base()
 print("Tema oficial: ", tema)
