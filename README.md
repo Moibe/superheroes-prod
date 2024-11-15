@@ -10,7 +10,15 @@ La nomenclatura será ocean- como prefijo, con lo que indicas que es el front de
 3.- Cambia el remoto del directorio recién clonado para que ahora manejes ésta nueva app desde el repositorio que acabas de crear en Github.<br>
 **git remote set-url origin git@github.com:Moibe/ocean-astro-blend.git**
 
-4.- Haz git push origin main, para probar y subir el repositorio a su nuevo lugar en Github. 
+4.- Haz git push origin main, para probar y subir el repositorio a su nuevo lugar en Github. <br>
+
+4.5.- Instala los requerimentos en tu proyecto con: <br> 
+
+**python -m venv venv** <br>
+
+**venv/Scripts/activate** <br>
+
+**pip install -r requirements.txt** <br>
 
 5.- Agrega las variables en settings: MAIN_BRANCH, SSH_HOST, SSH_PRIVATE_KEY, SSH_USER, WORK_DIR.<br>
 Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeLH0<br>
