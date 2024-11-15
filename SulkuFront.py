@@ -1,13 +1,15 @@
-import sulkuPypi
-import gradio as gr
 import time
 import globales
+import sulkuPypi
+import gradio as gr
 
 #Controla lo que se depliega en el frontend y que tiene que ver con llamados a Sulku.
 def noCredit(usuario):
     info_window = "Out of credits..."
     path = 'images/no-credits.png'
     tokens = gr.State.tokens
+    print("Los tokens en grState son: ", tokens)
+    time.sleep(18)
     print("Estoy en no-credit, no debería recalcular porque es cero, pero gr.State.tokens es: ", gr.State.tokens)
     #Importante, ojo con que si sirve gr.State.tokens
     html_credits = visualizar_creditos(tokens, usuario)   
