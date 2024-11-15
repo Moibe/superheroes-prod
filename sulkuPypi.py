@@ -32,7 +32,6 @@ def encripta(username):
     return string_encriptado
 
 def getData():
-
     #Obtiene la lista de usuarios para brindar o no brindar acceso. 
     method = "getData/"
     api_url = base_url + method
@@ -42,8 +41,8 @@ def getData():
     if response.status_code == 200:
         print("Conexión a Sulku successful...")
         data = response.json()
-        print("Ésto es la lista de accesos: ")
-        print(data)
+        # print("Ésto es la lista de accesos: ")
+        # print(data)
         
         #IMPORTANTE: Aquí se obtuvo la lista completa de accesos.
         #Future, ¿se puede optimizar eso en cuanto a seguridad?        
