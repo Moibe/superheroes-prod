@@ -12,7 +12,6 @@ def iniciar():
     #Future: Si la app está dormida, no hay reacción de éste lado para avisar que está dormida.
 
 #INTERFAZ
-
 #Credit Related Elements
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
