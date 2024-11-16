@@ -25,7 +25,9 @@ Agrega el remoto con **git remote add origin ***ruta de tu nuevo repositorio*** 
 
 **pip install -r requirements.txt** <br>
 
-7- Pasar manualmente el archivo bridges.
+7.- Pasar manualmente el archivo bridges.
+
+7.5.- Debes especificar todas tus variables globales en globales.py, y asignar el puerto seleccionado ej. 7860 en los bashes keepalive.sh y deployer.sh
 
 8.- Agrega las variables en settings: MAIN_BRANCH, SSH_HOST, SSH_PRIVATE_KEY, SSH_USER, WORK_DIR.<br>
 Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeLH0<br>
@@ -64,7 +66,7 @@ Para probar si está funcionando correctamente puedes hacer una simulación de l
 **sudo certbot renew --dry-run**
 
 12.- Éste repositorio cuenta con github actions para autodesplegarlo cada que hay cambios.<br>
-Sin embargo, para que corra la app de gradio lo que se usa es un cron dentro del servidor.<br>
+Sin embargo, para que corra la app de gradio lo que se usa es un cron ⏱️ dentro del servidor.<br>
 Éste cron activa a keepalive.sh que apaga el proceso anterior y reactiva el nuevo.<br>
 Todo ésto se guarda dentro de logs/deploy.log.
 
