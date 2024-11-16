@@ -1,11 +1,11 @@
 #### Gradio App en un Droplet de Digital Ocean 🐬
 
-1.- Clona éste repositorio en la dropplet 💧 en donde quieres otra app de gradio corriendo.<br>
+1.- Clona éste repositorio en la droplet 💧 en donde quieres otra app de gradio corriendo.<br>
 
 **git clone git@github.com:Moibe/gradio-standalone-do.git astro-blend**
 
 2.- Crea en Github un nuevo repositorio de producción desde donde manejarás ésta app.
-La nomenclatura será ocean- como prefijo, con lo que indicas que es el front de Digital Ocean para determinada app, en éste caso Astro-Blend.
+La nomenclatura será ocean- como prefijo, con lo que indicas que es el front de Digital Ocean para determinada app, en éste caso Astro-Blend. Seguido por -devo si es desarrollo ⚒️
 
 3.- Cambia el remoto del directorio recién clonado para que ahora manejes ésta nueva app desde el repositorio que acabas de crear en Github.<br>
 **git remote set-url origin git@github.com:Moibe/ocean-astro-blend.git**
