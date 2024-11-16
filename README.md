@@ -20,6 +20,8 @@ La nomenclatura será ocean- como prefijo, con lo que indicas que es el front de
 
 **pip install -r requirements.txt** <br>
 
+4.6- Pasar manualmente el archivo bridges.
+
 5.- Agrega las variables en settings: MAIN_BRANCH, SSH_HOST, SSH_PRIVATE_KEY, SSH_USER, WORK_DIR.<br>
 Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeLH0<br>
 - SSH_PRIVATE_KEY fue creado dentro de la droplet y la encuentras en: cat /root/.ssh/id_rsa
