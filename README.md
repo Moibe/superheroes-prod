@@ -25,12 +25,15 @@ Agrega el remoto con **git remote add origin ***ruta de tu nuevo repositorio*** 
 
 **pip install -r requirements.txt** <br>
 
+6.5.- Crea dentro de la carpeta del server 🖥️ una carpeta llamada 📁 logs, ahí recibirá un log 📗 con las acciones del cron ⏱️ que programaremos.
+
 7.- Pasar manualmente el archivo bridges.
 
 7.5.- Debes especificar todas tus variables globales en globales.py, y asignar el puerto seleccionado ej. 7860 en los bashes keepalive.sh y deployer.sh
 
 8.- Agrega las variables en settings: MAIN_BRANCH, SSH_HOST, SSH_PRIVATE_KEY, SSH_USER, WORK_DIR.<br>
 Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeLH0<br>
+
 - SSH_PRIVATE_KEY fue creado dentro de la droplet y la encuentras en: cat /root/.ssh/id_rsa
 - SSH_USER es root.
 - SSH_HOST es la IP de tu server.
