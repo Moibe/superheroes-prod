@@ -36,14 +36,12 @@ def invisibiliza():
     return gr.Textbox(visible=bool(1)) 
 
 def display_tokens(request: gr.Request):
-   
-    print("Ya llegué a display_tokens...")
-    #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
-    novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"))
-    print("La flag de novelty obtenida es: ", novelty)
-
+ 
+    #getNovelty: userfile, aplicacion.
+    novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"), globales.aplicacion)
+    
     if novelty == "new_user": 
-        print("INVISIBILIZA")
+        #Invisibiliza el display a los usuarios nuevos.
         display = gr.Textbox(visible=False)
     else: 
         tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
@@ -57,8 +55,6 @@ def visualizar_creditos(nuevos_creditos, usuario):
     <div>
     <div style="text-align: left;">👤<b>Username: </b> {usuario}</div><div style="text-align: right;">💶<b>Credits Available: </b> {nuevos_creditos}</div>
     </div>
-                    """
-
+                    """   
     
-     
     return html_credits

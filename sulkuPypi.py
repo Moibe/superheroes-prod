@@ -7,10 +7,6 @@ from cryptography.fernet import Fernet
 #Sulkupypi será el que en un futuro se volverá un paquete de python que instalarás y en el futuro quizá comercializarás.
 
 base_url = "https://moibe-sulku-fastapi-docker.hf.space/"
-#userfile = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw=="
-#Ojo, cuando el userfile termina con símbolo igual y supongo que también si empieza, causa problemas, la solución, ...
-#... implementar más adelante desde ser agregar un caractér delimitador y despúes quitarlo, esto para evitar problemas...
-#... con el símbolo =, ? y &. Dicho problema solo sucede cuando lo recibe como query params no como path params.
 work = globales.work
 
 #Todas son llamadas a la API, excepto encripta, que es una herramienta para prepara precisamente, ...
@@ -22,17 +18,13 @@ def encripta(username):
     string_original = username
     string_encriptado = fernet.encrypt(string_original.encode("utf-8"))
 
-    # string_desencriptado = fernet.decrypt(string_encriptado).decode("utf-8")
-    # print("String original:", string_original)
-    # print("String encriptado:", string_encriptado)
-    # print("String desencriptado:", string_desencriptado)
-
     return string_encriptado
 
-def getData():
+def getData(aplicacion):
     #Obtiene la lista de usuarios para brindar o no brindar acceso. 
     method = "getData/"
-    api_url = base_url + method
+    params = aplicacion
+    api_url = base_url + method + params
 
     response = requests.get(api_url)
 
@@ -45,13 +37,12 @@ def getData():
 
     return data
 
-def getNovelty(userfile):
+def getNovelty(userfile, aplicacion):
 
     method = "getUserNovelty/"
-    params = userfile
+    params = userfile + "/" + aplicacion
 
     api_url = base_url + method + params
-    print("Usando la api_url: ", api_url)
     response = requests.get(api_url)
 
     if response.status_code == 200:
@@ -66,19 +57,17 @@ def getNovelty(userfile):
         return "f{error:}"
     
 
-def getTokens(userfile):
+def getTokens(userfile, env):
 
     method = "getTokens/"
-    params = userfile
+    params = userfile + "/" + env
     
     api_url = base_url + method + params
-    print("En getTokens la api_url que estoy usando es: ", api_url)
     response = requests.get(api_url)
 
     if response.status_code == 200:
         print("Conexión a Sulku successful...")
         tokens = response.json()
-        print("Tokens:", tokens)
     else:
         print("Error al obtener el elemento todo:", response.status_code)
 
@@ -101,16 +90,16 @@ def authorize(tokens, work):
 
     return autorizacion
 
-def debitTokens(userfile, work):
+def debitTokens(userfile, work, env):
 
     method = "debitTokens/"
-    params = userfile + "/" + work
+    params = userfile + "/" + work + "/" + env
 
     api_url = base_url + method + params
     response = requests.get(api_url)
 
     if response.status_code == 200:
-        print("Conexión a Sulku successful...")
+        #print("Conexión a Sulku successful...")
         tokens = response.json()
         print("Tokens:", tokens)
     else:
@@ -118,12 +107,13 @@ def debitTokens(userfile, work):
 
     return tokens
 
-def debitTokensQ(userfile, work):
+def debitTokensQ(userfile, work, env):
 
-    #debitTokens pero con QueryParams, (los query params sirve para ocasiones en los que usas dos de un mismo query param para abtener el resultado de un AND o rangos como...
+    #debitTokens pero con QueryParams, (los query params sirve para ocasiones en los que usas dos de un mismo query param para obtener el resultado de un AND o rangos como...
     #... clima por ejemplo.)
     method = "debitTokens?"
-    params = "userfile=" + userfile + "&" + "work=" +  work
+    #Y como puedes ver el armado de sus params es dintinto ya que usa ampersand &
+    params = "userfile=" + userfile + "&" + "work=" +  work + "&" + env
 
     api_url = base_url + method + params
     response = requests.get(api_url)
@@ -131,13 +121,19 @@ def debitTokensQ(userfile, work):
     if response.status_code == 200:
         print("Conexión a Sulku successful...")
         tokens = response.json()
-        print("Tokens:", tokens)
     else:
         print("Error al obtener el elemento todo:", response.status_code)
 
     return tokens
 
 if __name__ == "__main__":
-    getTokens(userfile)
+    #params: aplicacion
+    getData(globales.aplicacion)
+    #params: userfile, aplicacion
+    getNovelty(globales.sample_userfile, globales.aplicacion)
+    #params: userfile, env
+    getTokens(globales.sample_userfile, globales.env)
+    #params: tokens, work
     authorize(18, globales.work)
-    debitTokens(userfile, work)
+    #params: userfile, work
+    debitTokens(globales.sample_userfile, globales.work, globales.env)

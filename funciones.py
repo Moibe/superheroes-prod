@@ -16,7 +16,7 @@ def perform(input1, request: gr.Request, *args):
     #Future: Maneja una excepción para el concurrent.futures._base.CancelledError
     #Future: Que no se vea el resultado anterior al cargar el nuevo resultado!         
 
-    tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
+    tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"), )
     
     #1: Reglas sobre autorización si se tiene el crédito suficiente.
     autorizacion = sulkuPypi.authorize(tokens, globales.work)
@@ -45,7 +45,7 @@ def mass(input1, input2):
     imagenSource = gradio_client.handle_file(input1) 
     imagenDestiny = gradio_client.handle_file(input2)       
 
-    client = gradio_client.Client(globales.aplicacion, hf_token=abrazo)
+    client = gradio_client.Client(globales.api, hf_token=abrazo)
     result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
 
     return result
@@ -55,7 +55,7 @@ def mass_zhi(input1, input2):
     imagenSource = gradio_client.handle_file(input1) 
     #imagenDestiny = gradio_client.handle_file(input2)       
 
-    client = gradio_client.Client(globales.aplicacion)
+    client = gradio_client.Client(globales.api)
     #result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
 
     result = client.predict(
