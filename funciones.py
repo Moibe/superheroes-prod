@@ -14,9 +14,9 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 def perform(input1, request: gr.Request, *args):
 
     #Future: Maneja una excepción para el concurrent.futures._base.CancelledError
-    #Future: Que no se vea el resultado anterior al cargar el nuevo resultado!         
+    #Future: Que no se vea el resultado anterior al cargar el nuevo resultado! (aunque solo se ven los resultados propios.)         
 
-    tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"), )
+    tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"), globales.env)
     
     #1: Reglas sobre autorización si se tiene el crédito suficiente.
     autorizacion = sulkuPypi.authorize(tokens, globales.work)

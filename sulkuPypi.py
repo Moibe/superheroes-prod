@@ -5,7 +5,6 @@ import requests
 from cryptography.fernet import Fernet
 
 #Sulkupypi será el que en un futuro se volverá un paquete de python que instalarás y en el futuro quizá comercializarás.
-
 base_url = "https://moibe-sulku-fastapi-docker.hf.space/"
 work = globales.work
 

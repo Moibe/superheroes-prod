@@ -9,10 +9,8 @@ import gradio as gr
 def iniciar():    
     app_path = globales.app_path
     main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
-    #Future: Si la app está dormida, no hay reacción de éste lado para avisar que está dormida.
-
+    
 #INTERFAZ
-
 #Credit Related Elements
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
