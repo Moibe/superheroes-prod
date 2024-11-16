@@ -1,14 +1,13 @@
+import time
+import globales
 import sulkuPypi
 import gradio as gr
-import time
 
 #Controla lo que se depliega en el frontend y que tiene que ver con llamados a Sulku.
 def noCredit(usuario):
     info_window = "Out of credits..."
-    path = 'no-credits.png'
-    tokens = gr.State.tokens
-    print("Estoy en no-credit, no debería recalcular porque es cero, pero gr.State.tokens es: ", gr.State.tokens)
-    #Importante, ojo con que si sirve gr.State.tokens
+    path = 'images/no-credits.png'
+    tokens = 0
     html_credits = visualizar_creditos(tokens, usuario)   
 
     return info_window, path, html_credits
@@ -22,11 +21,11 @@ def presentacionFinal(usuario, accion):
     capsule = sulkuPypi.encripta(usuario).decode("utf-8") #decode es para quitarle el 'b
     
     if accion == "debita":        
-        tokens = sulkuPypi.debitTokens(capsule, "picswap")
+        tokens = sulkuPypi.debitTokens(capsule, globales.work)
         info_window = "Image ready!"        
     else: 
         info_window = "No face in source path detected."
-        tokens = gr.State.tokens
+        tokens = sulkuPypi.getTokens(capsule)
 
     
     html_credits = visualizar_creditos(tokens, usuario)       
@@ -46,7 +45,6 @@ def display_tokens(request: gr.Request):
     if novelty == "new_user": 
         print("INVISIBILIZA")
         display = gr.Textbox(visible=False)
-        time.sleep(2)
     else: 
         tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
         display = visualizar_creditos(tokens, request.username)      
@@ -59,8 +57,6 @@ def visualizar_creditos(nuevos_creditos, usuario):
     <div>
     <div style="text-align: left;">👤<b>Username: </b> {usuario}</div><div style="text-align: right;">💶<b>Credits Available: </b> {nuevos_creditos}</div>
     </div>
-                    """
-
-    
+                    """    
      
     return html_credits
