@@ -1,6 +1,6 @@
 #### Gradio App en un Droplet de Digital Ocean 🐬
 
-1.- Clona éste repositorio en la dropplet en donde quieres otra app de gradio corriendo.<br>
+1.- Clona éste repositorio en la dropplet 💧 en donde quieres otra app de gradio corriendo.<br>
 
 **git clone git@github.com:Moibe/gradio-standalone-do.git astro-blend**
 
@@ -13,8 +13,9 @@ La nomenclatura será ocean- como prefijo, con lo que indicas que es el front de
 4.- Haz git push origin main, para probar y subir el repositorio a su nuevo lugar en Github. <br>
 
 5.- Ahora en tu servidor 🖥️ crea el directorio para tu app, generalmente con el mismo nombre que el repo.<br>
-      Inicializalo para git con **git init**.<br>
-      Agrega el remoto con **git remote add origin ***ruta de tu nuevo repositorio*** **<br>
+
+Inicializalo para git con **git init**.<br>
+Agrega el remoto con **git remote add origin ***ruta de tu nuevo repositorio*** **<br>
 
 6.- Instala los requerimentos en tu proyecto tanto en local como en el servidor con: <br> 
 
@@ -64,7 +65,7 @@ Para probar si está funcionando correctamente puedes hacer una simulación de l
 
 12.- Éste repositorio cuenta con github actions para autodesplegarlo cada que hay cambios.<br>
 Sin embargo, para que corra la app de gradio lo que se usa es un cron dentro del servidor.<br>
-Éste cron activa a deploy.sh que apaga el proceso anterior y reactiva el nuevo.<br>
+Éste cron activa a keepalive.sh que apaga el proceso anterior y reactiva el nuevo.<br>
 Todo ésto se guarda dentro de logs/deploy.log.
 
 Moibe 👨🏻‍🚀
