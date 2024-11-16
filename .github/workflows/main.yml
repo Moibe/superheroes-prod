@@ -20,7 +20,7 @@ jobs:
           run: | 
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
               "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} \
-              && git pull \
+              && git pull origin main \
               && source venv/bin/activate \
               && pip install -r requirements.txt \
               && exit"
