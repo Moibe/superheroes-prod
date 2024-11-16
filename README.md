@@ -30,6 +30,10 @@ Para las referencias a ésto consulta: https://www.youtube.com/watch?v=llUzfOCeL
 - WORK_DIR es la ubicación de tu repositorio, por ejemplo en éste caso: code/ocean-astro-blend
 - MAIN_BRANCH main
 
+5.5.- Crea en tu servidor el directorio.<br>
+      Inicializalo para git con **git init**.<br>
+      Agrega el remoto con **git remote add origin ***ruta de tu nuevo repositorio*** **<br>
+
 6.- Ahora necesitas agregar el nuevo sitio a la configuración de nginx, hay dos formas de hacerlo:
 
 **Importante: Antes de agregar el path a las configuraciones de nginx, recuerda que ese path esté especificado en <br>
