@@ -13,40 +13,28 @@ def noCredit(usuario):
     return info_window, path, html_credits
 
 def presentacionFinal(usuario, accion):
-
-    print("La acción es: ", accion)
         
-    #IMPORTANTE: Tienes que reconstruir capsule ahora que ya se obtiene del request, sino, capsule sera un State para el uso...
-    #...de todos y es ahí donde radica el problema: 
     capsule = sulkuPypi.encripta(usuario).decode("utf-8") #decode es para quitarle el 'b
     
     if accion == "debita":        
-        tokens = sulkuPypi.debitTokens(capsule, globales.work)
+        tokens = sulkuPypi.debitTokens(capsule, globales.work, globales.env)
         info_window = "Image ready!"        
     else: 
         info_window = "No face in source path detected."
         tokens = sulkuPypi.getTokens(capsule)
-
     
     html_credits = visualizar_creditos(tokens, usuario)       
     
     return html_credits, info_window
 
-def invisibiliza():
-    return gr.Textbox(visible=bool(1)) 
-
 def display_tokens(request: gr.Request):
    
-    print("Ya llegué a display_tokens...")
-    #Para desplegar o no desplegar, necesitamos saber si el usuario es new user.
-    novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"))
-    print("La flag de novelty obtenida es: ", novelty)
-
+    novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"), globales.aplicacion)
+    
     if novelty == "new_user": 
-        print("INVISIBILIZA")
         display = gr.Textbox(visible=False)
     else: 
-        tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"))
+        tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"), globales.env)
         display = visualizar_creditos(tokens, request.username)      
     
     return display
