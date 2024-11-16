@@ -13,7 +13,7 @@ work = "picswap"
 app_path = "/boilerplate"
 server_port=7860
 #tema = tools.theme_selector()
-tema = gr.themes.Base()
+tema = gr.themes.Default()
 
 sample_userfile = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw=="
 #Ojo, cuando el userfile termina con símbolo igual y supongo que también si empieza, causa problemas, la solución, ...
