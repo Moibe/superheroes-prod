@@ -13,6 +13,7 @@ if [ -z "$pid" ]; then
   PID=$(pgrep -f "python app.py")
   timestamp2=$(date +"%d-%m-%Y %H:%M:%S")
   echo "$timestamp2 - READY: Proceso reiniciado con id $PID. "
+  #FUTURE: Si existe reactivación, que de alguna forma saque el nombre del commit para yo poder leerlo en los logs.
 else
   timestamp3=$(date +"%d-%m-%Y %H:%M:%S")
   echo "$timestamp3 - ALIVE: Boilerplate, proceso $pid arriba y funcionando."
