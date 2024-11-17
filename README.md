@@ -58,8 +58,9 @@ Una vez hecho ésto debes de crear el link simbólico hacia sites-enabled así:
 **ln -s /etc/nginx/sites-available/otrodominio.com otrodominio.com** <br>
 Una vez agregado debes hacer reload así: **systemctl reload nginx** 
 
-Cada dominio necesitará una landing page, para cuando no vas hacia algun /sitio , la forma en que designé hacerlo es que se redireccione via nginx y que no viva esa página en gradio. 
-Por lo tanto, esas páginas deberan vivir en el directorio ** /usr/share/nginx/html ** por nomenclatura, con el nombre del sitio precedido por .html.
+Cada dominio necesitará una landing page 📄, para cuando no vas hacia algun /sitio , la forma en que designé hacerlo es que se redireccione via nginx y que no viva esa página en gradio. <br>
+
+Por lo tanto, esas páginas deberan vivir en el directorio **/usr/share/nginx/html** por nomenclatura, con el nombre del sitio precedido por .html.
 
 11.- Finalmente requerimos activar los certificados SSL. 🔒
 **sudo certbot --nginx -d example.com -d www.example.com**
