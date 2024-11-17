@@ -44,22 +44,16 @@ def getNovelty(userfile, aplicacion):
     response = requests.get(api_url)
 
     if response.status_code == 200:
-        print("Conexión a Sulku successful...")
         novelty = response.json()
-
-        print("Esto es la flag de novelty obtenida: ", novelty)
-        return novelty
-              
+        return novelty              
     else:
-        print("Error al obtener el elemento todo:", response.status_code)
-        return "f{error:}"
-    
+        error = f"Error al obtener el elemento todo: {response.status_code}"
+        return error    
 
 def getTokens(userfile, env):
 
     method = "getTokens/"
-    params = userfile + "/" + env
-    
+    params = userfile + "/" + env    
     api_url = base_url + method + params
     response = requests.get(api_url)
 
@@ -67,7 +61,8 @@ def getTokens(userfile, env):
         print("Conexión a Sulku successful...")
         tokens = response.json()
     else:
-        print("Error al obtener el elemento todo:", response.status_code)
+        error = f"Error al obtener el elemento todo: {response.status_code}"
+        return error
 
     return tokens
 
@@ -84,8 +79,9 @@ def authorize(tokens, work):
         autorizacion = response.json()
         print("Autorización:", autorizacion)        
     else:
-        print("Error al obtener el elemento todo:", response.status_code)
-
+        error = f"Error al obtener el elemento todo: {response.status_code}"
+        return error
+    
     return autorizacion
 
 def debitTokens(userfile, work, env):
@@ -97,11 +93,11 @@ def debitTokens(userfile, work, env):
     response = requests.get(api_url)
 
     if response.status_code == 200:
-        #print("Conexión a Sulku successful...")
         tokens = response.json()
         print("Tokens:", tokens)
     else:
-        print("Error al obtener el elemento todo:", response.status_code)
+        error = f"Error al obtener el elemento todo: {response.status_code}"
+        return error
 
     return tokens
 
@@ -120,7 +116,8 @@ def debitTokensQ(userfile, work, env):
         print("Conexión a Sulku successful...")
         tokens = response.json()
     else:
-        print("Error al obtener el elemento todo:", response.status_code)
+        error = f"Error al obtener el elemento todo: {response.status_code}"
+        return error
 
     return tokens
 
