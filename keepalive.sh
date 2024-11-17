@@ -10,9 +10,9 @@ if [ -z "$pid" ]; then
   cd code/gradio-standalone-do/
   source venv/bin/activate
   python app.py &
-  PID=$(pgrep -f "python app.py")
+  nuevo_proceso=$(pgrep -f "python app.py")
   timestamp2=$(date +"%d-%m-%Y %H:%M:%S")
-  echo "$timestamp2 - READY: Proceso reiniciado con id $PID. "
+  echo "$timestamp2 - READY: Proceso reiniciado con id $nuevo_proceso. "
   #FUTURE: Si existe reactivación, que de alguna forma saque el nombre del commit para yo poder leerlo en los logs.
 else
   timestamp3=$(date +"%d-%m-%Y %H:%M:%S")
