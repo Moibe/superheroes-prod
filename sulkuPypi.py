@@ -28,11 +28,10 @@ def getData(aplicacion):
     response = requests.get(api_url)
 
     if response.status_code == 200:
-        print("Conexión a Sulku successful...")
         data = response.json()
-
     else:
-        print("Error al obtener el elemento todo:", response.status_code)
+        error = f"Error al obtener el elemento todo: {response.status_code}"
+        return error
 
     return data
 
