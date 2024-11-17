@@ -19,7 +19,7 @@ Agrega el remoto con **git remote add origin ***ruta de tu nuevo repositorio*** 
 
 6.- Instala los requerimentos en tu proyecto tanto en local como en el servidor con: <br> 
 
-**python -m venv venv** <br>
+**python3 -m venv venv** <br>
 
 **venv/Scripts/activate** <br>
 
