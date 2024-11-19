@@ -2,17 +2,17 @@ import gradio as gr
 import tools
 
 #MAIN
-version = "1.3.2"
+version = "1.0.0"
 env = "dev"
-aplicacion = "astroblend-dev"
-api = "Moibe/image-blend"
+aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
+api = "Moibe/splashmix"
 #api = "Kwai-Kolors/Kolors-Character-With-Flux"
-seto = "image-blend"
+seto = "splashmix"
 #seto = "zhi"
 
 work = "picswap"
 app_path = "/boilerplate"
-server_port=7860
+server_port=7880
 #tema = tools.theme_selector()
 tema = gr.themes.Default()
 flag = "auto"

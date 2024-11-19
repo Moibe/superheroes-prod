@@ -1,5 +1,5 @@
 #!/bin/bash
-pid=$(lsof -i :7860 | awk 'NR==2 {print $2}')
+pid=$(lsof -i :7880 | awk 'NR==2 {print $2}')
 #Revisar si la búsqueda del proceso está vacía.
 if [ -z "$pid" ]; then
   #Si está vacía entonces:
@@ -7,7 +7,7 @@ if [ -z "$pid" ]; then
   echo "$timestamp1 - ATENCIÓN: No se encontró ningún proceso escuchando en el puerto 7860. Reactivando aplicación."
   #Reiniciando proceso
   cd
-  cd code/gradio-standalone-do/
+  cd code/ocean-devo-superheroes/
   source venv/bin/activate
   python app.py &
   nuevo_proceso=$(pgrep -f "python app.py")
