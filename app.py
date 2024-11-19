@@ -39,6 +39,6 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:
             #inputs=[input1] + resto, #Éste es el que podría variar entre 1 o 2 inputs. #IMPORTANTE.
             inputs=[input1, input2], #Éste es el que podría variar entre 1 o 2 inputs.
             outputs=[result, lbl_console, html_credits, btn_buy], 
-            flagging_mode="auto"
+            flagging_mode=globales.flag
             )
 iniciar()

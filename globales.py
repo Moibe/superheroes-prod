@@ -2,7 +2,7 @@ import gradio as gr
 import tools
 
 #MAIN
-version = "1.3.1"
+version = "1.3.2"
 env = "dev"
 aplicacion = "astroblend-dev"
 api = "Moibe/image-blend"
@@ -15,6 +15,7 @@ app_path = "/boilerplate"
 server_port=7860
 #tema = tools.theme_selector()
 tema = gr.themes.Default()
+flag = "auto"
 
 sample_userfile = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw=="
 #Ojo, cuando el userfile termina con símbolo igual y supongo que también si empieza, causa problemas, la solución, ...
