@@ -10,6 +10,7 @@ import time
 import prompter
 import tools
 import ast
+import traceback
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
@@ -25,7 +26,9 @@ def perform(input1, request: gr.Request):
             resultado = mass(input1)
             #El resultado ya viene detuplado.
         except Exception as e:
-            #Cuando hubo una excepción al ejecutar la API externa.            
+            #Cuando hubo una excepción al ejecutar la API externa.
+            print("Traceback at funciones, Except recibido por apicom:")
+            traceback.print_exc()            
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
     else:
@@ -33,28 +36,26 @@ def perform(input1, request: gr.Request):
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
         return resultado, info_window, html_credits, btn_buy
     
-    resultado_string = str(resultado)
+    #resultado_string = str(resultado)
 
     print("Result obtenido:")
     print(resultado)
-    
-    #Revisión de errores GENERALES (en cualquier API de HF):
-    if "quota" in resultado_string: #Resultado_string porque no puede aplicar ésto en un tipo excepción.
-        info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
-        return resultado, info_window, html_credits, btn_buy
-    elif resultado == "HANDSHAKE_ERROR":
-        info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
-        return resultado, info_window, html_credits, btn_buy
-    elif resultado == "GENERAL": #Ya que incluimos que errores generales pueden llegar aquí, Handshake pordías quitarlo,
-        #porque el comportamiento que debe de tener es general.
-        info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
-        return resultado, info_window, html_credits, btn_buy
-        
-    #Revisión de errores PARTICULARES (textos propios de la app.)
-    if debit_rules.debita(resultado) == True:
+
+    #Primero revisa si es imagen!: 
+    if "image.webp" in resultado:
+        #Si es imagen, debitarás.
         html_credits, info_window = sulkuFront.presentacionFinal(request.username, "debita")
-    else:
-        html_credits, info_window = sulkuFront.presentacionFinal(request.username, "no debita") 
+    else: 
+        #Si no es imagen es un texto que nos dice algo.
+        info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
+        return resultado, info_window, html_credits, btn_buy       
+    
+    #Éste solo aplica para astroblend, al parecer aquí no se usa así es que lo comentaré por el momento.
+    #Revisión de errores PARTICULARES (textos propios de la app.)
+    # if debit_rules.debita(resultado) == True:
+    #     html_credits, info_window = sulkuFront.presentacionFinal(request.username, "debita")
+    # else:
+    #     html_credits, info_window = sulkuFront.presentacionFinal(request.username, "no debita") 
             
     #Lo que se le regresa oficialmente al entorno.
     return resultado, info_window, html_credits, btn_buy
@@ -116,4 +117,6 @@ def mass(input1):
         #Errores al correr la API.
         #La no detección de un rostro es mandado aquí?! Siempre?
         mensaje = tools.titulizaExcepDeAPI(e)
+        print("Traceback @ API FAIL: Except recibido por apicom:")
+        traceback.print_exc()
         return mensaje

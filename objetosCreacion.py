@@ -1,16 +1,16 @@
 import random
 import splash_tools
 import importlib
-import configuracion.globales as globales
+import configuracion.splashmix
 import data.data as data, data.data_girls as data_girls, data.data_heroes as data_heroes #puede ya no necesitarse.
 
 #data general: 
-importable_general = "data." + globales.databank_general 
+importable_general = "data." + configuracion.splashmix.databank_general 
 modulo_general = importlib.import_module(importable_general)
 
-importable = "data." + globales.selected_databank
-#importable = "data." + globales.databank_girls 
-#importable = "data." + globales.databank_girls
+importable = "data." + configuracion.splashmix.selected_databank
+#importable = "data." + configuracion.splashmix.databank_girls 
+#importable = "data." + configuracion.splashmix.databank_girls
 modulo = importlib.import_module(importable)
 
 class Prompt:

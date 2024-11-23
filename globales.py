@@ -1,7 +1,7 @@
 import gradio as gr
 
 #MAIN
-version = "4.0.3"
+version = "4.3.5"
 env = "dev"
 aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
 #api = "Moibe/splashmix"

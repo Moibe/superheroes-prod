@@ -1,6 +1,6 @@
 from objetosCreacion import Hotgirl, Superhero
 import time
-import configuracion.globales as globales
+import configuracion.splashmix
 
 def obten(dataframe, indice, atributo):        
     valor = dataframe.loc[indice[0], atributo]  
@@ -81,7 +81,7 @@ def prompteador(objeto):
 
     print("Entré al prompteador...")
  
-    if  globales.creacion == "Superhero":
+    if  splashmix.creacion == "Superhero":
         print("Si entré a Superhero...")        
 
         # style = contenedor['style'] #if isinstance(contenedor.get('style'), str) else ""

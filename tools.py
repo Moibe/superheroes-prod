@@ -1,4 +1,5 @@
 import random
+import traceback
 import gradio as gr
 
 def theme_selector():
@@ -16,6 +17,8 @@ def theme_selector():
 def titulizaExcepDeAPI(e):    
     #Resume una excepción a un título manejable.
     print("Except recibido por apicom: ", e)
+    print("Traceback @ tools: Except recibido por apicom:")
+    traceback.print_exc()
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
     elif "PAUSED" in str(e):
@@ -30,8 +33,6 @@ def titulizaExcepDeAPI(e):
         resultado = "NO_FACE"
     else: 
         resultado = "GENERAL"
-
-    print("Apicom definió que el tipo de excepeción es:", resultado)
 
     return resultado
 
@@ -50,17 +51,13 @@ def manejadorExcepciones(excepcion):
     elif excepcion == "NO_FACE":
         info_window = "Unable to detect a face in the image. Please upload a different photo with a clear face."
     elif "quota" in excepcion: #Caso especial porque el texto cambiará citando la cuota.
-        print("Si entré a quota en manejador de exceps...")
         info_window = excepcion
     else:
         info_window = "Error. No credits were debited."
 
-    print("Manejador de excepciones está regresando éste info_window: ")
-    print(info_window)
     return info_window
     
 def recortadorQuota(texto_quota):
-
     # Encontrar el índice de inicio (después de "exception:")
     indice_inicio = texto_quota.find("exception:") + len("exception:")
     # Encontrar el índice de final (antes de "<a")

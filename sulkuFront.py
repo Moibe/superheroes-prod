@@ -69,8 +69,6 @@ def noCredit(usuario):
 
 def aError(usuario, tokens, excepcion):
     #aError se usa para llenar todos los elementos visuales en el front.
-    print("Entré a aError...")
-    #Manejador de excepeciones recibe un tipo de excepeción y despliega un texto.
     info_window = tools.manejadorExcepciones(excepcion)
     path = 'images/error.png'
     tokens = tokens
