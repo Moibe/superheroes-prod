@@ -6,12 +6,10 @@ import data.data as data, data.data_girls as data_girls, data.data_heroes as dat
 
 #data general: 
 importable_general = "data." + globales.databank_general 
-#print("IMPORTABLE GENERAL ES: ", importable_general)
 modulo_general = importlib.import_module(importable_general)
 
 importable = "data." + globales.selected_databank
 #importable = "data." + globales.databank_girls 
-#print("IMPORTABLE ES: ", importable)
 #importable = "data." + globales.databank_girls
 modulo = importlib.import_module(importable)
 

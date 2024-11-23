@@ -23,22 +23,24 @@ def perform(input1, request: gr.Request):
     if autorizacion is True:
         try: 
             resultado = mass(input1)
-        except Exception as e:            
-            info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.apicomProcessor(e))
-            print("LLEGUÉ POR LA VIA DE EXCEPECION POR FALLA EN LA API.")
+            #El resultado ya viene detuplado.
+        except Exception as e:
+            #Cuando hubo una excepción al ejecutar la API externa.            
+            info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
     else:
+        #Si no hubo autorización.
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
         return resultado, info_window, html_credits, btn_buy
     
     resultado_string = str(resultado)
 
-    print("LLEGUÉ A LA ZONA DE QUE SI RECIBÏ RESULTADO...")
+    print("Result obtenido:")
+    print(resultado)
     
     #Revisión de errores GENERALES (en cualquier API de HF):
     if "quota" in resultado_string: #Resultado_string porque no puede aplicar ésto en un tipo excepción.
         info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
-        print("Si entré a quota y estoy mandando su return.")
         return resultado, info_window, html_credits, btn_buy
     elif resultado == "HANDSHAKE_ERROR":
         info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
@@ -103,16 +105,15 @@ def mass(input1):
         # )
 
         # #Si viene del miniproxy, hay que rehacer la tupla.
-        # result = ast.literal_eval(result)        
-
-        print("El result del predict es: ", result)
-        result = splash_tools.procesaResultado(result)
-        print(result)
+        # result = ast.literal_eval(result)   
+        
+        result = splash_tools.desTuplaResultado(result)
         return result
 
     except Exception as e:
         print("Hubo un error:", e)
         print("Y el tipo de ese error es: ", type(e))
         #Errores al correr la API.
-        mensaje = tools.apicomProcessor(e)
+        #La no detección de un rostro es mandado aquí?! Siempre?
+        mensaje = tools.titulizaExcepDeAPI(e)
         return mensaje

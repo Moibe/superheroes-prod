@@ -58,9 +58,8 @@ def getPosition():
         
     return ruta_posicion
 
-def procesaResultado(resultado):
-    #PROCESO DESPÚES DE QUE YA TERMINÓ EL STABLE DIFUSSE:
-    #SI PROCESO CORRECTAMENTE SERÁ UNA TUPLA.        
+def desTuplaResultado(resultado):
+    #Procesa la tupla recibida y la convierte ya sea en imagen(path) o error(string)       
     if isinstance(resultado, tuple):
 
         print("El resultado fue una tupla, ésta tupla:")

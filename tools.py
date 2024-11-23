@@ -13,8 +13,8 @@ def theme_selector():
     print("Tema random: ", tema)
     return tema
 
-def apicomProcessor(e):    
-    #Ésto es como maneja la exepción que recibe:
+def titulizaExcepDeAPI(e):    
+    #Resume una excepción a un título manejable.
     print("Except recibido por apicom: ", e)
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
@@ -26,6 +26,8 @@ def apicomProcessor(e):
         resultado = recortadorQuota(str(e)) #Cuando se trata de quota regresa el resultado completo convertido a string.
     elif "handshake operation timed out" in str(e):
         resultado = "HANDSHAKE_ERROR"
+    elif "Unable to detect a face" in str(e):
+        resultado = "NO_FACE"
     else: 
         resultado = "GENERAL"
 
@@ -45,13 +47,15 @@ def manejadorExcepciones(excepcion):
         info_window = "Connection error try again."
     elif excepcion == "GENERAL":
         info_window = "Network error, no credits were debited."
+    elif excepcion == "NO_FACE":
+        info_window = "Unable to detect a face in the image. Please upload a different photo with a clear face."
     elif "quota" in excepcion: #Caso especial porque el texto cambiará citando la cuota.
         print("Si entré a quota en manejador de exceps...")
         info_window = excepcion
     else:
         info_window = "Error. No credits were debited."
 
-    print("Manejador de excepeciones está regresando éste info_window: ")
+    print("Manejador de excepciones está regresando éste info_window: ")
     print(info_window)
     return info_window
     
