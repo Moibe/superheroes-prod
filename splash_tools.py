@@ -35,7 +35,7 @@ def getPosition():
     """
     #FUTURE: Aquí se podrá poner dinámicamente el set de posiciones en el subfolder de la carpeta posiciones.
     #Dentro de globales podemos poner subsets, después, asociarlos a determinados modelos.
-    ruta_carpeta = configuracion.splashmix.positions_path
+    ruta_carpeta = os.path.join("images", "positions", configuracion.splashmix.positions_path)
     
     lista_archivos = os.listdir(ruta_carpeta)
     

@@ -1,9 +1,9 @@
-databank_general = 'data' #Pueden variar puede ser data o data_rev o cualquiera dentro de data.
+databank_general = 'data_rev' #Pueden variar puede ser data o data_rev o cualquiera dentro de data.
 Superhero = 'data_rev' #Pueden variar, puede ser data_heroes o data_rev
 Hotgirl = 'data_girls'
 
-selected_databank = Hotgirl
-creacion = "Hotgirl"  #"Superhero" o "Hotgirl"
+selected_databank = Superhero
+creacion = "Superhero"  #"Superhero" o "Hotgirl"
 
-positions_path = "images\\positions\\girlsAllPositions"
+positions_path = "superheroes"
 # prob_position = 0.1
