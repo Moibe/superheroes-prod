@@ -1,8 +1,6 @@
 import sets
-import time
 
-def inputs_selector(set):    
-
+def inputs_selector(set):
     # Obtener la configuración según el valor de 'set'
     config = sets.configuraciones.get(set)
 
