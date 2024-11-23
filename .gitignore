@@ -6,3 +6,4 @@ bridges.py
 /images/positions/
 /data/__pycache__/
 /configuracion/__pycache__/
+/flagged/
