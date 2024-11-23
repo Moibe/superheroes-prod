@@ -28,7 +28,10 @@ def perform(input1, request: gr.Request):
         except Exception as e:
             #Cuando hubo una excepción al ejecutar la API externa.
             print("Traceback at funciones, Except recibido por apicom:")
-            traceback.print_exc()            
+            traceback.print_exc()
+            tb = traceback.format_exc()
+            print("Error en la línea", tb.split('\n')[-2].split(',')[1].strip())
+            print("Mensaje de error:", e)            
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
     else:
@@ -119,4 +122,8 @@ def mass(input1):
         mensaje = tools.titulizaExcepDeAPI(e)
         print("Traceback @ API FAIL: Except recibido por apicom:")
         traceback.print_exc()
+        tb = traceback.format_exc()
+        print("Error en la línea", tb.split('\n')[-2].split(',')[1].strip())
+        print("Mensaje de error:", e)
+        
         return mensaje

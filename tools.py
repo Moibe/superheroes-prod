@@ -19,6 +19,10 @@ def titulizaExcepDeAPI(e):
     print("Except recibido por apicom: ", e)
     print("Traceback @ tools: Except recibido por apicom:")
     traceback.print_exc()
+    tb = traceback.format_exc()
+    print("Error en la línea", tb.split('\n')[-2].split(',')[1].strip())
+    print("Mensaje de error:", e)
+    
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
     elif "PAUSED" in str(e):

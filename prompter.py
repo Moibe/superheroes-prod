@@ -81,22 +81,14 @@ def prompteador(objeto):
 
     print("Entré al prompteador...")
  
-    if  splashmix.creacion == "Superhero":
-        print("Si entré a Superhero...")        
-
-        # style = contenedor['style'] #if isinstance(contenedor.get('style'), str) else ""
-        # subject = contenedor['subject'] #if isinstance(contenedor.get('style'), str) else ""      
-    
+    if  configuracion.splashmix.creacion == "Superhero":
+ 
         #PROMPT PARA HEROE
         prompt = f"A {objeto.style} of a superhero like {objeto.subject} " #agregar otros atributos random aquí posteriormente.
         print("Éste es el prompt:")
         print(prompt)
     
     else:
-
-        print("Si entré a Hotgirl...")      
-    
-        #sample_objeto = Hotgirl()
         
         #Importante El if instance es porque si viene como float nan, lo cambio a texto que sea vacío.
         #Porque si no me parece que deja la palabra nan o lo manifiesta como float, tendríamos que probar.
