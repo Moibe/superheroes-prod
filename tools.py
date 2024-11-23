@@ -15,14 +15,9 @@ def theme_selector():
     return tema
 
 def titulizaExcepDeAPI(e):    
-    #Resume una excepción a un título manejable.
-    print("Except recibido por apicom: ", e)
-    print("Traceback @ tools: Except recibido por apicom:")
-    traceback.print_exc()
-    tb = traceback.format_exc()
-    print("Error en la línea", tb.split('\n')[-2].split(',')[1].strip())
+    #Resume una excepción a un título manejable.   
     print("Mensaje de error:", e)
-    
+
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
     elif "PAUSED" in str(e):

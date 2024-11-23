@@ -2,15 +2,12 @@ import bridges
 import globales
 import sulkuPypi
 import sulkuFront
-import debit_rules
 import gradio as gr
 import gradio_client
 import splash_tools
 import time
 import prompter
 import tools
-import ast
-import traceback
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
@@ -26,11 +23,6 @@ def perform(input1, request: gr.Request):
             resultado = mass(input1)
             #El resultado ya viene detuplado.
         except Exception as e:
-            #Cuando hubo una excepción al ejecutar la API externa.
-            print("Traceback at funciones, Except recibido por apicom:")
-            traceback.print_exc()
-            tb = traceback.format_exc()
-            print("Error en la línea", tb.split('\n')[-2].split(',')[1].strip())
             print("Mensaje de error:", e)            
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
@@ -115,15 +107,12 @@ def mass(input1):
         return result
 
     except Exception as e:
+
         print("Hubo un error:", e)
         print("Y el tipo de ese error es: ", type(e))
         #Errores al correr la API.
         #La no detección de un rostro es mandado aquí?! Siempre?
         mensaje = tools.titulizaExcepDeAPI(e)
-        print("Traceback @ API FAIL: Except recibido por apicom:")
-        traceback.print_exc()
-        tb = traceback.format_exc()
-        print("Error en la línea", tb.split('\n')[-2].split(',')[1].strip())
         print("Mensaje de error:", e)
         
         return mensaje
