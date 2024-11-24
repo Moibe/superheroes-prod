@@ -107,8 +107,7 @@ def mass(input1):
         return result
 
     except Exception as e:
-
-        print("Hubo un error:", e)
+        print("Hubo un error dentro de MASS:", e)
         print("Y el tipo de ese error es: ", type(e))
         #Errores al correr la API.
         #La no detección de un rostro es mandado aquí?! Siempre?

@@ -40,7 +40,7 @@ def manejadorExcepciones(excepcion):
     if excepcion == "PAUSED": 
         info_window = "AI Engine Paused, ready soon."
     elif excepcion == "RUNTIME_ERROR":
-        info_window = "Error in AI, please contact Moibe."
+        info_window = "Error building AI environment, please contact me."
     elif excepcion == "STARTING":
         info_window = "Server Powering UP, wait a few seconds and try again."
     elif excepcion == "HANDSHAKE_ERROR":
