@@ -16,8 +16,7 @@ def theme_selector():
 
 def titulizaExcepDeAPI(e):    
     #Resume una excepción a un título manejable.   
-    print("Mensaje de error:", e)
-
+    
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
     elif "PAUSED" in str(e):
@@ -30,6 +29,8 @@ def titulizaExcepDeAPI(e):
         resultado = "HANDSHAKE_ERROR"
     elif "Unable to detect a face" in str(e):
         resultado = "NO_FACE"
+    elif "File None does not exist on local filesystem and is not a valid URL." in str(e):
+        resultado = "NO_FILE"
     else: 
         resultado = "GENERAL"
 
@@ -42,13 +43,15 @@ def manejadorExcepciones(excepcion):
     elif excepcion == "RUNTIME_ERROR":
         info_window = "Error building AI environment, please contact me."
     elif excepcion == "STARTING":
-        info_window = "Server Powering UP, wait a few seconds and try again."
+        info_window = "Server Powering UP, wait a few minutes and try again."
     elif excepcion == "HANDSHAKE_ERROR":
         info_window = "Connection error try again."
     elif excepcion == "GENERAL":
         info_window = "Network error, no credits were debited."
     elif excepcion == "NO_FACE":
         info_window = "Unable to detect a face in the image. Please upload a different photo with a clear face."
+    elif excepcion == "NO_FILE":
+        info_window = "No file, please add a valid archive."
     elif "quota" in excepcion: #Caso especial porque el texto cambiará citando la cuota.
         info_window = excepcion
     else:

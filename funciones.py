@@ -23,7 +23,7 @@ def perform(input1, request: gr.Request):
             resultado = mass(input1)
             #El resultado ya viene detuplado.
         except Exception as e:
-            print("Mensaje de error:", e)            
+            print("Mensaje de error al salir de MASS:", e)            
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
     else:
@@ -57,15 +57,17 @@ def perform(input1, request: gr.Request):
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1):
-
-    imagenSource = gradio_client.handle_file(input1)    
+    ("Entré a mass...")
+    imagenSource = gradio_client.handle_file(input1)   
+    print("Ésto es imagenSource después de ser procesada: ", imagenSource) 
     imagenPosition = gradio_client.handle_file(splash_tools.getPosition())     
     creacion=splash_tools.creadorObjeto()
     prompt = prompter.prompteador(creacion)   
 
     client = gradio_client.Client(globales.api, hf_token=bridges.hug)
     #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
-        
+    
+    print("Llegué a la ejecución de la API dentro de Mass:")
     try:        
         result = client.predict(
                 imagenSource,
@@ -107,7 +109,7 @@ def mass(input1):
         return result
 
     except Exception as e:
-        print("Hubo un error dentro de MASS:", e)
+        print("Hubo un errora al ejecutar MASS:", e)
         print("Y el tipo de ese error es: ", type(e))
         #Errores al correr la API.
         #La no detección de un rostro es mandado aquí?! Siempre?
