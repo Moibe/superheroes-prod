@@ -12,7 +12,7 @@ def iniciar():
 #INTERFAZ
 #Credit Related Elements
 html_credits = gr.HTML(visible=True)
-lbl_console = gr.Label(label="AI Terminal " + globales.version +  " messages", value="AI Engine ready...", container=True)
+lbl_console = gr.Label(label="AI Terminal " + globales.version +  " messages", value="", container=True)
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #Customizable Inputs and Outputs
@@ -20,7 +20,7 @@ input1, result = inputs.inputs_selector(globales.seto)
 
 with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
     #Cargado en Load: Función, input, output
-    main.load(sulkuFront.precarga, None, [lbl_console, html_credits]) 
+    main.load(sulkuFront.precarga, None, html_credits) 
     #main.load(sulkuFront.precarga, None, [lbl_console, html_credits]) 
    
     with gr.Row():

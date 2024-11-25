@@ -5,5 +5,5 @@ Hotgirl = 'data_girls'
 selected_databank = Hotgirl
 creacion = "Hotgirl"  #"Superhero" o "Hotgirl"
 
-positions_path = "superheroes"
+positions_path = "girlsAllPositions"
 # prob_position = 0.1

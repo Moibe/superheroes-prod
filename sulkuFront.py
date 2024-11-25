@@ -7,38 +7,13 @@ import tools
 import threading
 from huggingface_hub import HfApi
 
-result_from_displayTokens = None
-
-def initAPI():
-    #PROCESO1
-    global result_from_initAPI
-
-    try:
-        repo_id = globales.api
-        api = HfApi(token=bridges.hug)
-        runtime = api.get_space_runtime(repo_id=repo_id)
-        print("Hardware: ", runtime.hardware)
-        print("Stage: ", runtime.stage)
-        #"RUNNING_BUILDING", "APP_STARTING", "SLEEPING", "RUNNING"
-        if runtime.stage == "SLEEPING":
-            print("Estoy durmiendo..., Despierta")
-            api.restart_space(repo_id=repo_id)
-            print("Desperando")
-        print("Hardware: ", runtime.hardware)
-        # #"cpu-basic"
-        
-        # client = gradio_client.Client(globales.api, hf_token=bridges.hug)
-        # print("Éste cliente: ", client.api_url)
-        result_from_initAPI = runtime.stage
-        # client = None
-    except Exception as e:
-        print("No api, encendiendo: ", e)
-        result_from_initAPI = str(e)    
-    
-    print("API Result displayed: ", result_from_initAPI)   
+result_from_displayTokens = None 
+result_from_initAPI = None    
 
 def displayTokens(request: gr.Request):
-    #PROCESO2
+    
+    global result_from_displayTokens
+
     print("Running displayTokens...")
     novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"), globales.aplicacion)    
     if novelty == "new_user": 
@@ -46,29 +21,25 @@ def displayTokens(request: gr.Request):
     else: 
         tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"), globales.env)
         display = visualizar_creditos(tokens, request.username) 
-
-    global result_from_displayTokens
+    
     result_from_displayTokens = display
-    print("Tokens displayed: ", result_from_displayTokens) 
-
 
 def precarga(request: gr.Request):
     
-    global result_from_initAPI
-    global result_from_displayTokens
+    # global result_from_initAPI
+    # global result_from_displayTokens
 
-    thread1 = threading.Thread(target=initAPI)
+    #thread1 = threading.Thread(target=initAPI)
     thread2 = threading.Thread(target=displayTokens, args=(request,))
 
-    thread1.start()
+    #thread1.start()
     thread2.start()
 
-    thread1.join()  # Espera a que el hilo 1 termine
+    #thread1.join()  # Espera a que el hilo 1 termine
     thread2.join()  # Espera a que el hilo 2 termine
 
-    return result_from_initAPI, result_from_displayTokens  
-    
-  
+    #return result_from_initAPI, result_from_displayTokens  
+    return result_from_displayTokens 
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
@@ -90,11 +61,34 @@ def noCredit(usuario):
 
 def aError(usuario, tokens, excepcion):
     #aError se usa para llenar todos los elementos visuales en el front.
-    info_window = tools.manejadorExcepciones(excepcion)
+    info_window = manejadorExcepciones(excepcion)
     path = 'images/error.png'
     tokens = tokens
     html_credits = visualizar_creditos(tokens, usuario)   
     return info_window, path, html_credits
+
+def manejadorExcepciones(excepcion):
+    #El parámetro que recibe es el texto despliega ante determinada excepción:
+    if excepcion == "PAUSED": 
+        info_window = "AI Engine Paused, ready soon."
+    elif excepcion == "RUNTIME_ERROR":
+        info_window = "Error building AI environment, please contact me."
+    elif excepcion == "STARTING":
+        info_window = "Server Powering UP, wait a few minutes and try again."
+    elif excepcion == "HANDSHAKE_ERROR":
+        info_window = "Connection error try again."
+    elif excepcion == "GENERAL":
+        info_window = "Network error, no credits were debited."
+    elif excepcion == "NO_FACE":
+        info_window = "Unable to detect a face in the image. Please upload a different photo with a clear face."
+    elif excepcion == "NO_FILE":
+        info_window = "No file, please add a valid archive."
+    elif "quota" in excepcion: #Caso especial porque el texto cambiará citando la cuota.
+        info_window = excepcion
+    else:
+        info_window = "Error. No credits were debited."
+
+    return info_window
 
 def presentacionFinal(usuario, accion):
         

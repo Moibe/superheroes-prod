@@ -57,15 +57,15 @@ def perform(input1, request: gr.Request):
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1):
-    ("Entré a mass...")
+    
+    client = gradio_client.Client(globales.api, hf_token=bridges.hug)
+    #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
+
     imagenSource = gradio_client.handle_file(input1)   
     print("Ésto es imagenSource después de ser procesada: ", imagenSource) 
     imagenPosition = gradio_client.handle_file(splash_tools.getPosition())     
     creacion=splash_tools.creadorObjeto()
     prompt = prompter.prompteador(creacion)   
-
-    client = gradio_client.Client(globales.api, hf_token=bridges.hug)
-    #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
     
     print("Llegué a la ejecución de la API dentro de Mass:")
     try:        
