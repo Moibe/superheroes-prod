@@ -1,8 +1,6 @@
 import ast 
 import globales
 import sulkuPypi
-import sulkuFront
-import gradio as gr
 import tools
 
 def authenticate(username, password):   

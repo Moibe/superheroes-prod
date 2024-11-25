@@ -22,8 +22,7 @@ def perform(input1, request: gr.Request):
         try: 
             resultado = mass(input1)
             #El resultado ya viene detuplado.
-        except Exception as e:
-            print("Mensaje de error al salir de MASS:", e)            
+        except Exception as e:                      
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
     else:
@@ -31,11 +30,6 @@ def perform(input1, request: gr.Request):
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
         return resultado, info_window, html_credits, btn_buy
     
-    #resultado_string = str(resultado)
-
-    print("Result obtenido:")
-    print(resultado)
-
     #Primero revisa si es imagen!: 
     if "image.webp" in resultado:
         #Si es imagen, debitarás.
@@ -67,7 +61,6 @@ def mass(input1):
     creacion=splash_tools.creadorObjeto()
     prompt = prompter.prompteador(creacion)   
     
-    print("Llegué a la ejecución de la API dentro de Mass:")
     try:        
         result = client.predict(
                 imagenSource,
