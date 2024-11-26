@@ -55,42 +55,7 @@ def getPosition():
     #shot = nombre_archivo
     #print("Posición elegida: ", shot)
         
-    return ruta_posicion
-
-def desTuplaResultado(resultado):
-    #Procesa la tupla recibida y la convierte ya sea en imagen(path) o error(string)       
-    if isinstance(resultado, tuple):
-
-        print("El resultado fue una tupla, ésta tupla:")
-        print(resultado)
-        ruta_imagen_local = resultado[0]
-        print("Ésto es resultado ruta imagen local: ", ruta_imagen_local)
-        return ruta_imagen_local
-       
-
-    #NO PROCESO CORRECTAMENTE NO GENERA UNA TUPLA.
-    #CORRIGE IMPORTANTE: QUE NO SE SALGA DEL CICLO DE ESA IMAGEN AL ENCONTRAR ERROR.
-    else:
-        #NO ES UNA TUPLA:
-        print("El tipo del resultado cuando no fue una tupla es: ", type(resultado))                
-        texto = str(resultado)
-        segmentado = texto.split('exception:')
-        print("Segmentado es una posible causa de error, analiza segmentado es: ", segmentado)
-        #FUTURE: Agregar que si tuvo problemas con la imagen de referencia, agregue en un 
-        #Log de errores porque ya no lo hará en el excel, porque le dará la oportunidad con otra 
-        #imagen de posición.
-        try:
-            #Lo pongo en try porque si no hay segmentado[1], suspende toda la operación. 
-            print("Segmentado[1] es: ", segmentado[1])
-            mensaje = segmentado[1]
-            return mensaje
-        except Exception as e:
-            print("Error en el segmentado: ", e)
-            # mensaje = "concurrent.futures._base.CancelledError"
-            # concurrents = concurrents + 1
-        finally: 
-            pass
-        
+    return ruta_posicion        
 
 if __name__ == "__main__":
     getPosition()

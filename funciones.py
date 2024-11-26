@@ -98,7 +98,7 @@ def mass(input1):
         # #Si viene del miniproxy, hay que rehacer la tupla.
         # result = ast.literal_eval(result)   
         
-        result = splash_tools.desTuplaResultado(result)
+        result = tools.desTuplaResultado(result)
         return result
 
     except Exception as e:
