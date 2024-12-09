@@ -21,6 +21,8 @@ def perform(input1, request: gr.Request):
     if autorizacion is True:
         try: 
             resultado = mass(input1)
+            print("El resultado de mass es: ")
+            print(resultado)
             #El resultado ya viene detuplado.
         except Exception as e:                      
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
@@ -56,7 +58,6 @@ def mass(input1):
     #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
 
     imagenSource = gradio_client.handle_file(input1)   
-    print("Ésto es imagenSource después de ser procesada: ", imagenSource) 
     imagenPosition = gradio_client.handle_file(splash_tools.getPosition())     
     creacion=splash_tools.creadorObjeto()
     prompt = prompter.prompteador(creacion)   
