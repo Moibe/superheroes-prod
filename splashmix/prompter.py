@@ -1,6 +1,6 @@
 from splashmix.objetosCreacion import Hotgirl, Superhero
 import time
-import configuracion.splashmix
+import splashmix.configuracion
 
 def obten(dataframe, indice, atributo):        
     valor = dataframe.loc[indice[0], atributo]  
@@ -81,7 +81,7 @@ def prompteador(objeto):
 
     print("Entré al prompteador...")
  
-    if  configuracion.splashmix.creacion == "Superhero":
+    if  splashmix.configuracion.creacion == "Superhero":
  
         #PROMPT PARA HEROE
         prompt = f"A {objeto.style} of a superhero like {objeto.subject} " #agregar otros atributos random aquí posteriormente.

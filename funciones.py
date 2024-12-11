@@ -64,6 +64,9 @@ def mass(input1):
     #Hecho por Splashmix Tools...
     ########################################
     creacion=splash_tools.creadorObjeto()
+    print("Salí de creador objeto y ésta es la creación: ")
+    print(creacion)
+    time.sleep(39)
     prompt = prompter.prompteador(creacion) 
     ########################################  
     

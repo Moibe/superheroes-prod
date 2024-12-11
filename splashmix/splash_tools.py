@@ -1,5 +1,5 @@
 import importlib
-import configuracion.splashmix
+import splashmix.configuracion
 import os
 import random
 
@@ -17,8 +17,13 @@ def randomNull(probabilidad, lista):
 
 def creadorObjeto(): 
 
-    clase = getattr(importlib.import_module("splashmix.objetosCreacion"), configuracion.splashmix.creacion)
+    print("Entré a objetoCreador...")
+
+    clase = getattr(importlib.import_module("splashmix.objetosCreacion"), splashmix.configuracion.creacion)
+
+    print("La clase es...", clase)
     creacion = clase()
+    print("La creación es: ", creacion)
     
     return creacion
 
@@ -35,7 +40,7 @@ def getPosition():
     """
     #FUTURE: Aquí se podrá poner dinámicamente el set de posiciones en el subfolder de la carpeta posiciones.
     #Dentro de globales podemos poner subsets, después, asociarlos a determinados modelos.
-    ruta_carpeta = os.path.join("images", "positions", configuracion.splashmix.positions_path)
+    ruta_carpeta = os.path.join("images", "positions", splashmix.configuracion.positions_path)
     
     lista_archivos = os.listdir(ruta_carpeta)
     

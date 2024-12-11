@@ -1,14 +1,14 @@
 import random
 import splashmix.splash_tools as splash_tools
 import importlib
-import configuracion.splashmix
+import splashmix.configuracion
 import data.data as data, data.data_girls as data_girls, data.data_heroes as data_heroes #puede ya no necesitarse.
 
 #data general: 
-importable_general = "data." + configuracion.splashmix.databank_general 
+importable_general = "data." + splashmix.configuracion.databank_general 
 modulo_general = importlib.import_module(importable_general)
 
-importable = "data." + configuracion.splashmix.selected_databank
+importable = "data." + splashmix.configuracion.selected_databank
 #importable = "data." + configuracion.splashmix.databank_girls 
 #importable = "data." + configuracion.splashmix.databank_girls
 modulo = importlib.import_module(importable)
