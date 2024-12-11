@@ -9,7 +9,6 @@ def iniciar():
     app_path = globales.app_path
     main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
 
-#INTERFAZ
 #Credit Related Elements
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal " + globales.version +  " messages", value="", container=True)

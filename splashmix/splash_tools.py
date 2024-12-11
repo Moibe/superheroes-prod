@@ -1,29 +1,31 @@
-import importlib
-import splashmix.configuracion
 import os
 import random
-
-def randomNull(probabilidad, lista):
-    # Generamos un número aleatorio entre 0 y 1
-    numero_random = random.random()
-
-    # Si la probabilidad es menor a 0.2 (20%), no guardamos el color
-    if numero_random < probabilidad:
-        result = None  #No habrá dicho atributo.
-    else:
-        result = random.choice(lista) #Si eligirá un atributo de la lista.
-
-    return result
+import importlib
+import splashmix.configuracion
+import time
 
 def creadorObjeto():
     #Regresa un objeto creación con sus características.
     
     #De objetosCreación, importa el que indique splashmix.configuración:
     clase = getattr(importlib.import_module("splashmix.objetosCreacion"), splashmix.configuracion.creacion)
-    #Crea es objeto para regresarlo.
-    creacion = clase()
-
+    
+    #Crea ese objeto para regresarlo.    
+    #AQUÏ ES DONDE ENTRA!!! DONDE SE LLAMA A HOTGIRL!!!! AQUÏ PODRÏAS PASAR EL PARAM!!
+    creacion = clase() #Podrías agregar parametros para que así sea hecho desde su concepción: style="anime", adjective="naughty"
+    #Pero por ahora se ponen de forma fija hasta después de creado. 
+    #Future: Checar si cambiarlo a éste punto mejora rendimiento.
     return creacion
+
+def randomNull(probabilidad, lista):
+    # Generamos un número aleatorio entre 0 y 1
+    numero_random = random.random()
+    # Si la probabilidad es menor a 0.2 (20%), no guardamos el color
+    if numero_random < probabilidad:
+        result = ""  #No habrá dicho atributo. Antes ponía None, pero ahora "" para no afectar cuando genera texto para prompt.
+    else:
+        result = random.choice(lista) #Si eligirá un atributo de la lista.
+    return result
 
 def getPosition():
     """

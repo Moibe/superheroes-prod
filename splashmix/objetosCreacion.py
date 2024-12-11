@@ -2,6 +2,7 @@ import random
 import importlib
 import splashmix.configuracion
 import splashmix.splash_tools as splash_tools
+import time
 
 #DATA GENERAL: 
 importable_general = "data." + splashmix.configuracion.databank_general 
@@ -12,11 +13,15 @@ importable_particular = "data." + splashmix.configuracion.selected_databank
 databank_particular = importlib.import_module(importable_particular)
 
 class Prompt:
-    def __init__(self, style=None):              
+    print("Investigar en que momento está llegando aquí...")
+    def __init__(self, style=None):  #Ése style=None al parecer no se usa pq todo viene de la creación de un hijo.            
         #Aquí pondrás cada atributo que contenga ese objeto general:
-        self.style = style or random.choice(databank_general.lista_estilos)   
-
+        try: 
+            self.style = style or random.choice(databank_general.lista_estilos) 
+        except Exception as e: 
+            print("Excepción: ", e)
 class Superhero(Prompt):
+    print("Y el momento en Superhero...")
     def __init__(self,
                  subject=None, 
                  ):
@@ -25,6 +30,7 @@ class Superhero(Prompt):
         self.subject = subject or splash_tools.randomNull(0.2, databank_particular.lista_subjects)
                         
 class Hotgirl(Prompt):
+    print("Investiga el momento en hotgirl...")
     def __init__(self,
                  #Aquí pondrás cada atributo que contenga ese objeto general:
                  style=None,
@@ -41,8 +47,11 @@ class Hotgirl(Prompt):
                  place=None,
                  complemento=None,
                  ):
+       
         super().__init__(style)  # Call the parent class constructor
         
+        print("Regresa a terminar de crear el subobjeto.")
+
         self.subject = subject or splash_tools.randomNull(0.2, databank_particular.lista_subjects)
         self.adjective = adjective or splash_tools.randomNull(0.2, databank_particular.lista_adjective)
         self.type_girl = type_girl or splash_tools.randomNull(0.2, databank_particular.lista_type_girl)
@@ -54,4 +63,4 @@ class Hotgirl(Prompt):
         self.wardrobe_shoes = wardrobe_shoes or splash_tools.randomNull(0.2, databank_particular.lista_wardrobe_shoes)
         self.situacion = situacion or splash_tools.randomNull(0.2, databank_particular.lista_situacion)
         self.place = place or splash_tools.randomNull(0.2, databank_particular.lista_place)
-        self.complemento = complemento or splash_tools.randomNull(0.2, databank_particular.lista_complemento)
+        self.complemento = complemento or splash_tools.randomNull(0.2, databank_particular.lista_complemento)                  

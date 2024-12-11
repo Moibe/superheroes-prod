@@ -5,7 +5,6 @@ import sulkuFront
 import gradio as gr
 import gradio_client
 import splashmix.splash_tools as splash_tools
-import time
 import splashmix.prompter as prompter
 import tools
 
@@ -39,15 +38,8 @@ def perform(input1, request: gr.Request):
     else: 
         #Si no es imagen es un texto que nos dice algo.
         info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
-        return resultado, info_window, html_credits, btn_buy       
-    
-    #Éste solo aplica para astroblend, al parecer aquí no se usa así es que lo comentaré por el momento.
-    #Revisión de errores PARTICULARES (textos propios de la app.)
-    # if debit_rules.debita(resultado) == True:
-    #     html_credits, info_window = sulkuFront.presentacionFinal(request.username, "debita")
-    # else:
-    #     html_credits, info_window = sulkuFront.presentacionFinal(request.username, "no debita") 
-            
+        return resultado, info_window, html_credits, btn_buy           
+           
     #Lo que se le regresa oficialmente al entorno.
     return resultado, info_window, html_credits, btn_buy
 
@@ -63,8 +55,15 @@ def mass(input1):
     ########################################
     #Hecho por Splashmix Tools...
     ########################################
-    creacion=splash_tools.creadorObjeto()
+    creacion=splash_tools.creadorObjeto() #1) Aquí podrías pasarle style="anime", pero debes ver como kwargsearlo.
+    print("O puedes modificarlo a costa de unos segundos al final...")
+    #2) Aquí con los parámetros que te estuviera pasando por ejemplo via input.
+    print("Y su creación.style es: ", creacion.style)
+    #En ésta ocasión haremos que siempre sea ánime.
+    print("Se cambia a valor de estilo fijo.")
+    creacion.style = "Anime"
     prompt = prompter.prompteador(creacion) 
+    print("El prompt quedó como: ", prompt)
     ########################################  
     
     try:        
@@ -109,7 +108,6 @@ def mass(input1):
 
     except Exception as e:
         print("Hubo un errora al ejecutar MASS:", e)
-        print("Y el tipo de ese error es: ", type(e))
         #Errores al correr la API.
         #La no detección de un rostro es mandado aquí?! Siempre?
         mensaje = tools.titulizaExcepDeAPI(e)
