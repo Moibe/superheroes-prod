@@ -20,9 +20,7 @@ def perform(input1, request: gr.Request):
     if autorizacion is True:
         try: 
             resultado = mass(input1)
-            print("El resultado de mass es: ")
-            print(resultado)
-            #El resultado ya viene detuplado.
+            #El resultado ya viene dsetuplado.
         except Exception as e:                      
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
@@ -56,14 +54,10 @@ def mass(input1):
     #Hecho por Splashmix Tools...
     ########################################
     creacion=splash_tools.creadorObjeto() #1) Aquí podrías pasarle style="anime", pero debes ver como kwargsearlo.
-    print("O puedes modificarlo a costa de unos segundos al final...")
     #2) Aquí con los parámetros que te estuviera pasando por ejemplo via input.
-    print("Y su creación.style es: ", creacion.style)
     #En ésta ocasión haremos que siempre sea ánime.
-    print("Se cambia a valor de estilo fijo.")
-    creacion.style = "Anime"
+    #creacion.style = "Anime"
     prompt = prompter.prompteador(creacion) 
-    print("El prompt quedó como: ", prompt)
     ########################################  
     
     try:        
@@ -110,7 +104,5 @@ def mass(input1):
         print("Hubo un errora al ejecutar MASS:", e)
         #Errores al correr la API.
         #La no detección de un rostro es mandado aquí?! Siempre?
-        mensaje = tools.titulizaExcepDeAPI(e)
-        print("Mensaje de error:", e)
-        
+        mensaje = tools.titulizaExcepDeAPI(e)        
         return mensaje

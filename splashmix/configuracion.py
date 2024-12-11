@@ -6,8 +6,7 @@ Hotgirl = 'data_girls'
 
 selected_databank = Hotgirl
 
-positions_path = "unique" #"girlsAllPositions"
+positions_path = "unique182" #"girlsAllPositions"
 # prob_position = 0.1
-
 
 #Para modificar el prompt usa: splashmix.prompter.prompteador

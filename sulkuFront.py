@@ -11,7 +11,6 @@ def displayTokens(request: gr.Request):
     
     global result_from_displayTokens
 
-    print("Running displayTokens...")
     novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"), globales.aplicacion)    
     if novelty == "new_user": 
         display = gr.Textbox(visible=False)
@@ -80,6 +79,8 @@ def manejadorExcepciones(excepcion):
         info_window = sulkuMessages.NO_FACE
     elif excepcion == "NO_FILE":
         info_window = sulkuMessages.NO_FILE
+    elif excepcion == "NO_POSITION":
+        info_window = sulkuMessages.NO_POSITION
     elif "quota" in excepcion: #Caso especial porque el texto cambiará citando la cuota.
         info_window = excepcion
     else:

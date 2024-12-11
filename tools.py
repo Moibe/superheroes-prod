@@ -39,7 +39,8 @@ def initAPI():
     
     return result_from_initAPI
 
-def titulizaExcepDeAPI(e):    
+def titulizaExcepDeAPI(e):  
+    print("Éstoy en tituliza y ésta esla excepción que traigo hoy: ", e)  
     #Resume una excepción a un título manejable.
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
@@ -56,6 +57,8 @@ def titulizaExcepDeAPI(e):
     #A partir de aquí son casos propios de cada aplicación.
     elif "Unable to detect a face" in str(e):
         resultado = "NO_FACE"
+    elif "File [WinError 3]" in str(e):
+        resultado = "NO_POSITION"
     else: 
         resultado = "GENERAL"
 
