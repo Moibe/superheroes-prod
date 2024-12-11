@@ -1,4 +1,4 @@
-from objetosCreacion import Hotgirl, Superhero
+from splashmix.objetosCreacion import Hotgirl, Superhero
 import time
 import configuracion.splashmix
 

@@ -1,5 +1,5 @@
 import random
-import splash_tools
+import splashmix.splash_tools as splash_tools
 import importlib
 import configuracion.splashmix
 import data.data as data, data.data_girls as data_girls, data.data_heroes as data_heroes #puede ya no necesitarse.

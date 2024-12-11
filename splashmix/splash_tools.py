@@ -17,7 +17,7 @@ def randomNull(probabilidad, lista):
 
 def creadorObjeto(): 
 
-    clase = getattr(importlib.import_module("objetosCreacion"), configuracion.splashmix.creacion)
+    clase = getattr(importlib.import_module("splashmix.objetosCreacion"), configuracion.splashmix.creacion)
     creacion = clase()
     
     return creacion

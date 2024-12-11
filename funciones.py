@@ -4,9 +4,9 @@ import sulkuPypi
 import sulkuFront
 import gradio as gr
 import gradio_client
-import splash_tools
+import splashmix.splash_tools as splash_tools
 import time
-import prompter
+import splashmix.prompter as prompter
 import tools
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
@@ -59,8 +59,13 @@ def mass(input1):
 
     imagenSource = gradio_client.handle_file(input1)   
     imagenPosition = gradio_client.handle_file(splash_tools.getPosition())     
+    
+    ########################################
+    #Hecho por Splashmix Tools...
+    ########################################
     creacion=splash_tools.creadorObjeto()
-    prompt = prompter.prompteador(creacion)   
+    prompt = prompter.prompteador(creacion) 
+    ########################################  
     
     try:        
         result = client.predict(
