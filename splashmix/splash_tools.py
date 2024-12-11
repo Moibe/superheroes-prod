@@ -40,15 +40,13 @@ def getPosition():
     #FUTURE: Aquí se podrá poner dinámicamente el set de posiciones en el subfolder de la carpeta posiciones.
     #Dentro de globales podemos poner subsets, después, asociarlos a determinados modelos.
     ruta_carpeta = os.path.join("images", "positions", splashmix.configuracion.positions_path)
-    print("Ruta carpeta es: ", ruta_carpeta)
-    
+        
     try: 
         lista_archivos = os.listdir(ruta_carpeta)
         print("Lista archivos es: ", lista_archivos)
         #Selecciona una imagen aleatoriamente.
         posicion_aleatoria = random.choice(lista_archivos)
         ruta_posicion = os.path.join(ruta_carpeta, posicion_aleatoria)
-        print("Ruta Posición seleccionada: ", ruta_posicion)
         return ruta_posicion     
     except Exception as e: 
         print("No hay carpeta de posiciones:", e)
