@@ -9,9 +9,9 @@ def randomNull(probabilidad, lista):
 
     # Si la probabilidad es menor a 0.2 (20%), no guardamos el color
     if numero_random < probabilidad:
-        result = None  #No habrá heroe.
+        result = None  #No habrá dicho atributo.
     else:
-        result = random.choice(lista)
+        result = random.choice(lista) #Si eligirá un atributo de la lista.
 
     return result
 
