@@ -13,7 +13,7 @@ def theme_selector():
         gr.themes.Soft()
     ]
     tema = random.choice(temas_posibles)
-    print("Tema random: ", tema)
+    #print("Tema random: ", tema)
     return tema
 
 def initAPI():
@@ -81,7 +81,6 @@ def recortadorQuota(texto_quota):
         nuevo_mensaje = "Your quota is exceeded, try again in few hours please."
         return nuevo_mensaje
     else:
-        print("El recorte quedó: ")
         print(subcadena)
     
     return subcadena

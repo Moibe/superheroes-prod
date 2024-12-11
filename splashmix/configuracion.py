@@ -1,12 +1,15 @@
-creacion = "Hotgirl"  #"Superhero" o "Hotgirl"
+import splashmix.static_databanks
 
-databank_general = 'data' #Pueden variar puede ser data o data_rev o cualquiera dentro de data.
-Superhero = 'data_rev' #Pueden variar, puede ser data_heroes o data_rev
-Hotgirl = 'data_girls'
+#Creación indíca de que tendrá atributos el objeto.
+creacion = "Superhero"    
 
-selected_databank = Hotgirl
+#Indíca de q biblioteca se obtendrán los generales, por ahora: estilo.
+general_databank = splashmix.static_databanks.general_data 
 
-positions_path = "unique182" #"girlsAllPositions"
-# prob_position = 0.1
+#Indíca de q biblioteca se obtendrán los rasgos particulares del objeto. 
+selected_databank = splashmix.static_databanks.Superhero 
+
+positions_path = "superheroes" #"girlsAllPositions" #superheroes
+#Future, ve como usarás: prob_position = 0.1
 
 #Para modificar el prompt usa: splashmix.prompter.prompteador

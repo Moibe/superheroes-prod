@@ -2,10 +2,10 @@ import random
 import importlib
 import splashmix.configuracion
 import splashmix.splash_tools as splash_tools
-import time
 
 #DATA GENERAL: 
-importable_general = "data." + splashmix.configuracion.databank_general 
+folder_data = "data."
+importable_general = folder_data + splashmix.configuracion.general_databank 
 databank_general = importlib.import_module(importable_general)
 
 #DATA PARTICULAR (HG o SH):

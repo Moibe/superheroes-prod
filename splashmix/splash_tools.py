@@ -2,7 +2,6 @@ import os
 import random
 import importlib
 import splashmix.configuracion
-import time
 
 def creadorObjeto():
     #Regresa un objeto creación con sus características.
@@ -43,7 +42,6 @@ def getPosition():
         
     try: 
         lista_archivos = os.listdir(ruta_carpeta)
-        print("Lista archivos es: ", lista_archivos)
         #Selecciona una imagen aleatoriamente.
         posicion_aleatoria = random.choice(lista_archivos)
         ruta_posicion = os.path.join(ruta_carpeta, posicion_aleatoria)

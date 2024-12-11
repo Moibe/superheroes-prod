@@ -59,7 +59,7 @@ def getTokens(userfile, env):
 
     if response.status_code == 200:
         tokens = response.json()
-        print("Conexión a Sulku successful, tokens: ", tokens)
+        #print("Conexión a Sulku successful, tokens: ", tokens)
     else:
         error = f"Error al obtener el elemento todo: {response.status_code}"
         return error
@@ -112,7 +112,6 @@ def debitTokensQ(userfile, work, env):
     response = requests.get(api_url)
 
     if response.status_code == 200:
-        print("Conexión a Sulku successful...")
         tokens = response.json()
     else:
         error = f"Error al obtener el elemento todo: {response.status_code}"
