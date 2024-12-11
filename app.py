@@ -18,7 +18,7 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 #Customizable Inputs and Outputs
 input1, result = inputs.inputs_selector(globales.seto)
 
-with gr.Blocks(theme=globales.tema, css="footer {visibility: True}") as main:   
+with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:   
     #Cargado en Load: Función, input, output
     main.load(sulkuFront.precarga, None, html_credits) 
     #main.load(sulkuFront.precarga, None, [lbl_console, html_credits]) 

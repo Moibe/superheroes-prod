@@ -15,9 +15,12 @@ def randomNull(probabilidad, lista):
 
     return result
 
-def creadorObjeto(): 
-
+def creadorObjeto():
+    #Regresa un objeto creación con sus características.
+    
+    #De objetosCreación, importa el que indique splashmix.configuración:
     clase = getattr(importlib.import_module("splashmix.objetosCreacion"), splashmix.configuracion.creacion)
+    #Crea es objeto para regresarlo.
     creacion = clase()
 
     return creacion
