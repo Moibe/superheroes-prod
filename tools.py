@@ -20,19 +20,18 @@ def theme_selector():
     #print("Tema random: ", tema)
     return tema
 
-def initAPI():
+def initAPI(api):
     
     global result_from_initAPI
 
     try:
-        api, tipo_api = elijeAPI()
         repo_id = api
-        api = HfApi(token=bridges.hug)
-        runtime = api.get_space_runtime(repo_id=repo_id)
+        llave = HfApi(token=bridges.hug)
+        runtime = llave.get_space_runtime(repo_id=repo_id)
         print("Stage: ", runtime.stage)
         #"RUNNING_BUILDING", "APP_STARTING", "SLEEPING", "RUNNING", "PAUSED", "RUNTIME_ERROR"
         if runtime.stage == "SLEEPING" or runtime.stage == "PAUSED":
-            api.restart_space(repo_id=repo_id)
+            llave.restart_space(repo_id=repo_id)
             print("Despertando")
         print("Hardware: ", runtime.hardware)
         result_from_initAPI = runtime.stage
@@ -125,18 +124,22 @@ def desTuplaResultado(resultado):
             pass
 
 def elijeAPI():
-    
-    global tipo_api
 
-    #Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
-    if sulkuPypi.getQuota() >= globales.process_cost:
+    diferencia = sulkuPypi.getQuota() - globales.process_cost
+    
+    if diferencia >= 0:
         #Puedes usar Zero.
         api = globales.api_zero
         tipo_api = "gratis"
+        #Además Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
+        #if diferencia es menor que el costo de un sig.  del proceso, ve iniciando ya la otra API.
+        if diferencia < globales.process_cost:
+            print("Preventivamente iremos prendiendo la otra.")
+            initAPI(globales.api_cost) 
     else:
         api = globales.api_cost
         tipo_api = "costo"
 
-    print("La API elejida es: ", api)
+    print("La API elegida es: ", api)
     
     return api, tipo_api
