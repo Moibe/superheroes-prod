@@ -3,6 +3,8 @@ import gradio as gr
 import globales
 from huggingface_hub import HfApi
 import bridges
+import sulkuPypi
+import time
 
 def theme_selector():
     temas_posibles = [
@@ -21,12 +23,13 @@ def initAPI():
     global result_from_initAPI
 
     try:
-        repo_id = globales.api
+        api = elijeAPI()
+        repo_id = api
         api = HfApi(token=bridges.hug)
         runtime = api.get_space_runtime(repo_id=repo_id)
         print("Stage: ", runtime.stage)
         #"RUNNING_BUILDING", "APP_STARTING", "SLEEPING", "RUNNING", "PAUSED", "RUNTIME_ERROR"
-        if runtime.stage == "SLEEPING":
+        if runtime.stage == "SLEEPING" or runtime.stage == "PAUSED":
             api.restart_space(repo_id=repo_id)
             print("Despertando")
         print("Hardware: ", runtime.hardware)
@@ -118,3 +121,12 @@ def desTuplaResultado(resultado):
             # concurrents = concurrents + 1
         finally: 
             pass
+
+def elijeAPI():
+    if sulkuPypi.getQuota() >= globales.process_cost:
+        #Puedes usar Zero.
+        api = globales.api_zero
+    else:
+        api = globales.api_cost
+    print("La API elejida es: ", api)
+    return api

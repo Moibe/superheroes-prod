@@ -1,14 +1,18 @@
 import gradio as gr
 
 #MAIN
-version = "4.12.18"
+version = "5.12.18"
 env = "dev"
 aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
+
 #api = "Moibe/splashmix"
-api = "Moibe/InstantID2"
-#api = "Moibe/InstantID2-B" #Corriendo en Zero, 22 segundos. Quota limitada.
+api_zero = "Moibe/InstantID2" #Risky but leave @ 25.
+api_cost = "Moibe/InstantID2-B" #Corriendo en Zero, 22 segundos. Quota limitada.
 #api = "charlieguo610/InstantID" #Corriendo en A10G, 22 segundos. Libre!! 
-#api = "nsfwalex/hentai-waianiv6-card"
+#api = "InstantX/InstantID" #Como es externa pide 60s.
+
+process_cost = 25
+
 seto = "splashmix"
 work = "picswap"
 app_path = "/superheroes-dev"

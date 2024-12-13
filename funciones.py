@@ -7,6 +7,7 @@ import gradio_client
 import splashmix.splash_tools as splash_tools
 import splashmix.prompter as prompter
 import tools
+import time
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
@@ -20,7 +21,7 @@ def perform(input1, request: gr.Request):
     if autorizacion is True:
         try: 
             resultado = mass(input1)
-            #El resultado ya viene dsetuplado.
+            #El resultado ya viene destuplado.
         except Exception as e:                      
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
@@ -29,6 +30,9 @@ def perform(input1, request: gr.Request):
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
         return resultado, info_window, html_credits, btn_buy
     
+    #(Si llega aquí, debes debitar de la quota.)
+    sulkuPypi.updateQuota(globales.process_cost)    
+        
     #Primero revisa si es imagen!: 
     if "image.webp" in resultado:
         #Si es imagen, debitarás.
@@ -44,7 +48,8 @@ def perform(input1, request: gr.Request):
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1):
     
-    client = gradio_client.Client(globales.api, hf_token=bridges.hug)
+    api = tools.elijeAPI()
+    client = gradio_client.Client(api, hf_token=bridges.hug)
     #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
 
     imagenSource = gradio_client.handle_file(input1)   
