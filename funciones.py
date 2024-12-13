@@ -9,6 +9,8 @@ import splashmix.prompter as prompter
 import tools
 import time
 
+tipo_api = None
+
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
@@ -22,17 +24,14 @@ def perform(input1, request: gr.Request):
         try: 
             resultado = mass(input1)
             #El resultado ya viene destuplado.
-        except Exception as e:                      
+        except Exception as e:                     
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy          
     else:
         #Si no hubo autorización.
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
         return resultado, info_window, html_credits, btn_buy
-    
-    #(Si llega aquí, debes debitar de la quota.)
-    sulkuPypi.updateQuota(globales.process_cost)    
-        
+       
     #Primero revisa si es imagen!: 
     if "image.webp" in resultado:
         #Si es imagen, debitarás.
@@ -47,8 +46,10 @@ def perform(input1, request: gr.Request):
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1):
-    
-    api = tools.elijeAPI()
+
+    api, tipo_api = tools.elijeAPI()
+    print("Una vez elegido API, el tipo api es: ", tipo_api)
+
     client = gradio_client.Client(api, hf_token=bridges.hug)
     #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
 
@@ -100,7 +101,13 @@ def mass(input1):
         # )
 
         # #Si viene del miniproxy, hay que rehacer la tupla.
-        # result = ast.literal_eval(result)   
+        # result = ast.literal_eval(result)  
+
+        #(Si llega aquí, debes debitar de la quota, incluso si detecto no-face o algo.)
+        if tipo_api == "gratis":
+            print("Como el tipo api fue gratis, si debitaremos la quota.")
+            sulkuPypi.updateQuota(globales.process_cost)
+        #No debitas la cuota si no era gratis, solo aplica para Zero.  
         
         result = tools.desTuplaResultado(result)
         return result

@@ -129,7 +129,6 @@ def getQuota():
 
     if response.status_code == 200:
         quota = response.json()
-        print("Quota:", quota)
     else:
         error = f"Error al obtener el elemento todo: {response.status_code}"
         return error

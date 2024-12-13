@@ -6,6 +6,8 @@ import bridges
 import sulkuPypi
 import time
 
+
+
 def theme_selector():
     temas_posibles = [
         gr.themes.Base(),
@@ -23,7 +25,7 @@ def initAPI():
     global result_from_initAPI
 
     try:
-        api = elijeAPI()
+        api, tipo_api = elijeAPI()
         repo_id = api
         api = HfApi(token=bridges.hug)
         runtime = api.get_space_runtime(repo_id=repo_id)
@@ -123,10 +125,18 @@ def desTuplaResultado(resultado):
             pass
 
 def elijeAPI():
+    
+    global tipo_api
+
+    #Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
     if sulkuPypi.getQuota() >= globales.process_cost:
         #Puedes usar Zero.
         api = globales.api_zero
+        tipo_api = "gratis"
     else:
         api = globales.api_cost
+        tipo_api = "costo"
+
     print("La API elejida es: ", api)
-    return api
+    
+    return api, tipo_api
