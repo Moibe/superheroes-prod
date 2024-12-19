@@ -6,8 +6,6 @@ import bridges
 import sulkuPypi
 import time
 
-
-
 def theme_selector():
     temas_posibles = [
         gr.themes.Base(),
@@ -30,7 +28,7 @@ def initAPI(api):
         runtime = llave.get_space_runtime(repo_id=repo_id)
         print("Stage: ", runtime.stage)
         #"RUNNING_BUILDING", "APP_STARTING", "SLEEPING", "RUNNING", "PAUSED", "RUNTIME_ERROR"
-        if runtime.stage == "SLEEPING" or runtime.stage == "PAUSED":
+        if runtime.stage == "SLEEPING":
             llave.restart_space(repo_id=repo_id)
             print("Despertando")
         print("Hardware: ", runtime.hardware)
@@ -44,7 +42,6 @@ def initAPI(api):
     return result_from_initAPI
 
 def titulizaExcepDeAPI(e):  
-    print("Éstoy en tituliza y ésta esla excepción que traigo hoy: ", e)  
     #Resume una excepción a un título manejable.
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
@@ -97,8 +94,7 @@ def desTuplaResultado(resultado):
         print(resultado)
         ruta_imagen_local = resultado[0]
         print("Ésto es resultado ruta imagen local: ", ruta_imagen_local)
-        return ruta_imagen_local
-       
+        return ruta_imagen_local       
 
     #NO PROCESO CORRECTAMENTE NO GENERA UNA TUPLA.
     #CORRIGE IMPORTANTE: QUE NO SE SALGA DEL CICLO DE ESA IMAGEN AL ENCONTRAR ERROR.

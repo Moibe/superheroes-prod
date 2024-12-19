@@ -10,5 +10,4 @@ NO_FILE = "No file, please add a valid archive."
 NO_FACE = "Unable to detect a face in the image. Please upload a different photo with a clear face."
 NO_POSITION = "Missing body position calculation, please contact me, no credits were debited."
 GENERAL = "Network error, no credits were debited."
-
 ELSE = "Error. No credits were debited."

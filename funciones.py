@@ -47,8 +47,12 @@ def perform(input1, request: gr.Request):
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1):
 
-    api, tipo_api = tools.elijeAPI()
-    print("Una vez elegido API, el tipo api es: ", tipo_api)
+    if globales.same_api == False: #Si son diferentes apis, realiza el proceso de selección.
+        api, tipo_api = tools.elijeAPI()
+        print("Una vez elegido API, el tipo api es: ", tipo_api)
+    else: #Si no, deja la primera y no corras ningun proceso. 
+        api = globales.api_zero
+        tipo_api = "cost"
 
     client = gradio_client.Client(api, hf_token=bridges.hug)
     #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy

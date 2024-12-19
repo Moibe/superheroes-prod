@@ -49,7 +49,7 @@ def visualizar_creditos(nuevos_creditos, usuario):
 
 #Controla lo que se depliega en el frontend y que tiene que ver con llamados a Sulku.
 def noCredit(usuario):
-    info_window = "Out of credits..."
+    info_window = sulkuMessages.out_of_credits
     path = 'images/no-credits.png'
     tokens = 0
     html_credits = visualizar_creditos(tokens, usuario)
@@ -79,7 +79,7 @@ def manejadorExcepciones(excepcion):
         info_window = sulkuMessages.NO_FACE
     elif excepcion == "NO_FILE":
         info_window = sulkuMessages.NO_FILE
-    elif excepcion == "NO_POSITION":
+    elif excepcion == "NO_POSITION": #Solo aplíca para Splashmix.
         info_window = sulkuMessages.NO_POSITION
     elif "quota" in excepcion: #Caso especial porque el texto cambiará citando la cuota.
         info_window = excepcion
