@@ -49,10 +49,10 @@ def eligeGratisOCosto():
 def eligeAOB():
 #Se eligirá cuando se tenga un control sobre la cantidad en queu y se redirija hacia una segunda fuente alternativa.
     # Lista con las opciones
-    #apis = [globales.api_a, globales.api_b]
-    #api_elegida = random.choice(apis)
+    apis = [globales.api_a, globales.api_b]
+    api_elegida = random.choice(apis)
     #IMPORTANTE, aquí A o B por ahora siempre será A, porque queremos que lo haga con MP3.
-    api_elegida = globales.api_a
+    #api_elegida = globales.api_a
     print("Print api elegida: ", api_elegida)
     api, tipo_api = api_elegida
     return api, tipo_api

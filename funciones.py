@@ -4,10 +4,11 @@ import sulkuPypi
 import sulkuFront
 import gradio as gr
 import gradio_client
-import splashmix.splash_tools as splash_tools
 import splashmix.prompter as prompter
 import tools
+import random
 import time
+import splashmix.splash_tools as splash_tools
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
@@ -61,8 +62,8 @@ def mass(input1):
     #En ésta ocasión haremos que siempre sea ánime.
     #creacion.style = "Anime"
     prompt = prompter.prompteador(creacion) 
-    ########################################  
-    
+    ######################################## 
+
     try:        
         result = client.predict(
                 imagenSource,
@@ -78,7 +79,7 @@ def mass(input1):
                 depth_strength=0.4,
                 controlnet_selection=["depth"], #pueden ser ['pose', 'canny', 'depth'] #Al parecer pose ya no.
                 guidance_scale=5,
-                seed=42, 
+                seed=random.randint(0, 2147483647), 
                 scheduler="EulerDiscreteScheduler",
                 enable_LCM=False,
                 enhance_face_region=True,
