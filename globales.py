@@ -1,14 +1,14 @@
 import gradio as gr
 
 #MAIN
-version = "6.15.18"
+version = "6.16.18"
 env = "dev"
 aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
 
 seleccion_api = "eligeQuotaOCosto" #eligeQuotaOCosto , eligeAOB o eligeGratisOCosto
 max_size = 20
 #Quota o Costo
-api_zero = ("Moibe/InstantID2", "gratis")
+api_zero = ("Moibe/InstantID2", "quota")
 api_cost = ("Moibe/InstantID2-B", "costo")
 #A o B
 api_a = ("Moibe/sampler", "gratis") #Para music-sampler en particular aquí la diferencia será el formato: mp3

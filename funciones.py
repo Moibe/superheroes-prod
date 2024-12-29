@@ -9,8 +9,6 @@ import splashmix.prompter as prompter
 import tools
 import time
 
-tipo_api = None
-
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
@@ -102,9 +100,7 @@ def mass(input1):
         # #Si viene del miniproxy, hay que rehacer la tupla.
         # result = ast.literal_eval(result)  
 
-        #(Si llega aquí, debes debitar de la quota, incluso si detecto no-face o algo.)
-        if tipo_api == "gratis":
-            print("Como el tipo api fue gratis, si debitaremos la quota.")
+        if tipo_api == "quota":
             sulkuPypi.updateQuota(globales.process_cost)
         #No debitas la cuota si no era gratis, solo aplica para Zero.  
         
