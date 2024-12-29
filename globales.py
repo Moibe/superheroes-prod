@@ -1,17 +1,21 @@
 import gradio as gr
 
 #MAIN
-version = "5.15.18"
+version = "6.15.18"
 env = "dev"
 aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
 
-#api = "Moibe/splashmix"
-api_zero = "Moibe/InstantID2" #Risky but leave @ 25.
-api_cost = "Moibe/InstantID2-B" #Corriendo en Zero, 22 segundos. Quota limitada.
-same_api = False #Hay diferencia en las apis por eso si se debe correr proceso de selección.
-#api = "charlieguo610/InstantID" #Corriendo en A10G, 22 segundos. Libre!! 
-#api = "InstantX/InstantID" #Como es externa pide 60s.
-
+seleccion_api = "eligeAOB" #eligeGratisOCosto , eligeAOB o eligeGratisOCosto
+max_size = 20
+#Quota o Costo
+api_zero = ("Moibe/InstantID2", "gratis")
+api_cost = ("Moibe/InstantID2-B", "costo")
+#A o B
+api_a = ("Moibe/sampler", "gratis") #Para music-sampler en particular aquí la diferencia será el formato: mp3
+api_b = ("Moibe/music-separation", "gratis") #wav
+#Gratis o Costo
+api_gratis = ("Moibe/image-blend", "gratis")
+api_costo = ("Moibe/image-blend", "costo")
 process_cost = 25
 
 seto = "splashmix"
