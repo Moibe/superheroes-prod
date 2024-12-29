@@ -5,7 +5,7 @@ version = "6.15.18"
 env = "dev"
 aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
 
-seleccion_api = "eligeAOB" #eligeGratisOCosto , eligeAOB o eligeGratisOCosto
+seleccion_api = "eligeQuotaOCosto" #eligeQuotaOCosto , eligeAOB o eligeGratisOCosto
 max_size = 20
 #Quota o Costo
 api_zero = ("Moibe/InstantID2", "gratis")

@@ -175,24 +175,3 @@ def desTuplaResultado(resultado):
             # concurrents = concurrents + 1
         finally: 
             pass
-
-def elijeAPI():
-
-    diferencia = sulkuPypi.getQuota() - globales.process_cost
-    
-    if diferencia >= 0:
-        #Puedes usar Zero.
-        api = globales.api_zero
-        tipo_api = "gratis"
-        #Además Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
-        #if diferencia es menor que el costo de un sig.  del proceso, ve iniciando ya la otra API.
-        if diferencia < globales.process_cost:
-            print("Preventivamente iremos prendiendo la otra.")
-            initAPI(globales.api_cost) 
-    else:
-        api = globales.api_cost
-        tipo_api = "costo"
-
-    print("La API elegida es: ", api)
-    
-    return api, tipo_api
