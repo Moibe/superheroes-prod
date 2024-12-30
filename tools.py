@@ -24,10 +24,8 @@ def eligeAPI(opcion):
         "eligeQuotaOCosto": eligeQuotaOCosto,
         "eligeAOB": eligeAOB,
         "eligeGratisOCosto": eligeGratisOCosto
-    }
-    
+    }    
     if opcion in funciones:
-        print("Opción en Funciones")
         funcion_elegida = funciones[opcion]
         api, tipo_api = funcion_elegida()
     else:

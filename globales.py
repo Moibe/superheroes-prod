@@ -1,5 +1,7 @@
 import gradio as gr
 
+nombre_diccionario = "datos_superheroe"
+
 #MAIN
 version = "6.16.19"
 env = "dev"

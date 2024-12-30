@@ -1,3 +1,4 @@
+import globales
 from splashmix.objetosCreacion import Hotgirl, Superhero
 import splashmix.configuracion
 #POR EL MOMENTO SOLO SE ESTÁ USANDO promteador, los demás vienen de splashmix-batcher.
@@ -59,8 +60,12 @@ def creaPrompt(contenedor, creacion):
     return prompt
 
 def prompteador(objeto):
+
+    nombre_diccionario = splashmix.configuracion.nombre_diccionario
+    datos = getattr(splashmix.configuracion, nombre_diccionario)
+    creacion_seleccionada = datos["creacion"]
  
-    if  splashmix.configuracion.creacion == "Superhero": 
+    if  creacion_seleccionada == "Superhero": 
         #PROMPT PARA HEROE
         prompt = f"A {objeto.style} of a superhero like {objeto.subject} " #agregar otros atributos random aquí posteriormente.
         print(prompt)

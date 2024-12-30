@@ -9,11 +9,12 @@ import tools
 import random
 import time
 import splashmix.splash_tools as splash_tools
+import splashmix.configuracion as configuracion
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
-def perform(input1, request: gr.Request):
+def perform(input1, gender_selector, request: gr.Request):      
 
     tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"), globales.env)
     
@@ -45,19 +46,25 @@ def perform(input1, request: gr.Request):
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1):
-
-    api, tipo_api = tools.eligeAPI(globales.seleccion_api)        
-
+    
+    api, tipo_api = tools.eligeAPI(globales.seleccion_api)  
     client = gradio_client.Client(api, hf_token=bridges.hug)
     #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
 
-    imagenSource = gradio_client.handle_file(input1)   
-    imagenPosition = gradio_client.handle_file(splash_tools.getPosition())     
+    #Adquisición Diccionario...
+    nombre_diccionario = configuracion.nombre_diccionario
+    datos = getattr(configuracion, nombre_diccionario)
+    
+    imagenSource = gradio_client.handle_file(input1)
+    carpeta_positions = datos["positions_path"]  
+    imagenPosition = gradio_client.handle_file(splash_tools.getPosition(carpeta_positions))      
     
     ########################################
     #Hecho por Splashmix Tools...
     ########################################
-    creacion=splash_tools.creadorObjeto() #1) Aquí podrías pasarle style="anime", pero debes ver como kwargsearlo.
+    creacion_seleccionada = datos["creacion"]
+    print("Ésto es la creación seleccionada: ", creacion_seleccionada)
+    creacion=splash_tools.creadorObjeto(creacion_seleccionada) #1) Aquí podrías pasarle style="anime", pero debes ver como kwargsearlo.
     #2) Aquí con los parámetros que te estuviera pasando por ejemplo via input.
     #En ésta ocasión haremos que siempre sea ánime.
     #creacion.style = "Anime"

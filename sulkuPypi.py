@@ -74,8 +74,7 @@ def authorize(tokens, work):
     response = requests.get(api_url)
 
     if response.status_code == 200:
-        autorizacion = response.json()
-        print("Conexión a Sulku successful, Autorización:", autorizacion)        
+        autorizacion = response.json()      
     else:
         error = f"Error al obtener el elemento todo: {response.status_code}"
         return error
@@ -92,7 +91,6 @@ def debitTokens(userfile, work, env):
 
     if response.status_code == 200:
         tokens = response.json()
-        print("Tokens:", tokens)
     else:
         error = f"Error al obtener el elemento todo: {response.status_code}"
         return error

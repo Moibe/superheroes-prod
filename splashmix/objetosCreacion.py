@@ -2,6 +2,7 @@ import random
 import importlib
 import splashmix.configuracion
 import splashmix.splash_tools as splash_tools
+import time
 
 #DATA GENERAL: 
 folder_data = "data."
@@ -9,7 +10,12 @@ importable_general = folder_data + splashmix.configuracion.general_databank
 databank_general = importlib.import_module(importable_general)
 
 #DATA PARTICULAR (HG o SH):
-importable_particular = "data." + splashmix.configuracion.selected_databank
+nombre_diccionario = splashmix.configuracion.nombre_diccionario
+datos = getattr(splashmix.configuracion, nombre_diccionario)
+banco_seleccionado = datos["selected_databank"]
+
+
+importable_particular = "data." + banco_seleccionado
 databank_particular = importlib.import_module(importable_particular)
 
 class Prompt:
@@ -22,6 +28,15 @@ class Prompt:
             print("Excepción: ", e)
 class Superhero(Prompt):
     print("Y el momento en Superhero...")
+    def __init__(self,
+                 subject=None, 
+                 ):
+        super().__init__()  # Call the parent class constructor
+        #Random null para superheroe, porque podríamos quererlo genérico.
+        self.subject = subject or splash_tools.randomNull(0.2, databank_particular.lista_subjects)
+
+class Superheroine(Prompt):
+    print("Y el momento en Superheroine...")
     def __init__(self,
                  subject=None, 
                  ):

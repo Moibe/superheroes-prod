@@ -5,4 +5,5 @@ general_data = 'data_rev'
 
 #Se obtiene todo el resto de las características que no son estilo.
 Superhero = 'data_rev' 
+Superheroine = 'data_fem'
 Hotgirl = 'data_girls'
