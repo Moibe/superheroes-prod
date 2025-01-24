@@ -1,5 +1,5 @@
 lista_estilos = [                              
-                 "watercolor",                  
+                 "anime",                  
                 ]
 
 lista_subjects = [
@@ -145,6 +145,3 @@ lista_fem_subjects = [
                   "Unmasked Superheroine",
                   "Unmasked Superheroine"                  
                   ]
-
-#FUTURE: Crear una forma especilizada de marcar las combinaciones q no gustan para no tener que eliminar todo el 
-#bloque de esa variable y solo vetemos combinaciones.

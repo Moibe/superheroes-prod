@@ -1,5 +1,5 @@
 lista_estilos = [                              
-                 "watercolor",                  
+                 "anime",                  
                 ]
 
 lista_subjects = [

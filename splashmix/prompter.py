@@ -59,15 +59,18 @@ def creaPrompt(contenedor, creacion):
                 {wardrobe_accesories}, {wardrobe_bottom}, {wardrobe_shoes}, {situacion} at {place} {complemento}"""   
     return prompt
 
-def prompteador(objeto):
-
-    nombre_diccionario = splashmix.configuracion.nombre_diccionario
+def prompteador(objeto, nombre_diccionario):
     datos = getattr(splashmix.configuracion, nombre_diccionario)
     creacion_seleccionada = datos["creacion"]
  
-    if  creacion_seleccionada == "Superhero": 
+    if creacion_seleccionada == "Superhero": 
         #PROMPT PARA HEROE
         prompt = f"A {objeto.style} of a superhero like {objeto.subject} " #agregar otros atributos random aquí posteriormente.
+        print(prompt)
+    
+    elif creacion_seleccionada == "Superheroine": 
+        #PROMPT PARA HEROE
+        prompt = f"A {objeto.style} of a superheroine like {objeto.subject} " #agregar otros atributos random aquí posteriormente.
         print(prompt)
     
     else:        

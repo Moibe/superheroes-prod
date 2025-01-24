@@ -1,9 +1,9 @@
-#Indicar que archivo *.py contiene la información.
-
+#General
 #Por ahora de aquí se obtiene estilo.
-general_data = 'data_rev' 
+general_data = 'data_gral' 
 
+#Particulares
 #Se obtiene todo el resto de las características que no son estilo.
-Superhero = 'data_rev' 
-Superheroine = 'data_fem'
-Hotgirl = 'data_girls'
+Superhero = 'data_superhero' 
+Superheroine = 'data_superheroine'
+Hotgirl = 'data_hotgirl'

@@ -3,7 +3,7 @@ import gradio as gr
 nombre_diccionario = "datos_superheroe"
 
 #MAIN
-version = "6.16.19"
+version = "7.16.19"
 env = "dev"
 aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
 
@@ -12,13 +12,11 @@ max_size = 20
 #Quota o Costo
 api_zero = ("Moibe/InstantID2", "quota")
 api_cost = ("Moibe/InstantID2-B", "costo")
-#A o B
-api_a = ("Moibe/sampler", "gratis") #Para music-sampler en particular aquí la diferencia será el formato: mp3
-api_b = ("Moibe/music-separation", "gratis") #wav
-#Gratis o Costo
-api_gratis = ("Moibe/image-blend", "gratis")
-api_costo = ("Moibe/image-blend", "costo")
-process_cost = 25
+
+interface_api_name = "/generate_image" #El endpoint al que llamará client.
+
+
+process_cost = 30
 
 seto = "splashmix"
 work = "picswap"
@@ -26,3 +24,6 @@ app_path = "/superheroes-dev"
 server_port=7880
 tema = gr.themes.Default()
 flag = "auto"
+
+neural_wait = 6
+mensajes_lang = "es"

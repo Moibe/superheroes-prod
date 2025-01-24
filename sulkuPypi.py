@@ -11,12 +11,10 @@ work = globales.work
 #Todas son llamadas a la API, excepto encripta, que es una herramienta para prepara precisamente, ...
 #lo que le vas a enviar a la API.
 def encripta(username):
-
     key = bridges.key
     fernet = Fernet(key)
     string_original = username
     string_encriptado = fernet.encrypt(string_original.encode("utf-8"))
-
     return string_encriptado
 
 def getData(aplicacion):

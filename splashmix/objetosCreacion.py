@@ -1,22 +1,21 @@
 import random
 import importlib
-import splashmix.configuracion
+import splashmix.configuracion as configuracion
 import splashmix.splash_tools as splash_tools
+import splashmix.static_databanks as static_databanks
 import time
 
 #DATA GENERAL: 
 folder_data = "data."
-importable_general = folder_data + splashmix.configuracion.general_databank 
+importable_general = folder_data + configuracion.general_databank 
 databank_general = importlib.import_module(importable_general)
 
 #DATA PARTICULAR (HG o SH):
-nombre_diccionario = splashmix.configuracion.nombre_diccionario
-datos = getattr(splashmix.configuracion, nombre_diccionario)
-banco_seleccionado = datos["selected_databank"]
-
-
-importable_particular = "data." + banco_seleccionado
-databank_particular = importlib.import_module(importable_particular)
+def inicializador(archivo_databank):
+    #Regresa el módulo que contiene el databank correspondiente al Objeto (Superhero o Superheroine seleccionado.)
+    importable_particular = "data." + archivo_databank
+    databank_particular = importlib.import_module(importable_particular)
+    return databank_particular
 
 class Prompt:
     print("Investigar en que momento está llegando aquí...")
@@ -27,26 +26,26 @@ class Prompt:
         except Exception as e: 
             print("Excepción: ", e)
 class Superhero(Prompt):
-    print("Y el momento en Superhero...")
     def __init__(self,
+                 archivo_databank,
                  subject=None, 
                  ):
-        super().__init__()  # Call the parent class constructor
-        #Random null para superheroe, porque podríamos quererlo genérico.
+        super().__init__()  # Call the parent class constructor                          
+        databank_particular = inicializador(archivo_databank)       
         self.subject = subject or splash_tools.randomNull(0.2, databank_particular.lista_subjects)
 
 class Superheroine(Prompt):
-    print("Y el momento en Superheroine...")
     def __init__(self,
+                 archivo_databank,
                  subject=None, 
                  ):
         super().__init__()  # Call the parent class constructor
-        #Random null para superheroe, porque podríamos quererlo genérico.
+        databank_particular = inicializador(archivo_databank)
         self.subject = subject or splash_tools.randomNull(0.2, databank_particular.lista_subjects)
                         
 class Hotgirl(Prompt):
-    print("Investiga el momento en hotgirl...")
     def __init__(self,
+                 archivo_databank,
                  #Aquí pondrás cada atributo que contenga ese objeto general:
                  style=None,
                  subject=None,
@@ -64,9 +63,8 @@ class Hotgirl(Prompt):
                  ):
        
         super().__init__(style)  # Call the parent class constructor
-        
-        print("Regresa a terminar de crear el subobjeto.")
 
+        databank_particular = inicializador(archivo_databank)
         self.subject = subject or splash_tools.randomNull(0.2, databank_particular.lista_subjects)
         self.adjective = adjective or splash_tools.randomNull(0.2, databank_particular.lista_adjective)
         self.type_girl = type_girl or splash_tools.randomNull(0.2, databank_particular.lista_type_girl)

@@ -3,16 +3,17 @@ import random
 import globales
 import importlib
 import splashmix.configuracion
+import time
 
-def creadorObjeto(objetoACrear):
+def creadorObjeto(objetoACrear, databank):
     #Regresa un objeto creación con sus características.
     
     #De objetosCreación, importa el que indique splashmix.configuración:
     clase = getattr(importlib.import_module("splashmix.objetosCreacion"), objetoACrear)
     
     #Crea ese objeto para regresarlo.    
-    #AQUÍ ES DONDE ENTRA!!! DONDE SE LLAMA A HOTGIRL!!!! AQUÏ PODRÏAS PASAR EL PARAM!!
-    creacion = clase() #Podrías agregar parametros para que así sea hecho desde su concepción: style="anime", adjective="naughty"
+    creacion = clase(archivo_databank=databank) #Podrías agregar parametros para que así sea hecho desde su concepción: style="anime", adjective="naughty"
+    print("Ésto es la creación creada por la clase: ", creacion)
     #Pero por ahora se ponen de forma fija hasta después de creado. 
     #Future: Checar si cambiarlo a éste punto mejora rendimiento.
     return creacion

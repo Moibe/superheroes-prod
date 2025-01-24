@@ -2,7 +2,10 @@ import globales
 import sulkuPypi
 import gradio as gr
 import threading
-import sulkuMessages
+import tools
+
+#import modulo_correspondiente
+mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
 result_from_displayTokens = None 
 result_from_initAPI = None    
