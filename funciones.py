@@ -18,6 +18,7 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 #PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, gender, request: gr.Request):          
 
+    nombre_posicion = ""
     tokens = sulkuPypi.getTokens(sulkuPypi.encripta(request.username).decode("utf-8"), globales.env)
     
     #1: Reglas sobre autorización si se tiene el crédito suficiente.
@@ -25,16 +26,16 @@ def perform(input1, gender, request: gr.Request):
     if autorizacion is True:
         try: 
             gender = gender or "superhero" #default es superhero.
-            resultado = mass(input1, gender)
+            resultado, nombre_posicion = mass(input1, gender)
             #El resultado ya viene destuplado.
         except Exception as e:
             print("Excepción en mass: ", e)                     
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
-            return resultado, info_window, html_credits, btn_buy          
+            return resultado, info_window, html_credits, btn_buy, nombre_posicion          
     else:
         #Si no hubo autorización.
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
-        return resultado, info_window, html_credits, btn_buy
+        return resultado, info_window, html_credits, btn_buy, nombre_posicion
        
     #Primero revisa si es imagen!: 
     if "image.webp" in resultado:
@@ -43,10 +44,10 @@ def perform(input1, gender, request: gr.Request):
     else: 
         #Si no es imagen es un texto que nos dice algo.
         info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = resultado)
-        return resultado, info_window, html_credits, btn_buy           
+        return resultado, info_window, html_credits, btn_buy, nombre_posicion           
            
     #Lo que se le regresa oficialmente al entorno.
-    return resultado, info_window, html_credits, btn_buy
+    return resultado, info_window, html_credits, btn_buy, nombre_posicion
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1, gender):
@@ -62,8 +63,11 @@ def mass(input1, gender):
     #Posición
     imagenSource = gradio_client.handle_file(input1)
     carpeta_positions = datos["positions_path"]  
-    imagenPosition = gradio_client.handle_file(splash_tools.getPosition(carpeta_positions))      
+    imagenPosition = gradio_client.handle_file(splash_tools.getPosition(carpeta_positions)) 
     
+    #Ésta parte es para obtener el nombre de la posición y guardarla en el log.
+    nombre_posicion = imagenPosition['path'].rsplit("\\", 1)[1] 
+  
     #Objeto a Crear
     creacion_seleccionada = datos["creacion"]
     selected_databank = datos["selected_databank"]
@@ -118,7 +122,7 @@ def mass(input1, gender):
         #No debitas la cuota si no era gratis, solo aplica para Zero.  
         
         result = tools.desTuplaResultado(result)
-        return result
+        return result, nombre_posicion
 
     except Exception as e:
         print("Hubo un error al ejecutar MASS:", e)

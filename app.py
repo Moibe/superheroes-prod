@@ -19,6 +19,7 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 input1, gender, result = inputs.inputs_selector(globales.seto)  
 #Otros Controles y Personalizaciones
 
+nombre_posicion = gr.Label(label="Posicion") #Ponle visible false para producción para no mover todo lo demás.
 
 with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:   
     #Cargado en Load: Función, input, output
@@ -28,7 +29,7 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:
         demo = gr.Interface(
             fn=funciones.perform,
             inputs=[input1, gender], 
-            outputs=[result, lbl_console, html_credits, btn_buy], 
+            outputs=[result, lbl_console, html_credits, btn_buy, nombre_posicion], 
             flagging_mode=globales.flag
             )
 iniciar()
