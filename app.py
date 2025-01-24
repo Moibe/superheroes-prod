@@ -16,9 +16,9 @@ lbl_console = gr.Label(label="AI Terminal " + globales.version +  " messages", v
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #Customizable Inputs and Outputs
-input1, result = inputs.inputs_selector(globales.seto)
+input1, gender, result = inputs.inputs_selector(globales.seto)  
 #Otros Controles y Personalizaciones
-gender = gr.Radio([("Superheroine 🦸🏻", "superheroine"), ("Superhero 🦸🏽‍♂️", "superhero")], label="Transform me into a:") #, info="Select one")
+
 
 with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:   
     #Cargado en Load: Función, input, output

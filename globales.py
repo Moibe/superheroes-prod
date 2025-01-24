@@ -3,7 +3,7 @@ import gradio as gr
 nombre_diccionario = "datos_superheroe"
 
 #MAIN
-version = "7.16.19"
+version = "7.17.19"
 env = "dev"
 aplicacion = "superheroes-dev" #como se llama en tu repo y tu dominio.
 
@@ -26,4 +26,4 @@ tema = gr.themes.Default()
 flag = "auto"
 
 neural_wait = 6
-mensajes_lang = "es"
+mensajes_lang = "en"

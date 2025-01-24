@@ -46,6 +46,7 @@ def getPosition(carpeta_positions):
         #Selecciona una imagen aleatoriamente.
         posicion_aleatoria = random.choice(lista_archivos)
         ruta_posicion = os.path.join(ruta_carpeta, posicion_aleatoria)
+        print("Ésto es ruta posición: ", ruta_posicion)
         return ruta_posicion     
     except Exception as e: 
         print("No hay carpeta de posiciones:", e)

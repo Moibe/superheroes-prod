@@ -44,7 +44,7 @@ def visualizar_creditos(nuevos_creditos, usuario):
 
     html_credits = f"""
     <div>
-    <div style="text-align: left;">👤<b>Username: </b> {usuario}</div><div style="text-align: right;">💶<b>Credits Available: </b> {nuevos_creditos}</div>
+    <div style="text-align: left;">👤<b>{mensajes.lbl_username}: </b> {usuario}</div><div style="text-align: right;">💶<b>{mensajes.lbl_credits}: </b> {nuevos_creditos}</div>
     </div>
                     """    
      
@@ -97,7 +97,7 @@ def presentacionFinal(usuario, accion):
     
     if accion == "debita":        
         tokens = sulkuPypi.debitTokens(capsule, globales.work, globales.env)
-        info_window = "Image ready!"        
+        info_window = sulkuMessages.result_ok        
     else: 
         info_window = "No face in source path detected."
         tokens = sulkuPypi.getTokens(capsule, globales.env)
