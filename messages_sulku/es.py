@@ -10,6 +10,7 @@ STARTING = f"Estoy actualizando los entrenamientos de las redes neuronales, por 
 HANDSHAKE_ERROR = "Error de conexión, intenta de nuevo."
 NO_FILE = "No hay archivo, por favor agrega uno válido."
 NO_FACE = "No fue posible detectar una cara en la imagen. Por favor sube una foto con una cara visible."
+NO_POSITION = "Falta el cálculo de la posición, por favor contáctame, no te fueron debitados créditos."
 GENERAL = "Error en la red, no te fueorn debitados créditos."
 ELSE = "Error. No te fueron debitados créditos."
 
