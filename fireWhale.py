@@ -16,12 +16,20 @@ def obtenDato(coleccion, dato, info):
     ###
     #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
     doc_ref = db.collection(coleccion).document(dato)
+    
     #Éste es el documento que tiene los datos de ella.
     documento = doc_ref.get()
     ###
 
-    #Recuerda la conversión a diccionario.
-    diccionario = documento.to_dict()
+    if documento.exists:
+        print("El documento si existe") 
+        #Recuerda la conversión a diccionario.
+        diccionario = documento.to_dict()
+    else:
+        print("No existe el documento, es un nuevo usuario.")
+        #Crear usuario.
+
+    
 
     return diccionario.get(info)
 

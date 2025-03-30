@@ -9,18 +9,14 @@ import gradio_client
 import splashmix.prompter as prompter
 import splashmix.splash_tools as splash_tools
 import splashmix.configuracion as configuracion
+import time
 
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
-def perform(input1, gender, hero, request: gr.Request):   
-
-    print("Esto es request: ", request)
-    print("Request.json: ", dir(request))
-    id_token = request.request
-    print("Esto es id token: ", id_token )
+def perform(input1, gender, hero, request: gr.Request):
 
     nombre_posicion = ""
     

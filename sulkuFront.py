@@ -3,6 +3,7 @@ import globales
 import fireWhale
 import threading
 import gradio as gr
+import time
 
 #import modulo_correspondiente
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
@@ -13,6 +14,11 @@ result_from_initAPI = None
 def displayTokens(usuario):
     
     global result_from_displayTokens
+
+    #Obtengamos los datos hardcodeados del usuario mio, que no existe en las colecciones: 
+    tokens = fireWhale.obtenDato('usuarios', '5X8Hhd70uRclG1qfSJVj2zm211Q2', 'tokens')
+    print("Tokens con usuario moi.estrello: ", tokens)
+    time.sleep(18)
 
     novelty = fireWhale.obtenDato('usuarios', usuario, 'novelty' )
         

@@ -4,7 +4,7 @@ import funciones
 import sulkuFront
 import autorizador
 import gradio as gr
-import fire
+import firehead, fire 
 
 def iniciar():    
     app_path = globales.app_path
@@ -16,7 +16,7 @@ def iniciar():
 
 #Credit Related Elements
 html_credits = gr.HTML(visible=globales.credits_visibility)
-lbl_console = gr.Label(label="AI Terminal " + globales.version +  " messages", value="", container=True)
+lbl_console = gr.Label(label="AI Terminal " + globales.version +  " messages", value="Hola", container=True)
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #Customizable Inputs and Outputs
@@ -25,10 +25,11 @@ input1, gender, hero, result = inputs.inputs_selector(globales.seto)
 #Otros Controles y Personalizaciones
 nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
 
+
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
-with gr.Blocks(theme=globales.tema, head=fire.head, js=fire.js, css="footer {visibility: hidden}") as main:   
-    
-    main.load(sulkuFront.precarga, None, html_credits) if globales.acceso != "libre" else None
+with gr.Blocks(theme=globales.tema, head=firehead.head, css="footer {visibility: hidden}") as main:    
+     
+    main.load(sulkuFront.precarga, None, html_credits, js=fire.js) if globales.acceso != "libre" else None
        
     with gr.Row():
         demo = gr.Interface(

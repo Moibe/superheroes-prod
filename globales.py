@@ -1,7 +1,7 @@
 import gradio as gr
 
 app_path = "/superheroes-dev"
-server_port=7880
+server_port=5500
 
 #MAIN
 version = "13.25.28" #Firebase Auth Check Ready.

@@ -5,8 +5,8 @@ import lists.lists as lista
 
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
-print("La longitud de la lista de superheroinas es: ", len(lista.super_heroines))
-print("La longitud de la lista de superheroes es: ", len(lista.super_heroes))
+# print("La longitud de la lista de superheroinas es: ", len(lista.super_heroines))
+# print("La longitud de la lista de superheroes es: ", len(lista.super_heroes))
 
 configuraciones = {
     "splashmix": {
