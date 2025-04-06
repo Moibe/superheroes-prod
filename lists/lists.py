@@ -23,7 +23,6 @@ super_heroines = [
 
 super_heroes = [
                 ("Antorcha Humana", "Human Torch"), 
-                # ("Arcángel (X-men)", "Xmen Archangel"),
                 ("Arcángel (X-men)", "Xmen Archangel with wings spread"), #Checar
                 ("Aquaman"),
                 ("Batman"),

@@ -44,6 +44,7 @@ def precarga(usuario_local, request: gr.Request):
 
     #thread1 = threading.Thread(target=initAPI)
     thread2 = threading.Thread(target=displayTokens, args=(usuario_local,))
+    print("El resultado de thread2 es: ", thread2)
 
     #thread1.start()
     thread2.start()
@@ -52,7 +53,7 @@ def precarga(usuario_local, request: gr.Request):
     thread2.join()  # Espera a que el hilo 2 termine
 
     #return result_from_initAPI, result_from_displayTokens  
-    return result_from_displayTokens, usuario_local 
+    return usuario_local 
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
@@ -65,20 +66,18 @@ def visualizar_creditos(nuevos_creditos, usuario):
     return html_credits
 
 #Controla lo que se depliega en el frontend y que tiene que ver con llamados a Sulku.
-def noCredit(usuario):
+def noCredit():
     info_window = sulkuMessages.out_of_credits
     path = 'images/no-credits.png'
-    tokens = 0
-    html_credits = visualizar_creditos(tokens, usuario)
-    return info_window, path, html_credits
+    return path, info_window 
 
-def aError(usuario, tokens, excepcion):
+def aError(tokens, excepcion):
     #aError se usa para llenar todos los elementos visuales en el front.
     info_window = manejadorExcepciones(excepcion)
     path = 'images/error.png'
     tokens = tokens
-    html_credits = visualizar_creditos(tokens, usuario)   
-    return info_window, path, html_credits
+    #html_credits = visualizar_creditos(tokens, usuario)   
+    return path, info_window
 
 def manejadorExcepciones(excepcion):
     #El parámetro que recibe es el texto despliega ante determinada excepción:
@@ -118,9 +117,6 @@ def presentacionFinal(usuario, accion):
         tokens = "Free"        
     else: 
         info_window = "No face in source path detected."
-        #tokens = sulkuPypi.getTokens(capsule, globales.env)
         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
     
-    html_credits = visualizar_creditos(tokens, usuario)       
-    
-    return html_credits, info_window
+    return info_window

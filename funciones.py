@@ -9,47 +9,45 @@ import gradio_client
 import splashmix.prompter as prompter
 import splashmix.splash_tools as splash_tools
 import splashmix.configuracion as configuracion
-import time
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
-def perform(input1, gender, hero, usuario, request: gr.Request):
+def perform(input1, gender, personaje, usuario):
 
-    nombre_posicion = ""
-
+    #nombre_posicion = ""
+    
+    #Los tokens se checan dentro de perform para estar seguros de que cuenta con los tokens para ejecutar esa operación en particular.
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
     
     #1: Reglas sobre autorización si se tiene el crédito suficiente.
-    #autorizacion = sulkuPypi.authorize(tokens, globales.work)
     if tokens >= globales.costo_work: 
         try: 
             gender = gender or "superhero" #default es superhero.
-            resultado, nombre_posicion = mass(input1, gender, hero)
+            resultado = mass(input1, gender, personaje)
             #El resultado ya viene destuplado.
-            print("Resultado de mass se ve así: ", resultado)
         except Exception as e:                              
-            info_window, resultado, html_credits = sulkuFront.aError(usuario, tokens, excepcion = tools.titulizaExcepDeAPI(e))
-            return resultado, info_window, html_credits, btn_buy, nombre_posicion          
+            resultado, info_window  = sulkuFront.aError(usuario, tokens, excepcion = tools.titulizaExcepDeAPI(e))
+            return resultado, info_window          
     else:
         #Si no hubo autorización.
-        info_window, resultado, html_credits = sulkuFront.noCredit(usuario)
-        return html_credits, resultado, info_window, btn_buy, nombre_posicion
-       
+        resultado, info_window = sulkuFront.noCredit(usuario)
+        return resultado, info_window
+
+    #Una vez que si fue una imagen correcta el resultado regresado:   
     #Primero revisa si es imagen!: 
     if "image.webp" in resultado:
         #Si es imagen, debitarás.
-        resultado = tools.renombra_imagen(hero, resultado)
+        resultado = tools.renombra_imagen(personaje, resultado)
         accion = "no-debitar" if globales.acceso == "libre" else "debita"
-        html_credits, info_window = sulkuFront.presentacionFinal(usuario, accion)
+        info_window = sulkuFront.presentacionFinal(usuario, accion)
     else: 
         #Si no es imagen es un texto que nos dice algo.
-        info_window, resultado, html_credits = sulkuFront.aError(usuario, tokens, excepcion = resultado)
-        return html_credits, resultado, info_window, btn_buy, nombre_posicion           
+        info_window, resultado = sulkuFront.aError(usuario, tokens, excepcion = resultado)
+        return resultado, info_window         
            
-    #Lo que se le regresa oficialmente al entorno.
-    return html_credits, resultado, info_window, btn_buy, nombre_posicion
+    return resultado, info_window
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1, gender, hero):
@@ -106,19 +104,6 @@ def mass(input1, gender, hero):
                 api_name=globales.interface_api_name
         )
 
-        # result = client.predict(
-		# p="Full Body",
-		# api_name="/generate"
-        # )
-        
-        #CON MINIPROXY
-        # result = client.predict(
-		# input1=gradio_client.handle_file('https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png'),
-		# api_name="/predict"
-        # )
-
-        # #Si viene del miniproxy, hay que rehacer la tupla.
-        # result = ast.literal_eval(result)  
 
         if tipo_api == "quota":
             #sulkuPypi.updateQuota(globales.process_cost) #Ahora se usará fireWhale, son más líneas porque la api hacia todo.
@@ -131,7 +116,7 @@ def mass(input1, gender, hero):
         #No debitas la cuota si no era gratis, solo aplica para Zero.  
         
         result = tools.desTuplaResultado(result)
-        return result, nombre_posicion
+        return result    #, nombre_posicion Se monstraba posición para estudiar cuales eran las mejores imagenes.
 
     except Exception as e:
         print("Hubo un error al ejecutar MASS:", e)

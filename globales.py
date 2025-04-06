@@ -4,7 +4,7 @@ app_path = "/superheroes-dev"
 server_port=5500
 
 #MAIN
-version = "0.0.0" #Firebase Auth Check Ready.
+version = "0.0.1" #Perfeccionamiento de Perform.
 
 nombre_diccionario = "datos_superheroe"
 
