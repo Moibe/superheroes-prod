@@ -2,17 +2,13 @@ import inputs
 import globales
 import funciones
 import sulkuFront
-import autorizador
 import gradio as gr
-import firehead, fire 
+import firehead, fire, fuego 
 
 def iniciar():    
     app_path = globales.app_path
     main.queue(max_size=globales.max_size)
-    #Con autorizador
-    main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
-    #Paso directo 
-    #main.launch(root_path=app_path, server_port=globales.server_port)
+    main.launch(root_path=app_path, server_port=globales.server_port)
 
 #Credit Related Elements
 html_credits = gr.HTML(visible=globales.credits_visibility)
@@ -25,16 +21,17 @@ input1, gender, hero, result = inputs.inputs_selector(globales.seto)
 #Otros Controles y Personalizaciones
 nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
 
-
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
-with gr.Blocks(theme=globales.tema, head=firehead.head, css="footer {visibility: hidden}") as main:    
-     
-    main.load(sulkuFront.precarga, None, html_credits, js=fire.js) if globales.acceso != "libre" else None
+with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer {visibility: hidden}") as main: 
+
+    
+    usuario_local = gr.Textbox(visible=False) #Para almacenar el usuario de firebase 
+    main.load(sulkuFront.precarga, usuario_local, [html_credits, usuario_local], js=fuego.js) if globales.acceso != "libre" else None
        
     with gr.Row():
         demo = gr.Interface(
             fn=funciones.perform,
-            inputs=[input1, gender, hero], 
+            inputs=[input1, gender, hero, usuario_local], 
             outputs=[result, lbl_console, html_credits, btn_buy, nombre_posicion], 
             flagging_mode=globales.flag
             )

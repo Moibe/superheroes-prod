@@ -9,28 +9,26 @@ cred = credentials.Certificate('config.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
-
+#dato es el dato que traes  como el nombre del user. 
+#info es la info de ese dato que estás buscando, como token.
 def obtenDato(coleccion, dato, info):
-    #Colección es la base donde está, dato es el índice con el que buscaremos e info es el resultado que estamos buscando. 
     #Future: Tentativamente ésta parte podría solo hacerse una vez y vivir en la app para ser reutilizado.
-    ###
-    #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
-    doc_ref = db.collection(coleccion).document(dato)
     
+    #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
+    doc_ref = db.collection(coleccion).document(dato)    
     #Éste es el documento que tiene los datos de ella.
     documento = doc_ref.get()
-    ###
-
-    if documento.exists:
-        print("El documento si existe") 
-        #Recuerda la conversión a diccionario.
-        diccionario = documento.to_dict()
-    else:
-        print("No existe el documento, es un nuevo usuario.")
-        #Crear usuario.
-
     
 
+    if documento.exists:
+        pass #El documento si existe.        
+    else:
+        print("No existe el documento, es un nuevo usuario.")
+        creaDato(coleccion, dato, 'tokens', 5) #porque agregará 5 tokens.       
+    
+    #Recuerda la conversión a diccionario.
+    documento = doc_ref.get() 
+    diccionario = documento.to_dict()
     return diccionario.get(info)
 
 def editaDato(coleccion, dato, info, contenido):
@@ -39,6 +37,16 @@ def editaDato(coleccion, dato, info, contenido):
     doc_ref = db.collection(coleccion).document(dato)
     
     doc_ref.update({
+        # 'quote': quote,
+        info: contenido,
+    })
+
+def creaDato(coleccion, dato, info, contenido):
+
+    #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
+    doc_ref = db.collection(coleccion).document(dato)
+    
+    doc_ref.set({
         # 'quote': quote,
         info: contenido,
     })
@@ -53,5 +61,3 @@ def verificar_token(id_token):
     except auth.InvalidIdTokenError as e:
         print(f"Token inválido: {e}")
         return None  # Retorna None si el token es inválido
-
-

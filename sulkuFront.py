@@ -15,11 +15,11 @@ def displayTokens(usuario):
     
     global result_from_displayTokens
 
-    #Obtengamos los datos hardcodeados del usuario mio, que no existe en las colecciones: 
-    tokens = fireWhale.obtenDato('usuarios', '5X8Hhd70uRclG1qfSJVj2zm211Q2', 'tokens')
-    print("Tokens con usuario moi.estrello: ", tokens)
-    time.sleep(18)
+    print("Entré a dipslay tokens, y ésto es usuario: ", usuario)
 
+    #Obtengamos los datos hardcodeados del usuario mio, que no existe en las colecciones: 
+    tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')  
+    #'5X8Hhd70uRclG1qfSJVj2zm211Q2' 
     novelty = fireWhale.obtenDato('usuarios', usuario, 'novelty' )
         
     if novelty == "new_user": 
@@ -31,7 +31,11 @@ def displayTokens(usuario):
     
     result_from_displayTokens = display
 
-def precarga(request: gr.Request):
+def precarga(usuario_local, request: gr.Request):
+
+    
+    print("Ésto es el usuario_local: ", usuario_local)    
+
     
     # global result_from_initAPI
     # global result_from_displayTokens
@@ -42,7 +46,7 @@ def precarga(request: gr.Request):
         usuario = globales.usuario
 
     #thread1 = threading.Thread(target=initAPI)
-    thread2 = threading.Thread(target=displayTokens, args=(usuario,))
+    thread2 = threading.Thread(target=displayTokens, args=(usuario_local,))
 
     #thread1.start()
     thread2.start()
@@ -51,7 +55,7 @@ def precarga(request: gr.Request):
     thread2.join()  # Espera a que el hilo 2 termine
 
     #return result_from_initAPI, result_from_displayTokens  
-    return result_from_displayTokens 
+    return result_from_displayTokens, usuario_local 
 
 def visualizar_creditos(nuevos_creditos, usuario):
 

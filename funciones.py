@@ -16,14 +16,11 @@ mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
-def perform(input1, gender, hero, request: gr.Request):
+def perform(input1, gender, hero, usuario, request: gr.Request):
+
+    print("Estando en perform, éste es el usuario_local: ", usuario)
 
     nombre_posicion = ""
-    
-    if globales.acceso == "login": 
-        usuario = request.username
-    else:        
-        usuario = globales.usuario 
 
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
     
