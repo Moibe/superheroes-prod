@@ -10,15 +10,12 @@ import splashmix.prompter as prompter
 import splashmix.splash_tools as splash_tools
 import splashmix.configuracion as configuracion
 import time
-
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, gender, hero, usuario, request: gr.Request):
-
-    print("Estando en perform, éste es el usuario_local: ", usuario)
 
     nombre_posicion = ""
 
@@ -38,7 +35,7 @@ def perform(input1, gender, hero, usuario, request: gr.Request):
     else:
         #Si no hubo autorización.
         info_window, resultado, html_credits = sulkuFront.noCredit(usuario)
-        return resultado, info_window, html_credits, btn_buy, nombre_posicion
+        return html_credits, resultado, info_window, btn_buy, nombre_posicion
        
     #Primero revisa si es imagen!: 
     if "image.webp" in resultado:
@@ -49,10 +46,10 @@ def perform(input1, gender, hero, usuario, request: gr.Request):
     else: 
         #Si no es imagen es un texto que nos dice algo.
         info_window, resultado, html_credits = sulkuFront.aError(usuario, tokens, excepcion = resultado)
-        return resultado, info_window, html_credits, btn_buy, nombre_posicion           
+        return html_credits, resultado, info_window, btn_buy, nombre_posicion           
            
     #Lo que se le regresa oficialmente al entorno.
-    return resultado, info_window, html_credits, btn_buy, nombre_posicion
+    return html_credits, resultado, info_window, btn_buy, nombre_posicion
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1, gender, hero):

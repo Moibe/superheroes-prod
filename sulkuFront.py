@@ -3,10 +3,7 @@ import globales
 import fireWhale
 import threading
 import gradio as gr
-import time
-
-#import modulo_correspondiente
-mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
+mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang) #import modulo_correspondiente
 
 result_from_displayTokens = None 
 result_from_initAPI = None    
@@ -33,7 +30,7 @@ def displayTokens(usuario):
 
 def precarga(usuario_local, request: gr.Request):
 
-    
+    gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
     print("Ésto es el usuario_local: ", usuario_local)    
 
     
