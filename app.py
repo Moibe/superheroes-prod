@@ -38,7 +38,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
                          gr.Textbox(label="Usuario", value="Hola Moisés Briseño Estrello - ✨ moi.estrello@gmail.com", show_label=False)
                         
                     with gr.Column(scale=1):
-                        gr.Button(value="Recargar Créditos ⚡", size='md', link="https://google.com", variant='primary')
+                        gr.Button(value="Recargar Créditos 💶", size='md', link="https://google.com", variant='primary')
                         gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
                         
         # with gr.Column(scale=5):
