@@ -18,7 +18,7 @@ def inicializador(archivo_databank):
     return databank_particular
 
 class Prompt:
-    print("Investigar en que momento está llegando aquí...")
+    
     def __init__(self, style=None):  #Ése style=None al parecer no se usa pq todo viene de la creación de un hijo.            
         #Aquí pondrás cada atributo que contenga ese objeto general:
         try: 

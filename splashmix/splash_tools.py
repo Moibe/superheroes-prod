@@ -12,8 +12,7 @@ def creadorObjeto(objetoACrear, databank):
     clase = getattr(importlib.import_module("splashmix.objetosCreacion"), objetoACrear)
     
     #Crea ese objeto para regresarlo.    
-    creacion = clase(archivo_databank=databank) #Podrías agregar parametros para que así sea hecho desde su concepción: style="anime", adjective="naughty"
-    #print("Ésto es la creación creada por la clase: ", creacion)
+    creacion = clase(archivo_databank=databank) #Podrías agregar parametros para que así sea hecho desde su concepción: style="anime", adjective="sexy"
     #Pero por ahora se ponen de forma fija hasta después de creado. 
     #Future: Checar si cambiarlo a éste punto mejora rendimiento.
     return creacion
@@ -43,7 +42,6 @@ def getPosition(carpeta_positions):
         
     try: 
         lista_archivos = os.listdir(ruta_carpeta)
-        #Selecciona una imagen aleatoriamente.
         posicion_aleatoria = random.choice(lista_archivos)
         ruta_posicion = os.path.join(ruta_carpeta, posicion_aleatoria)
         print("Ésto es ruta posición: ", ruta_posicion)

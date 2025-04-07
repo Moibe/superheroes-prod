@@ -24,7 +24,7 @@ def theme_selector():
 def eligeAPI(opcion):
     print(opcion)
     funciones = {
-        "eligeQuotaOCosto": eligeQuotaOCosto,
+        "eligeQuotaOCosto": eligeQuotaOCosto, #Ésta es la usada por mi InstantID.
         "eligeAOB": eligeAOB,
         "eligeGratisOCosto": eligeGratisOCosto
     }    
@@ -59,28 +59,37 @@ def eligeAOB():
     return api, tipo_api
 
 def eligeQuotaOCosto():
-#Se eligirá en los casos en los que se use Zero, para extender las posibilidades de Quota y después usar Costo.
-    #diferencia = sulkuPypi.getQuota() - globales.process_cost
-    diferencia = fireWhale.obtenDato("quota", "quota", "segundos") - globales.process_cost
 
-    if diferencia >= 0:
-        #Entonces puedes usar Zero.
+    print("Estoy en elige qupta o costo...")
+    #que se eligirá en los casos en los que se use Zero, para extender las posibilidades de Quota y después usar Costo.
+    
+    #Para decidir si deberíamos usar quota o costo, tenemos 1ero que ver como está nuestro nivel de quota.
+    #diferencia es lo que quedaría después de aplicar una transformación.
+    quota_disponible = fireWhale.obtenDato("quota", "quota", "segundos")
+    print("Al inicio, la quota disponible es: ", quota_disponible)
+    diferencia =  quota_disponible - globales.process_cost
+    print("La cuota que quedaría (diferencia) si hicieramos un proceso es: ", diferencia)
+
+    if diferencia >= 0: #Entonces puedes usar Zero.        
         api, tipo_api = globales.api_zero
         #Además Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
         #if diferencia es menor que el costo de un sig.  del proceso, ve iniciando ya la otra API.
         if diferencia < globales.process_cost:
+            print("Entré a INITAPI...")
             initAPI(globales.api_cost) 
     else:
         api, tipo_api = globales.api_cost
 
+    print(f"La api que usaremos es {api} y su tipo es : {tipo_api}.")
     return api, tipo_api
 
 def initAPI(api):
     
     global result_from_initAPI
-
     try:
-        repo_id = api
+        print("Esto es API[0]...")
+        print(api[0])
+        repo_id = api[0]
         llave = HfApi(token=bridges.hug)
         runtime = llave.get_space_runtime(repo_id=repo_id)
         #"RUNNING_BUILDING", "APP_STARTING", "SLEEPING", "RUNNING", "PAUSED", "RUNTIME_ERROR"
@@ -90,7 +99,7 @@ def initAPI(api):
         result_from_initAPI = runtime.stage
 
     except Exception as e:
-        #Creo que ya no debería de llegar aquí.
+        #Aquí llegó porque se le dio una tupla y no un string con el nombre de la api.
         print("No api, encendiendo: ", e)
         result_from_initAPI = str(e)    
     
@@ -98,6 +107,8 @@ def initAPI(api):
 
 def titulizaExcepDeAPI(e): 
     #Resume una excepción a un título manejable.
+    print("Antes de titulizar la excepción es: ", e)
+
     if "RUNTIME_ERROR" in str(e):
         resultado = "RUNTIME_ERROR" #api mal construida tiene error.
     elif "PAUSED" in str(e):
@@ -161,7 +172,6 @@ def desTuplaResultado(resultado):
         print("El tipo del resultado cuando no fue una tupla es: ", type(resultado))                
         texto = str(resultado)
         segmentado = texto.split('exception:')
-        print("Segmentado es una posible causa de error, analiza segmentado es: ", segmentado)
         #FUTURE: Agregar que si tuvo problemas con la imagen de referencia, agregue en un 
         #Log de errores porque ya no lo hará en el excel, porque le dará la oportunidad con otra 
         #imagen de posición.
@@ -236,3 +246,13 @@ def renombra_imagen(hero, resultado):
    
     return resultado
 
+def reducirQuota(tipo_api):
+
+            if tipo_api == "quota":
+                #sulkuPypi.updateQuota(globales.process_cost) #Ahora se usará fireWhale, son más líneas porque la api hacia todo.
+                #Pero si es menos tiempo de proceso hacerlo con Firestore.
+                quota_actual = fireWhale.obtenDato("quota", "quota", "segundos")
+                quota_nueva = quota_actual - globales.process_cost
+                print("La quota nueva es: ", quota_nueva)
+                fireWhale.editaDato("quota", "quota", "segundos", quota_nueva)
+            #No debitas la cuota si no era gratis, solo aplica para Zero.

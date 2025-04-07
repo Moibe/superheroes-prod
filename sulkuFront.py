@@ -1,3 +1,4 @@
+import time
 import tools
 import globales
 import fireWhale
@@ -28,31 +29,27 @@ def displayTokens(usuario):
     
     result_from_displayTokens = display
 
-def precarga(usuario_local, request: gr.Request):
+def precarga(usuario):
 
     gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
-    print("Ésto es el usuario_local: ", usuario_local)    
+    print("Ésto es el usuario_local: ", usuario)    
 
+    tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
     
     # global result_from_initAPI
     # global result_from_displayTokens
 
-    if globales.acceso == "login": 
-        usuario = request.username
-    else:        
-        usuario = globales.usuario
-
     #thread1 = threading.Thread(target=initAPI)
-    thread2 = threading.Thread(target=displayTokens, args=(usuario_local,))
+    #thread2 = threading.Thread(target=displayTokens, args=(usuario,))
     
     #thread1.start()
-    thread2.start()
+    #thread2.start()
 
     #thread1.join()  # Espera a que el hilo 1 termine
-    thread2.join()  # Espera a que el hilo 2 termine
+    #thread2.join()  # Espera a que el hilo 2 termine
 
     #return result_from_initAPI, result_from_displayTokens  
-    return usuario_local 
+    return usuario, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
@@ -71,9 +68,9 @@ def noCredit():
     return path, info_window 
 
 def aError(excepcion):
+    print("La excepción es:", excepcion)
     info_window = manejadorExcepciones(excepcion)
-    path = 'images/error.png'
-      
+    path = 'images/error.png'      
     return path, info_window
 
 def manejadorExcepciones(excepcion):
@@ -137,12 +134,6 @@ def presentacionFinal(usuario, accion):
 
 def actualizador_navbar(usuario, result, info_window):
 
-    print("Esto es usuario: ")
-    print(usuario)
-    print("Éste es el result que está recibiendo NAVBAR: ")
-    print(result)
-    print("Ésta es la info window: ")
-    print(info_window)
     #Dependiendo del resultado obtenido deberé debitar o no:     
     #Cuando no hay imagen (Error directo de mass): error.png 
 

@@ -4,7 +4,7 @@ app_path = "/superheroes-dev"
 server_port=5500
 
 #MAIN
-version = "1.0.1" #Ahora los resultados e infowindo son agnosticos del cobro.
+version = "1.1.1" #Quotas Control Perfected.
 
 nombre_diccionario = "datos_superheroe"
 
@@ -16,7 +16,7 @@ api_cost = ("Moibe/InstantID2-B", "costo")
 
 interface_api_name = "/generate_image" #El endpoint al que llamará client.
 
-process_cost = 18
+process_cost = 24
 
 seto = "splashmix"
 work = "picswap"
