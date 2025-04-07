@@ -35,12 +35,12 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             with acordeon:
                 with gr.Row():   
                     with gr.Column(scale=3):
-                         #gr.Textbox(label="Usuario", value="Hola Moisés Briseño Estrello - ✨ moi.estrello@gmail.com", show_label=False)
-                        gr.Button(value="Recargar Créditos ⚡", size='md', link="https://google.com", variant='primary')
+                         gr.Textbox(label="Usuario", value="Hola Moisés Briseño Estrello - ✨ moi.estrello@gmail.com", show_label=False)
+                        
                     with gr.Column(scale=1):
-                    #     gr.Button(value="Recargar Créditos ⚡", size='md', link="https://google.com", variant='primary')
-                    #     gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
-                        gr.Label(label="Placeholder", visible=False) #Pon éste placeholder si quisieras la mitas de tamaño.
+                        gr.Button(value="Recargar Créditos ⚡", size='md', link="https://google.com", variant='primary')
+                        gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
+                        
         # with gr.Column(scale=5):
         #     gr.Label(label="Placeholder", visible=False) #Pon éste placeholder si quisieras la mitas de tamaño.
     with gr.Row():
