@@ -15,7 +15,11 @@ def theme_selector():
         gr.themes.Default(),
         gr.themes.Glass(),
         gr.themes.Monochrome(),
-        gr.themes.Soft()
+        gr.themes.Soft(),
+        gr.themes.Citrus(),
+        gr.themes.Ocean(),
+        gr.themes.Origin(),
+        
     ]
     tema = random.choice(temas_posibles)
     #print("Tema random: ", tema)
