@@ -7,10 +7,12 @@ import firehead, fire, fuego
 import tools
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
-def welcome(result):
+def actualizador_navbar(result):
 
-    print("Éste es el input resultado que estoy recibiendo: ")
-    print(result) 
+    #ANTES DE DESPLEGAR EN LA BARRA DEBO HACER ALGUNOS CALCULOS PARA DEBITAR.
+    #Dependiendo del resultado obtenido deberé debitar o no: 
+    #Cuando la imagen es correcta. El resultado es un archivo .jpg
+    #Cuando no hay imagen (Error directo de mass): error.png 
     return gr.Accordion(label="Moibe - 💶Creditos Disponibles: 182", open=False)
 
 def iniciar():    
@@ -52,5 +54,5 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             flagging_mode=globales.flag
             )
         
-    result.change(welcome, result, acordeon)
+    result.change(actualizador_navbar, result, acordeon)
 iniciar()

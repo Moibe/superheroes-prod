@@ -16,8 +16,8 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 #PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, gender, personaje, usuario):
 
-    #nombre_posicion = ""
-    
+    print("Entré a perform y el gender que traigo es: ", gender)
+
     #Los tokens se checan dentro de perform para estar seguros de que cuenta con los tokens para ejecutar esa operación en particular.
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
     
@@ -25,28 +25,23 @@ def perform(input1, gender, personaje, usuario):
     if tokens >= globales.costo_work: 
         try: 
             gender = gender or "superhero" #default es superhero.
+            print("Después del triselect, gender quedó como: ", gender)
             resultado = mass(input1, gender, personaje)
-            #El resultado ya viene destuplado.
-        except Exception as e:                              
-            resultado, info_window  = sulkuFront.aError(usuario, tokens, excepcion = tools.titulizaExcepDeAPI(e))
+            #CASO CORRECTO (DE USUARIO): El resultado ya viene destuplado.
+            #CASO NO ROSTRO (ERROR DE USUARIO): Cuando no detecto el rostro en cambio trae un mensaje textual nada más.
+        except Exception as e:      
+            #CASO SIN IMAGEN (ERROR DE SISTEMA)                        
+            resultado, info_window  = sulkuFront.aError(excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window          
     else:
         #Si no hubo autorización.
+        #CASO NO CREDITO (ERROR DE SISTEMA)
         resultado, info_window = sulkuFront.noCredit(usuario)
         return resultado, info_window
 
-    #Una vez que si fue una imagen correcta el resultado regresado:   
-    #Primero revisa si es imagen!: 
-    if "image.webp" in resultado:
-        #Si es imagen, debitarás.
-        resultado = tools.renombra_imagen(personaje, resultado)
-        accion = "no-debitar" if globales.acceso == "libre" else "debita"
-        info_window = sulkuFront.presentacionFinal(usuario, accion)
-    else: 
-        #Si no es imagen es un texto que nos dice algo.
-        info_window, resultado = sulkuFront.aError(usuario, tokens, excepcion = resultado)
-        return resultado, info_window         
-           
+    #Ahora ésto debe de ir en .change de arriba!
+    #AQUÍ LLEGARA CUANDO NO ES ERROR DE SYSTEMA Y ES DE USUARIO (O LOGRO LA IMAGEN O PUSO UNA SIN ROSTRO DETECTABLE)
+    resultado, info_window = sulkuFront.evaluaResultadoUsuario(resultado, personaje) #No fue frenado por falta de crédito o or imagen vacía, paso a la API (se debita)
     return resultado, info_window
 
 #MASS es la que ejecuta la aplicación EXTERNA
@@ -104,6 +99,10 @@ def mass(input1, gender, hero):
                 api_name=globales.interface_api_name
         )
 
+        #IMPORTANTE: cuando InstantID no detecta un rostro, no dice que eso fue el error. 
+        #Así es que por ahora asumiré que la única forma en la que InstantID regresa error es porque no detecto un rostro...
+        #Y de ahí partiré.
+
 
         if tipo_api == "quota":
             #sulkuPypi.updateQuota(globales.process_cost) #Ahora se usará fireWhale, son más líneas porque la api hacia todo.
@@ -119,8 +118,6 @@ def mass(input1, gender, hero):
         return result    #, nombre_posicion Se monstraba posición para estudiar cuales eran las mejores imagenes.
 
     except Exception as e:
-        print("Hubo un error al ejecutar MASS:", e)
-        #Errores al correr la API.
-        #La no detección de un rostro es mandado aquí?! Siempre?
+        #La no detección de un rostro es mandado aquí?! Siempre? SI SIEMPRE, porque instantID es diferente y no reporta ese error integramente, pero aquí llega.
         mensaje = tools.titulizaExcepDeAPI(e)        
         return mensaje

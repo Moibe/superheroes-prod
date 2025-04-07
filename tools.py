@@ -8,6 +8,7 @@ import fireWhale
 import os 
 import time
 
+
 def theme_selector():
     temas_posibles = [
         gr.themes.Base(),
@@ -109,10 +110,13 @@ def titulizaExcepDeAPI(e):
         resultado = "HANDSHAKE_ERROR"
     elif "File None does not exist on local filesystem and is not a valid URL." in str(e):
         resultado = "NO_FILE"
-    elif "too many values to unpack (expected 2)" in str(e): #No es lo ideal pero instantid no envía mensaje tan específico, FUTURE: tendrías que modificarlo haya y no se si lo valga. 
+    elif "The upstream Gradio app has raised an exception: Error" in str(e):
+        print("Si entré a la detección 182 de la excepción: ")
         resultado = "NO_FACE"
+    elif "too many values to unpack (expected 2)" in str(e): #No es lo ideal pero instantid no envía mensaje tan específico, FUTURE: tendrías que modificarlo haya y no se si lo valga. 
+        resultado = "NO_FACE" 
     #A partir de aquí son casos propios de cada aplicación.
-    elif "Unable to detect a face" in str(e):
+    elif "Unable to detect a face" in str(e): #Al parecer solo imageblend y no instantID llegan aquí, porque InstID no te dice que no detectó rostro.
         resultado = "NO_FACE"
     elif "positions" in str(e):
         resultado = "NO_POSITION"
@@ -231,3 +235,4 @@ def renombra_imagen(hero, resultado):
     resultado = nueva_ruta
    
     return resultado
+

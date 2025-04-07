@@ -1,3 +1,4 @@
+import time
 import tools
 import globales
 import fireWhale
@@ -44,8 +45,7 @@ def precarga(usuario_local, request: gr.Request):
 
     #thread1 = threading.Thread(target=initAPI)
     thread2 = threading.Thread(target=displayTokens, args=(usuario_local,))
-    print("El resultado de thread2 es: ", thread2)
-
+    
     #thread1.start()
     thread2.start()
 
@@ -71,12 +71,10 @@ def noCredit():
     path = 'images/no-credits.png'
     return path, info_window 
 
-def aError(tokens, excepcion):
-    #aError se usa para llenar todos los elementos visuales en el front.
+def aError(excepcion):
     info_window = manejadorExcepciones(excepcion)
     path = 'images/error.png'
-    tokens = tokens
-    #html_credits = visualizar_creditos(tokens, usuario)   
+      
     return path, info_window
 
 def manejadorExcepciones(excepcion):
@@ -104,19 +102,17 @@ def manejadorExcepciones(excepcion):
 
     return info_window
 
-def presentacionFinal(usuario, accion):        
-    
-    if accion == "debita":        
-        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
-        tokens = tokens - globales.costo_work #debitas
-        fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
-        print(f"Después de debitar tienes {tokens} tokens.")
+def evaluaResultadoUsuario(resultado, personaje): 
+
+    if "image.webp" in resultado:
+        #Si es imagen, debitarás.
+        resultado = tools.renombra_imagen(personaje, resultado)
+        #accion = "no-debitar" if globales.acceso == "libre" else "debita"
         info_window = sulkuMessages.result_ok
-    elif accion == "no-debitar": #Aquí llega si está en modo libre.
-        info_window = sulkuMessages.result_ok
-        tokens = "Free"        
-    else: 
-        info_window = "No face in source path detected."
-        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
+    else: #CUANDO NO TRAE IMAGEN EL ERROR QUE PODRÍA TRAER ES NO_FACE O GENERAL (y ambos significarían que no detecto rostro).
+        #Si no es imagen es un texto que nos dice algo.
+        resultado, info_window = aError(excepcion = resultado)
+        return resultado, info_window         
+           
+    return resultado, info_window
     
-    return info_window
