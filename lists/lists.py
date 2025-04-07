@@ -3,6 +3,7 @@ super_heroines = [
                   ("Batichica", "Batgirl"),
                   ("Black Widow", "Black Widow"),
                   ("Bruja Escarlata", "Scarlet Witch"),
+                  ("Capitana Bretaña", "Captain Britain"),
                   ("Capitana Marvel", "Captain Marvel"),
                   ("Elektra", "Elektra with katana"),
                   ("Gamora (Guardianes de la Galaxia)", "Guardians of the Galaxy Gamora"),
@@ -60,6 +61,5 @@ super_heroes = [
                 # ("Fantastic Four", "Marvel's Mr. Fantastic with a 4 in his chest"),
                 # ("Lobo"),
                 # ("Lobo", "DC's Lobo"),
-                # ("Lobo", "DC's Universe Lobo"),                  
-                # ("Namor", "Marvel's Namor")             
+                # ("Lobo", "DC's Universe Lobo"),                              
                   ]

@@ -16,8 +16,6 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 #PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, gender, personaje, usuario):
 
-    print("Entré a perform y el gender que traigo es: ", gender)
-
     #Los tokens se checan dentro de perform para estar seguros de que cuenta con los tokens para ejecutar esa operación en particular.
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
     
@@ -25,7 +23,6 @@ def perform(input1, gender, personaje, usuario):
     if tokens >= globales.costo_work: 
         try: 
             gender = gender or "superhero" #default es superhero.
-            print("Después del triselect, gender quedó como: ", gender)
             resultado = mass(input1, gender, personaje)
             #CASO CORRECTO (DE USUARIO): El resultado ya viene destuplado.
             #CASO NO ROSTRO (ERROR DE USUARIO): Cuando no detecto el rostro en cambio trae un mensaje textual nada más.
@@ -39,7 +36,6 @@ def perform(input1, gender, personaje, usuario):
         resultado, info_window = sulkuFront.noCredit(usuario)
         return resultado, info_window
 
-    #Ahora ésto debe de ir en .change de arriba!
     #AQUÍ LLEGARA CUANDO NO ES ERROR DE SYSTEMA Y ES DE USUARIO (O LOGRO LA IMAGEN O PUSO UNA SIN ROSTRO DETECTABLE)
     resultado, info_window = sulkuFront.evaluaResultadoUsuario(resultado, personaje) #No fue frenado por falta de crédito o or imagen vacía, paso a la API (se debita)
     return resultado, info_window

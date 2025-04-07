@@ -1,4 +1,3 @@
-import time
 import tools
 import globales
 import fireWhale
@@ -116,3 +115,49 @@ def evaluaResultadoUsuario(resultado, personaje):
            
     return resultado, info_window
     
+def presentacionFinal(usuario, accion):        
+    
+    if accion == "debita":        
+        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
+        tokens = tokens - globales.costo_work #debitas
+        fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
+        print(f"Después de debitar tienes {tokens} tokens.")
+        info_window = sulkuMessages.result_ok
+    elif accion == "no-debitar": #Aquí llega si está en modo libre.
+        info_window = sulkuMessages.result_ok
+        tokens = "Free"        
+    else: 
+        info_window = "No face in source path detected."
+        #tokens = sulkuPypi.getTokens(capsule, globales.env)
+        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
+    
+    html_credits = visualizar_creditos(tokens, usuario)       
+    
+    return html_credits, info_window
+
+def actualizador_navbar(usuario, result, info_window):
+
+    print("Esto es usuario: ")
+    print(usuario)
+    print("Éste es el result que está recibiendo NAVBAR: ")
+    print(result)
+    print("Ésta es la info window: ")
+    print(info_window)
+    #Dependiendo del resultado obtenido deberé debitar o no:     
+    #Cuando no hay imagen (Error directo de mass): error.png 
+
+    if "jpg" in result: #Cuando la imagen es correcta. El resultado es un archivo .jpg
+        #Debita uno de la cuota de ese usuario y despliegalo.
+        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
+        print("Estos son los tokens que tiene actualmente el usuario:", tokens)
+        tokens = tokens - globales.costo_work #debitas
+        fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
+        print(f"Después de debitar tienes {tokens} tokens.")
+    else: 
+        #Lo demás debería ser un error.
+        print("Resultado incorrecto e incobrable...")
+        #Future, también podrías no hacer la ida a firebase y obtenerlo de valor previo.
+        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
+        print("Estos son los tokens que tiene actualmente el usuario:", tokens)
+        #Por ahora no debites.
+    return gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)

@@ -7,14 +7,6 @@ import firehead, fire, fuego
 import tools
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
-def actualizador_navbar(result):
-
-    #ANTES DE DESPLEGAR EN LA BARRA DEBO HACER ALGUNOS CALCULOS PARA DEBITAR.
-    #Dependiendo del resultado obtenido deberé debitar o no: 
-    #Cuando la imagen es correcta. El resultado es un archivo .jpg
-    #Cuando no hay imagen (Error directo de mass): error.png 
-    return gr.Accordion(label="Moibe - 💶Creditos Disponibles: 182", open=False)
-
 def iniciar():    
     app_path = globales.app_path
     main.queue(max_size=globales.max_size)
@@ -54,5 +46,5 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             flagging_mode=globales.flag
             )
         
-    result.change(actualizador_navbar, result, acordeon)
+    result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon)
 iniciar()
