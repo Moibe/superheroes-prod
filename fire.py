@@ -24,28 +24,3 @@ function normal(a) {{
     }}
 
 """
-
-# js = f"""
-
-# function normal(a) {{
-#     {firebase.firebase_config}
-#     firebase.initializeApp(firebaseConfig);
-#     const provider = new firebase.auth.GoogleAuthProvider();
-
-#     const user = firebase.auth.currentUser;
-
-#     if (user) {{
-#     //El usuario ha iniciado sesión
-#     const uid = user.uid;
-#     console.log('Usuario actual:', uid);
-#     // Aquí puedes realizar acciones basadas en el estado de autenticación en ese momento
-    
-#     }} else {{
-#     // El usuario ha cerrado sesión
-#     console.log('No hay usuario actual');
-#     // Aquí puedes realizar acciones si no hay un usuario autenticado
-#     }}
-
-#     }}
-
-# """
