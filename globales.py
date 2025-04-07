@@ -1,10 +1,10 @@
 import gradio as gr
 
-app_path = "/superheroes-dev"
-server_port=5500
+app_path = "/superheroes-prod"
+server_port=7777
 
 #MAIN
-version = "1.1.1" #Quotas Control Perfected.
+version = "1.2.1" #Ports Ready.
 
 nombre_diccionario = "datos_superheroe"
 

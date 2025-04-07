@@ -1,13 +1,13 @@
 #!/bin/bash
-pid=$(lsof -i :7880 | awk 'NR==2 {print $2}')
+pid=$(lsof -i :7777 | awk 'NR==2 {print $2}')
 #Revisar si la búsqueda del proceso está vacía.
 if [ -z "$pid" ]; then
   #Si está vacía entonces:
   timestamp1=$(date +"%d-%m-%Y %H:%M:%S")
-  echo "$timestamp1 - ATENCIÓN: No se encontró ningún proceso escuchando en el puerto 7880. Reactivando aplicación."
+  echo "$timestamp1 - ATENCIÓN: No se encontró ningún proceso escuchando en el puerto 7777. Reactivando aplicación."
   #Reiniciando proceso
   cd
-  cd code/ocean-devo-superheroes/
+  cd code/superheroes-prod/
   source venv/bin/activate
   python app.py &
   nuevo_proceso=$(pgrep -f "python app.py")
