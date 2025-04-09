@@ -4,11 +4,11 @@ import funciones
 import sulkuFront
 import gradio as gr
 import firehead, fire, fuego 
-import tools
-mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
+#import tools
+#mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
 def iniciar():    
-    app_path = globales.app_path
+    app_path = "/superheroes-prod"
     main.queue(max_size=globales.max_size)
     main.launch(root_path=app_path, server_port=globales.server_port)
 
