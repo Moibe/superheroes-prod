@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.3.3" #7800 en Keepalive.
+version = "1.3.4" #Gradio Back to Newest.
 
 nombre_diccionario = "datos_superheroe"
 
