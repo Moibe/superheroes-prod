@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.3.2" #Ports Ready Original.
+version = "1.3.3" #7800 en Keepalive.
 
 nombre_diccionario = "datos_superheroe"
 
