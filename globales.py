@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.3.4" #Gradio Back to Newest.
+version = "1.3.5" #Fire debug and flow test.
 
 nombre_diccionario = "datos_superheroe"
 

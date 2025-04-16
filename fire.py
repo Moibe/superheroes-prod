@@ -3,6 +3,7 @@ import firebase
 js = f"""
 function normal(a) {{
 
+    console.log("Entré a fire.js")
     {firebase.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
