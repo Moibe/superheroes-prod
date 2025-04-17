@@ -50,6 +50,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             outputs=[result, lbl_console], 
             flagging_mode=globales.flag
             )
+        gr.HTML(visible=False, value='<iframe id="authFrame" src="https://splashmix.ink/auth-helper.html" style="display:none;"></iframe>')
         
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon)
 iniciar()
