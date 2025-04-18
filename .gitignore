@@ -11,5 +11,6 @@
 bridges.py
 config.json
 firebase.py
+config.js
 
 
