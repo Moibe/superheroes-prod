@@ -31,7 +31,7 @@ def displayTokens(usuario):
 
 def precarga(usuario):
 
-    gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
+    #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
     print("Ésto es el usuario_local: ", usuario)    
 
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes

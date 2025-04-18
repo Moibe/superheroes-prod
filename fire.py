@@ -11,9 +11,11 @@ function normal(a) {{
     
     firebase.auth().onAuthStateChanged((user) => {{
         if (user) {{
+        console.log("Hay usuario...", user)
             localStorage.setItem('estadoUsuario', 'Conectado');
             localStorage.setItem('usuario', user.uid);    
         }} else {{
+        console.log("No hay usuario...")
             //Si el usuario se sale o no está.
             localStorage.setItem('estadoUsuario', 'Desconectado');
             localStorage.setItem('usuario', ""); 
