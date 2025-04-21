@@ -19,7 +19,7 @@ function normal(a) {{
             //Si el usuario se sale o no está.
             localStorage.setItem('estadoUsuario', 'Desconectado');
             localStorage.setItem('usuario', ""); 
-            window.location.href = 'https://app.splashmix.ink/login';
+            //window.location.href = 'https://app.splashmix.ink/login';
         }}
     }})
 
