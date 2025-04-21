@@ -1,11 +1,11 @@
-import firebase
+import fireconfig
 
 js = f"""
 function normal(a) {{
 
     console.log("Entré a fire.js")
     console.log(window.location.search)
-    {firebase.firebase_config}
+    {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
     
@@ -22,10 +22,7 @@ function normal(a) {{
             //window.location.href = 'https://app.splashmix.ink/login';
         }}
     }})
-
-    //Esto es para en dado caso usar rememberedAccounts (que no siempre, y no se bajo que circunstancias, aparece.)
-    //const rememberedAccounts = localStorage.getItem('firebaseui::rememberedAccounts');
-    //console.log(rememberedAccounts)      
+      
     }}
 
 """
