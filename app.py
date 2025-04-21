@@ -39,7 +39,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
                         
                     with gr.Column(scale=1):
                         gr.Button(value="Recargar Créditos 💶", size='md', link="https://google.com", variant='primary')
-                        gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
+                        btn_logout = gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
                         
         # with gr.Column(scale=5):
         #     gr.Label(label="Placeholder", visible=False) #Pon éste placeholder si quisieras la mitas de tamaño.
@@ -50,7 +50,6 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             outputs=[result, lbl_console], 
             flagging_mode=globales.flag
             )
-        #gr.HTML(value="<iframe id='authFrame' src='https://splashmix.ink/auth-helper.html' style='display:block;'></iframe>")
         
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon)
 iniciar()
