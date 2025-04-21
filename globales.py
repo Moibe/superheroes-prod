@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.4.5" #Auth Helper test.
+version = "1.4.6" #Behavior on prod.
 
 nombre_diccionario = "datos_superheroe"
 

@@ -26,7 +26,7 @@ nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
 with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer {visibility: hidden}") as main:
     
-    usuario_firebase = gr.Textbox(visible=False) #Para almacenar el usuario de firebase 
+    usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase 
     acordeon = gr.Accordion(label="Moibe - 💶Creditos Disponibles: 0", open=False) 
     main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon], js=fuego.js) if globales.acceso != "libre" else None
 
