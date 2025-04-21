@@ -138,6 +138,8 @@ def presentacionFinal(usuario, accion):
 
 def actualizador_navbar(usuario, result, info_window):
 
+    print("Estoy en actualizador de navbar...")
+
     #Dependiendo del resultado obtenido deberé debitar o no:     
     #Cuando no hay imagen (Error directo de mass): error.png 
 
