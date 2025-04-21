@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.4.6" #Behavior on prod.
+version = "1.4.7" #Redirect.
 
 nombre_diccionario = "datos_superheroe"
 

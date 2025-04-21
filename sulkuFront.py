@@ -53,7 +53,7 @@ def precarga(usuario):
     #thread2.join()  # Espera a que el hilo 2 termine
     #return result_from_initAPI, result_from_displayTokens
        
-    return usuario, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
+    
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
