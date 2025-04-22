@@ -29,7 +29,7 @@ def welcome(usuario_firebase):
     botones = ['huggingface', 'primary', 'secondary', 'stop']
     return gr.Button(value="Cerrar Sesión", size='md', variant=random.choice(botones))
 
-# 
+#
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
 with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer {visibility: hidden}") as main:
     
@@ -56,7 +56,8 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             fn=funciones.perform,
             inputs=[input1, gender, personaje, usuario_firebase], 
             outputs=[result, lbl_console], 
-            flagging_mode=globales.flag
+            flagging_mode=globales.flag,
+            js=fuego.js
             )
         
     

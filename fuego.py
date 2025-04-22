@@ -1,6 +1,10 @@
 js = f"""
 function funcion() {{
     console.log("Ésto es un console log normal desde fuego...") 
+    //window.location.reload();
+    //console.log("Recargado...");
+    
+    
     resultado = localStorage.getItem('usuario');
     console.log("Éste es el usuario que obtuvo fuego: ", resultado)
     // Verificar si resultado está vacío
