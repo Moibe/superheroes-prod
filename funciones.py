@@ -32,7 +32,7 @@ def perform(input1, gender, personaje, usuario):
         resultado, info_window = sulkuFront.noCredit()
         return resultado, info_window
 
-    #AQUÍ LLEGARA CUANDO NO ES ERROR DE SYSTEMA Y ES DE USUARIO (O LOGRO LA IMAGEN O PUSO UNA SIN ROSTRO DETECTABLE)
+    #AQUÍ LLEGARA CUANDO NO ES ERROR DE SISTEMA Y ES DE USUARIO (O LOGRO LA IMAGEN O PUSO UNA SIN ROSTRO DETECTABLE)
     resultado, info_window = sulkuFront.evaluaResultadoUsuario(resultado, personaje) #No fue frenado por falta de crédito o or imagen vacía, paso a la API (se debita)
     return resultado, info_window
 

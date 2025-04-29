@@ -38,20 +38,11 @@ def precarga(usuario):
         #Camino 1: Si hubo un usuario.
         print("Ésto es el usuario_local: ", usuario) 
         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
-        return usuario, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
+        return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
     else:
         print("El usuario está vacio...")
-        return usuario, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: 0", open=True)
+        return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: 0", open=True)
         
-    # global result_from_initAPI
-    # global result_from_displayTokens
-    #thread1 = threading.Thread(target=initAPI)
-    #thread2 = threading.Thread(target=displayTokens, args=(usuario,))    
-    #thread1.start()
-    #thread2.start()
-    #thread1.join()  # Espera a que el hilo 1 termine
-    #thread2.join()  # Espera a que el hilo 2 termine
-    #return result_from_initAPI, result_from_displayTokens
        
     
 

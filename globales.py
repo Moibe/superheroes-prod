@@ -22,7 +22,7 @@ seto = "splashmix"
 work = "picswap"
 costo_work = 1 #Se integró costo_work para definir aquí directamente lo que cueta picswap, y dejar de usar la var work.
 
-tema = gr.themes.Citrus()
+tema = gr.themes.Base()
 flag = "never"
 
 neural_wait = 4
