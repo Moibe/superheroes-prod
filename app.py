@@ -24,10 +24,6 @@ input1, gender, personaje, result = inputs.inputs_selector(globales.seto)
 #Otros Controles y Personalizaciones
 nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
 
-def welcome(usuario_firebase): 
-    print("Esto es una prueba de welcome:", usuario_firebase)
-    botones = ['huggingface', 'primary', 'secondary', 'stop']
-    return gr.Button(value="Cerrar Sesión", size='md', variant=random.choice(botones))
 
 #
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
@@ -62,6 +58,12 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
         
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon)
-    btn_logout.click(welcome, usuario_firebase, btn_logout)
+    
+    def welcome(usuario_firebase): 
+        print("Esto es una prueba de welcome:", usuario_firebase)
+        botones = ['huggingface', 'primary', 'secondary', 'stop']
+        return gr.Button(value="Cerrar Sesión", size='md', variant=random.choice(botones))
+        
+    btn_logout.click(welcome, inputs=usuario_firebase, outputs=btn_logout, js=aire.js)
 
 iniciar()

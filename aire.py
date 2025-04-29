@@ -1,6 +1,7 @@
 js = f"""
 function normal(a) {{
-    console.log("Entré a fire.js")
+    console.log("Entré a aire.js")
+    console.log(a)
     }}
 
 """
