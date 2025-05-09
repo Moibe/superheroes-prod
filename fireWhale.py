@@ -9,7 +9,7 @@ cred = credentials.Certificate('config.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
-#dato es el dato que traes  como el nombre del user. 
+#dato es el Documento que traes  como el nombre del user. 
 #info es la info de ese dato que estás buscando, como token.
 def obtenDato(coleccion, dato, info):
     #Future: Tentativamente ésta parte podría solo hacerse una vez y vivir en la app para ser reutilizado.
