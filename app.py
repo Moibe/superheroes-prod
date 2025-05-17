@@ -32,8 +32,7 @@ def welcome(usuario_firebase):
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
 with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer {visibility: hidden}") as main:
     
-    usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase 
-    
+    usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase    
 
     main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase], js=fuego.js) if globales.acceso != "libre" else None
     
@@ -43,7 +42,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             with acordeon:
                 with gr.Row():   
                     with gr.Column(scale=3):
-                        gr.Button(value="Cerrar Sesión", size='lg', link="https://google.com", variant='secondary')
+                        btn_logout = gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
         
         with gr.Column():
             with gr.Accordion(label="💶 Creditos Disponibles: 100", open=False): 
@@ -59,7 +58,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
                         
     #                 with gr.Column(scale=1):
     #                     gr.Button(value="Recargar Créditos 💶", size='md', link="https://google.com", variant='primary')
-    #                     btn_logout = gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
+    #                     
                         
 
     with gr.Row():
@@ -69,10 +68,9 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             outputs=[result, lbl_console], 
             flagging_mode=globales.flag,
             js=fuego.js
-            )
-        
+            )        
     
     # result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon)
-    # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
+    btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
 
 iniciar()

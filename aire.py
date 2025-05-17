@@ -1,7 +1,15 @@
+import fireconfig
+
 js = f"""
-function normal(a) {{
+function normal() {{
     console.log("Entré a aire.js")
-    console.log(a)
+    console.log("a")
+
+    {fireconfig.firebase_config}
+    firebase.initializeApp(firebaseConfig);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signOut()
+    
     }}
 
 """

@@ -38,6 +38,8 @@ def perform(input1, gender, personaje, usuario):
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1, gender, hero):
+
+    print("Estoy en MASS....")
         
     #Al parecer la API se elige hasta perform, basado en lo que se especifico en globales.
     api, tipo_api = tools.eligeAPI(globales.seleccion_api) 
