@@ -15,8 +15,7 @@ function normal(a) {{
             localStorage.setItem('estadoUsuario', 'Conectado');
             localStorage.setItem('usuario', user.uid);    
         }} else {{
-        console.log("No hay usuario...")
-        //firebase.auth().signOut()
+        console.log("No hay usuario...")        
             //Si el usuario se sale o no está.
             localStorage.setItem('estadoUsuario', 'Desconectado');
             localStorage.setItem('usuario', ""); 

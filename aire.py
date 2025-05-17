@@ -9,7 +9,10 @@ function normal() {{
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signOut()
-    
+    console.log("Deslogueado 3...)
+    console.log("Deslogueado 2...)
+    console.log("Deslogueado 1...)
+    window.location.href = 'https://app.splashmix.ink/login';    
     }}
 
 """
