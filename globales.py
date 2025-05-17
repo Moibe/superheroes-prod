@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.5.7" #Deslogueo y redirect.
+version = "1.5.8" #;)
 
 nombre_diccionario = "datos_superheroe"
 
