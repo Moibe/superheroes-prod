@@ -1,6 +1,6 @@
 js = f"""
 function funcion() {{
-    console.log("Ésto es un console log normal desde fuego...") 
+    console.log("Ésto es un console log normal desde fuego.js...") 
     //window.location.reload();
     //console.log("Recargado...");
     

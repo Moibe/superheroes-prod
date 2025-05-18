@@ -41,10 +41,7 @@ def precarga(usuario):
             return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
         else:
             print("El usuario está vacio...")
-            return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: 0", open=True)
-        
-       
-    
+            return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: 0", open=True)  
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
