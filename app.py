@@ -34,7 +34,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
     
     usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase    
 
-    main.load(sulkuFront.precarga, usuario_firebase, usuario_firebase, js=fuego.js) if globales.acceso != "libre" else None
+    main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase], js=fuego.js) if globales.acceso != "libre" else None
     
     with gr.Row(variant='compact'):
         with gr.Column():
