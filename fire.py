@@ -3,7 +3,7 @@ import fireconfig
 js = f"""
 function normal(a) {{
 
-    console.log("Entré a fire.js")
+    console.log("Entré a fire.js @ BLOCKS")
     //localStorage.setItem('loaded', 'False');
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
