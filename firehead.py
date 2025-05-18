@@ -3,8 +3,6 @@ head = """
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>  
     <script>
-  setTimeout(() => {
-    console.log("Hola estoy en HEAD.js delayado");
-  }, 15000); // 300000 milisegundos = 15 segundos
-</script>    
+    console.log("Hola estoy en HEAD.js")    
+    </script>     
 """
