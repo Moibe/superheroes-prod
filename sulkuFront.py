@@ -33,15 +33,15 @@ def precarga(usuario):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
     print("Estoy en precarga y el usuario recibido es: ", usuario)
-    while not usuario:
-        if usuario:
-            #Camino 1: Si hubo un usuario.
-            print("Ésto es el usuario_local: ", usuario) 
-            tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
-            return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
-        else:
-            print("El usuario está vacio...")
-            return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: 0", open=True)  
+    
+    if usuario:
+        #Camino 1: Si hubo un usuario.
+        print("Ésto es el usuario_local: ", usuario) 
+        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
+        return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
+    else:
+        print("El usuario está vacio...")
+        return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: 0", open=True)  
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
