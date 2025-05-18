@@ -1,6 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+import time
 
 from firebase_admin import auth
 
@@ -12,10 +13,12 @@ db = firestore.client()
 #dato es el Documento que traes  como el nombre del user. 
 #info es la info de ese dato que estás buscando, como token.
 def obtenDato(coleccion, dato, info):
-    #Future: Tentativamente ésta parte podría solo hacerse una vez y vivir en la app para ser reutilizado.
-    
+    print(f"Estoy dentro de obtenDato y los valores que recibí son: {coleccion}, {dato}, {info}...")
+    time.sleep(3)
     #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
-    doc_ref = db.collection(coleccion).document(dato)    
+    doc_ref = db.collection(coleccion).document(dato) 
+    print("El doc ref recibido es: ", doc_ref)
+
     #Éste es el documento que tiene los datos de ella.
     documento = doc_ref.get()
     
