@@ -4,7 +4,7 @@ js = f"""
 function normal(a) {{
 
     console.log("Entré a fire.js")
-    localStorage.setItem('loaded', 'False');
+    //localStorage.setItem('loaded', 'False');
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
