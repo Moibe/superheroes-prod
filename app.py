@@ -32,21 +32,15 @@ def welcome(usuario_firebase):
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
 with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer {visibility: hidden}") as main:
     
-    usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase  
-    acheteemeele = gr.HTML('<p>Hola Mundo</p>')
-
-    main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acheteemeele], js=fuego.js) if globales.acceso != "libre" else None
+    usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase 
+    acheteemeele = gr.HTML(visible=False) 
     
-    with gr.Row(variant='compact'):
+    with gr.Row(variant='compact', show_progress=False):
         with gr.Column():
-            acordeon = gr.Accordion(label=f"🧑🏻‍🚀 User: ", open=False)
-            with acordeon:
-                with gr.Row():   
-                    with gr.Column(scale=3):
-                        btn_logout = gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')        
-        
+            acordeon = gr.Accordion(open=False)  
+            
         with gr.Column():
-            acordeon2 = gr.Accordion(label="💶 Creditos Disponibles: 100", open=False)
+            acordeon2 = gr.Accordion(open=False)
             with acordeon2: 
                 gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://google.com", variant='primary')
  
@@ -59,7 +53,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             js=fuego.js
             )        
     
-    # result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon)
-    btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
-
+    result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
+    #btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
+    main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
 iniciar()

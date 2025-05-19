@@ -17,7 +17,7 @@ def displayTokens(usuario):
 
     #Obtengamos los datos hardcodeados del usuario mio, que no existe en las colecciones: 
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')  
-    #'5X8Hhd70uRclG1qfSJVj2zm211Q2' 
+    
     novelty = fireWhale.obtenDato('usuarios', usuario, 'novelty' )
         
     if novelty == "new_user": 
@@ -32,18 +32,22 @@ def displayTokens(usuario):
 def precarga(usuario):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
+    usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
     print("Estoy en precarga y el usuario recibido es: ", usuario)
     
     if usuario:
         #Camino 1: Si hubo un usuario.
         print("Ésto es el usuario_local: ", usuario) 
         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
-        mensaje = f"{usuario} - 💶Creditos Disponibles: {tokens}"
-        return usuario, mensaje
+        print(f"Esto es tokens: {tokens}.")
+        mensaje = f"🐙Usuario: {usuario} "
+        mensaje2 = f"💶Creditos Disponibles: {tokens}."
     else:
         print("El usuario está vacio...")
         mensaje = "no user"
-        return usuario, mensaje  
+        mensaje2 = "no credits"
+        
+    return usuario, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
@@ -127,7 +131,6 @@ def presentacionFinal(usuario, accion):
     return html_credits, info_window
 
 def actualizador_navbar(usuario, result, info_window):
-
     print("Estoy en actualizador de navbar...")
 
     #Dependiendo del resultado obtenido deberé debitar o no:     

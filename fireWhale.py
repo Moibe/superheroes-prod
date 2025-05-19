@@ -14,15 +14,14 @@ db = firestore.client()
 #info es la info de ese dato que estás buscando, como token.
 def obtenDato(coleccion, dato, info):
     print(f"Estoy dentro de obtenDato y los valores que recibí son: {coleccion}, {dato}, {info}...")
-    time.sleep(3)
     #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
     doc_ref = db.collection(coleccion).document(dato) 
     print("El doc ref recibido es: ", doc_ref)
 
     #Éste es el documento que tiene los datos de ella.
     documento = doc_ref.get()
-    
-
+    print("Esto es el documento obtenido: ", documento)
+      
     if documento.exists:
         pass #El documento si existe.        
     else:
@@ -32,7 +31,10 @@ def obtenDato(coleccion, dato, info):
     #Recuerda la conversión a diccionario.
     documento = doc_ref.get() 
     diccionario = documento.to_dict()
-    return diccionario.get(info)
+    print("Esto es el diccionario: ", diccionario)
+    resultado = diccionario.get(info)
+    print("Éste es el resultado...", resultado)
+    return resultado
 
 def editaDato(coleccion, dato, info, contenido):
 
