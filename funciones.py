@@ -17,13 +17,8 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 #PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, gender, personaje, usuario):
 
-    print("Inicia perform y el usuario que recibió como parámetro es: ", usuario)
-    time.sleep(4)
-
     gender = gender or "superhero" #default es superhero.
     #Los tokens se checan dentro de perform para estar seguros de que cuenta con los tokens para ejecutar esa operación en particular.
-    print("Estoy en el obtenDato de perform...")
-    time.sleep(2)
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
     
     #1: Reglas sobre autorización si se tiene el crédito suficiente.

@@ -32,35 +32,24 @@ def welcome(usuario_firebase):
 #fire provee las partes de javascript que se requieren para correr el chequeo de firebase.
 with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer {visibility: hidden}") as main:
     
-    usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase    
+    usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase  
+    acheteemeele = gr.HTML('<p>Hola Mundo</p>')
 
-    main.load(sulkuFront.precarga, usuario_firebase, usuario_firebase, js=fuego.js) if globales.acceso != "libre" else None
+    main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acheteemeele], js=fuego.js) if globales.acceso != "libre" else None
     
     with gr.Row(variant='compact'):
         with gr.Column():
-            acordeon = gr.Accordion(label="🧑🏻‍🚀 User: Moibe", open=False)
+            acordeon = gr.Accordion(label=f"🧑🏻‍🚀 User: ", open=False)
             with acordeon:
                 with gr.Row():   
                     with gr.Column(scale=3):
-                        btn_logout = gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')
+                        btn_logout = gr.Button(value="Cerrar Sesión", size='md', variant='huggingface')        
         
         with gr.Column():
-            with gr.Accordion(label="💶 Creditos Disponibles: 100", open=False): 
+            acordeon2 = gr.Accordion(label="💶 Creditos Disponibles: 100", open=False)
+            with acordeon2: 
                 gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://google.com", variant='primary')
-        
-            
-    # with gr.Row():        
-    #     with gr.Column(scale=5):
-    #         with acordeon:
-    #             with gr.Row():   
-    #                 with gr.Column(scale=3):
-    #                      gr.Textbox(label="Usuario", value="Hola Moisés Briseño Estrello - ✨ moi.estrello@gmail.com", show_label=False)
-                        
-    #                 with gr.Column(scale=1):
-    #                     gr.Button(value="Recargar Créditos 💶", size='md', link="https://google.com", variant='primary')
-    #                     
-                        
-
+ 
     with gr.Row():
         demo = gr.Interface(
             fn=funciones.perform,

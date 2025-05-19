@@ -16,8 +16,8 @@ function normal(a) {{
         }} else {{
         console.log("No hay usuario...")        
             //Si el usuario se sale o no está.
-            localStorage.setItem('estadoUsuario', 'Desconectado');
-            localStorage.setItem('usuario', ""); 
+            //localStorage.setItem('estadoUsuario', 'Desconectado');
+            //localStorage.setItem('usuario', ""); 
         }}
     }})
       

@@ -38,10 +38,12 @@ def precarga(usuario):
         #Camino 1: Si hubo un usuario.
         print("Ésto es el usuario_local: ", usuario) 
         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
-        return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
+        mensaje = f"{usuario} - 💶Creditos Disponibles: {tokens}"
+        return usuario, mensaje
     else:
         print("El usuario está vacio...")
-        return usuario #, gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: 0", open=True)  
+        mensaje = "no user"
+        return usuario, mensaje  
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
