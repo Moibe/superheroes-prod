@@ -44,8 +44,8 @@ def precarga(usuario):
         mensaje2 = f"💶Creditos Disponibles: {tokens}."
     else:
         print("El usuario está vacio...")
-        mensaje = "no user"
-        mensaje2 = "no credits"
+        mensaje = "Recarga la página si no puedes ver tu info."
+        mensaje2 = "Recarga la página si no puedes ver tus créditos."
         
     return usuario, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
 
