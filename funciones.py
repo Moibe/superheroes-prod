@@ -46,7 +46,7 @@ def mass(input1, gender, hero):
     api, tipo_api = tools.eligeAPI(globales.seleccion_api) 
     print(f"De vuelta en mass la api elegida es {api} y el tipo es {tipo_api}...") 
     client = gradio_client.Client(api, hf_token=bridges.hug)
-
+    
     #Adquisición Databank Particular para ese objeto y género....
     nombre_databank = gender
     datos = getattr(configuracion, nombre_databank)
@@ -74,7 +74,8 @@ def mass(input1, gender, hero):
     #Fraseador se usa cuando traemos el que heroe es directo del dropdownlist.
     prompt = prompter.fraseador(hero, gender)
 
-    try:        
+    try:     
+
         result = client.predict(
                 imagenSource,
                 imagenPosition,

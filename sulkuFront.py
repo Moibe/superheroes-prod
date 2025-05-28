@@ -32,7 +32,7 @@ def displayTokens(usuario):
 def precarga(usuario):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
-    usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
+    #usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
     print("Estoy en precarga y el usuario recibido es: ", usuario)
     
     if usuario:
