@@ -37,12 +37,13 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
     
     with gr.Row(variant='compact', show_progress=False):
         with gr.Column():
-            acordeon = gr.Accordion(open=False)  
-            
+            acordeon = gr.Accordion(open=False)
+            with acordeon:   
+             btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', link="https://buy.splashmix.ink", variant='primary')
         with gr.Column():
             acordeon2 = gr.Accordion(open=False)
             with acordeon2: 
-                gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://google.com", variant='primary')
+                gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://buy.splashmix.ink", variant='primary')
  
     with gr.Row():
         demo = gr.Interface(
@@ -54,6 +55,6 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
-    #btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
+    btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
 iniciar()
