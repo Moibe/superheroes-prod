@@ -10,6 +10,34 @@ cred = credentials.Certificate('config.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
+
+def usuario_existe_en_auth(uid):
+    """
+    Verifica si un UID existe en Firebase Authentication.
+
+    Args:
+        uid (str): El User ID (UID) que se desea verificar.
+
+    Returns:
+        bool: True si el usuario con ese UID existe, False en caso contrario.
+    """
+    try:
+        # Intenta obtener el usuario por su UID
+        user = auth.get_user(uid)
+        
+        # Si la operación es exitosa, el usuario existe
+        print(f"✔️ Usuario con UID '{uid}' encontrado en Firebase Auth: {user.email or 'sin email'}")
+        return True
+    except auth.UserNotFoundError:
+        # Esta excepción se lanza específicamente si el UID no existe
+        print(f"❌ Usuario con UID '{uid}' NO encontrado en Firebase Auth.")
+        return False
+    except Exception as e:
+        # Captura cualquier otro error (ej. problemas de conexión, permisos)
+        print(f"❌ Error al verificar usuario con UID '{uid}': {e}")
+        return False
+    
+    
 #dato es el Documento que traes  como el nombre del user. 
 #info es la info de ese dato que estás buscando, como token.
 def obtenDato(coleccion, dato, info):

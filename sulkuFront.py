@@ -32,7 +32,10 @@ def displayTokens(usuario):
 def precarga(usuario):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
-    #usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
+    usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
+    user = fireWhale.usuario_existe_en_auth(usuario)
+    print("Usuario existe?: ", user)
+    #Tendrás que revisar si dicho usuario recibido existe en tu auth.
     print("Estoy en precarga y el usuario recibido es: ", usuario)
     
     if usuario:

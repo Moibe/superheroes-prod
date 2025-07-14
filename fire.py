@@ -12,7 +12,7 @@ function normal(a) {{
         if (user) {{
         console.log("Hay usuario...", user)
             localStorage.setItem('estadoUsuario', 'Conectado');
-            localStorage.setItem('usuario', user.email);    
+            localStorage.setItem('usuario', user);    
         }} else {{
         console.log("No hay usuario...")        
             //Si el usuario se sale o no está. Importante: Revisar por que tengo comentado ésto.
