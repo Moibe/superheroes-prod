@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.5.8" #;)
+version = "1.5.9" #Store Whole User
 
 nombre_diccionario = "datos_superheroe"
 
