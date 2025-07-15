@@ -29,27 +29,27 @@ def displayTokens(usuario):
     
     result_from_displayTokens = display
 
-def precarga(usuario):
+def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
-    #usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
-    print("Estoy en precarga y el usuario recibido es: ", usuario)
-    email, displayName = fireWhale.obtenDatosUIDFirebase(usuario)
+    uid = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
+    print("Estoy en precarga y el usuario recibido es: ", uid)
+    email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
     print(f"Email: {email}, displayName: {displayName}.")
     
     if email:
         #Camino 1: Si hubo un usuario.
-        print("Ésto es el usuario_local: ", usuario) 
-        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
+        print("Ésto es el usuario_local: ", uid) 
+        tokens = fireWhale.obtenDato('usuarios', uid, 'tokens')
         print(f"Esto es tokens: {tokens}.")
-        mensaje = f"🐙Usuario: {usuario} "
+        mensaje = f"🐙Usuario: {email} "
         mensaje2 = f"💶Creditos Disponibles: {tokens}."
     else:
         print("El usuario está vacio o fue None?...")
         mensaje = "Usuario inválido."
         mensaje2 = "Recarga la página si no puedes ver tus créditos."
         
-    return usuario, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
+    return uid, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
 
 def visualizar_creditos(nuevos_creditos, usuario):
 

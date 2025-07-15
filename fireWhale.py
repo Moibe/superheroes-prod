@@ -24,8 +24,9 @@ def obtenDatosUIDFirebase(uid):
     try:
         # Intenta obtener el usuario por su UID
         user = auth.get_user(uid)
+        print("Ésto es el user obtenido de la comprobación: ", user)
         email = user.email
-        displayName = user.displayName
+        displayName = user.display_name
         
         # Si la operación es exitosa, el usuario existe
         print(f"✔️ Usuario con UID '{uid}' encontrado en Firebase Auth: {user.email or 'sin email'}")
