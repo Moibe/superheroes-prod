@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.6.2" #Link ahora a splashmix.ink/buy.
+version = "1.6.3" #Links para cerrar sesión y comprar.
 
 nombre_diccionario = "datos_superheroe"
 

@@ -39,11 +39,11 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
         with gr.Column():
             acordeon = gr.Accordion(open=False)
             with acordeon:   
-             btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', link="https://buy.splashmix.ink", variant='primary')
+             btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', link="https://app.splashmix.ink/login", variant='primary')
         with gr.Column():
             acordeon2 = gr.Accordion(open=False)
             with acordeon2: 
-                gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://splashmix.ink/buy", variant='primary')
+                gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://app.splashmix.ink/buy", variant='primary')
  
     with gr.Row():
         demo = gr.Interface(
