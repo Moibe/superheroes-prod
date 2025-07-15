@@ -43,7 +43,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
         with gr.Column():
             acordeon2 = gr.Accordion(open=False)
             with acordeon2: 
-                gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://buy.splashmix.ink", variant='primary')
+                gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://splashmix.ink/buy", variant='primary')
  
     with gr.Row():
         demo = gr.Interface(
