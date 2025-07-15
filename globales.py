@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.5.11" #Fix datos auth
+version = "1.6.0" #Revisión de todos los datos en auth de firebase.
 
 nombre_diccionario = "datos_superheroe"
 

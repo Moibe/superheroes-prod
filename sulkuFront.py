@@ -32,13 +32,12 @@ def displayTokens(usuario):
 def precarga(usuario):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
-    usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
-    user = fireWhale.usuario_existe_en_auth(usuario)
-    print("Usuario existe?: ", user)
-    #Tendrás que revisar si dicho usuario recibido existe en tu auth.
+    #usuario = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
     print("Estoy en precarga y el usuario recibido es: ", usuario)
+    email, displayName = fireWhale.obtenDatosUIDFirebase(usuario)
+    print(f"Email: {email}, displayName: {displayName}.")
     
-    if usuario:
+    if email:
         #Camino 1: Si hubo un usuario.
         print("Ésto es el usuario_local: ", usuario) 
         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
@@ -46,8 +45,8 @@ def precarga(usuario):
         mensaje = f"🐙Usuario: {usuario} "
         mensaje2 = f"💶Creditos Disponibles: {tokens}."
     else:
-        print("El usuario está vacio...")
-        mensaje = "Recarga la página si no puedes ver tu info."
+        print("El usuario está vacio o fue None?...")
+        mensaje = "Usuario inválido."
         mensaje2 = "Recarga la página si no puedes ver tus créditos."
         
     return usuario, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
