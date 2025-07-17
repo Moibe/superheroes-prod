@@ -24,6 +24,8 @@ def obtenDatosUIDFirebase(uid):
     """
     try:
         # Intenta obtener el usuario por su UID
+        #Todo usuario nuevo, si debería estar en auth porque previamente se registro ahí. 
+        #Pero si es nuevo, no tendrá registro en firestore, cosa que haremos en python desde superheroes-prod
         user = auth.get_user(uid) #Obtengo el objeto con todos los datos.
         print("Ésto es el user obtenido de la comprobación: ", user)
         email = user.email
@@ -39,8 +41,7 @@ def obtenDatosUIDFirebase(uid):
     except Exception as e:
         # Captura cualquier otro error (ej. problemas de conexión, permisos)
         print(f"❌ Error al verificar usuario con UID '{uid}': {e}")
-        return None, None
-    
+        return None, None    
 
 #dato es el Documento que traes  como el nombre del user. 
 #info es la info de ese dato que estás buscando, como token.
@@ -54,11 +55,12 @@ def obtenDato(coleccion, dato, info):
     documento = doc_ref.get()
     print("Esto es el documento obtenido: ", documento)
       
-    if documento.exists:
-        pass #El documento si existe.        
-    else:
-        print("No existe el documento, es un nuevo usuario.")
-        creaDato(coleccion, dato, 'tokens', 5) #porque agregará 5 tokens.       
+    #Quizá éste segmento que comenté era el que producia nuevos documentos sin deber.
+    # if documento.exists:
+    #     pass #El documento si existe.        
+    # else:
+    #     print("No existe el documento, es un nuevo usuario.")
+    #     creaDato(coleccion, dato, 'tokens', 5) #porque agregará 5 tokens.       
     
     #Recuerda la conversión a diccionario.
     documento = doc_ref.get() 
@@ -87,6 +89,33 @@ def creaDato(coleccion, dato, info, contenido):
         # 'quote': quote,
         info: contenido,
     })
+
+def creaDatoMultiple(coleccion, dato, data_dict):
+    """
+    Crea un nuevo documento o sobrescribe uno existente en Firestore
+    con múltiples pares de campo-contenido.
+
+    Args:
+        coleccion (str): El nombre de la colección donde se creará/actualizará el documento.
+        dato (str): El ID del documento que se va a crear o sobrescribir.
+        data_dict (dict): Un diccionario donde las claves son los nombres de los campos
+                          y los valores son el contenido de esos campos.
+                          Ej: {'nombre': 'Juan', 'edad': 30, 'activo': True}
+    """
+    # Primero definimos la referencia al documento
+    doc_ref = db.collection(coleccion).document(dato)
+    
+    try:
+        # Usamos .set() y le pasamos el diccionario completo.
+        # Esto sobrescribirá el documento si ya existe con los nuevos datos.
+        doc_ref.set(data_dict)
+        
+        print(f"✔️ Documento '{dato}' creado/sobrescrito en la colección '{coleccion}' con los siguientes datos:")
+        for key, value in data_dict.items():
+            print(f"  - {key}: {value}")
+            
+    except Exception as e:
+        print(f"❌ Error al crear/sobrescribir documento '{dato}' en '{coleccion}': {e}")
 
 def verificar_token(id_token):
     """Verifica el token de ID de Firebase."""

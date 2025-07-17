@@ -2,8 +2,8 @@ import time
 import tools
 import globales
 import fireWhale
-import threading
 import gradio as gr
+from firebase_admin import firestore
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang) #import modulo_correspondiente
 
 result_from_displayTokens = None 
@@ -32,22 +32,39 @@ def displayTokens(usuario):
 def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
-    uid = '5X8Hhd70uRclG1qfSJVj2zm211Q2' 
-    print("Estoy en precarga y el usuario recibido es: ", uid)
-    email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
-    print(f"Email: {email}, displayName: {displayName}.")
     
-    if email:
-        #Camino 1: Si hubo un usuario.
-        print("Ésto es el usuario_local: ", uid) 
-        tokens = fireWhale.obtenDato('usuarios', uid, 'tokens') #En firestore los usuarios estarán identificados por su uid de auth.
-        print(f"Tokens: {tokens}.")
-        mensaje = f"🐙Usuario: {email} "
-        mensaje2 = f"💶Creditos Disponibles: {tokens}."
-    else:
-        print("El usuario está vacio o fue None?...")
-        mensaje = "Usuario inválido."
-        mensaje2 = "Recarga la página si no puedes ver tus créditos."
+    try: 
+        uid = '5X8Hhd70uRclG1qfSJVj2zm211Q2182' 
+        print("Estoy en precarga y el usuario recibido es: ", uid)
+        email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
+        print(f"Email: {email}, displayName: {displayName}.")
+        
+        if email or displayName: #Si encontró a cualquiera de los dos significa que si existe en firebase auth.  
+            #Camino 1: Si hubo un usuario.
+            print("Ésto es el usuario_local: ", uid) 
+            tokens = fireWhale.obtenDato('usuarios', uid, 'tokens') #En firestore los usuarios estarán identificados por su uid de auth.
+            if tokens is not None: #Significa que el usuario si tiene un registro previo en firebase.
+            #La lógica de crear un usuario nuevo debería estar afuera, aquí.
+                print(f"Tokens: {tokens}.")
+                mensaje = f"🐙Usuario: {email} "
+                mensaje2 = f"💶Creditos Disponibles: {tokens}."
+            else: #Si no significa que el usuario no existe en Firestor y deberíamos crear uno nuevo.
+                #Crear usuario nuevo en firestore, con 5 tokens y guarda su info de email y displayname.
+                #fireWhale.creaDato('usuarios', uid)
+                datos_perfil = {
+                'diplayName': displayName,
+                'email': email,
+                'tokens': 5,
+                'fecha_registro': firestore.SERVER_TIMESTAMP # Para un timestamp del servidor
+                }
+                fireWhale.creaDatoMultiple('usuarios', uid, datos_perfil)
+                #Una vez creado, crea de una vez su usuario de Stripe.
+        else: #Si no existe en FIREBASE AUTH, es un usuario inválido. Future: ¿Debería regresarlo a login? 
+            print("El usuario está vacio o fue None?...")
+            mensaje = "Usuario inválido."
+            mensaje2 = "Recarga la página si no puedes ver tus créditos." #Future,¿éste mensaje puede ser un link a login más que un texto?
+    except Exception as e:
+        f"Excepción: {e}"
         
     return uid, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
 
