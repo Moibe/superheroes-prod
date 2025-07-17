@@ -40,8 +40,8 @@ def precarga(uid):
     if email:
         #Camino 1: Si hubo un usuario.
         print("Ésto es el usuario_local: ", uid) 
-        tokens = fireWhale.obtenDato('usuarios', uid, 'tokens')
-        print(f"Esto es tokens: {tokens}.")
+        tokens = fireWhale.obtenDato('usuarios', uid, 'tokens') #En firestore los usuarios estarán identificados por su uid de auth.
+        print(f"Tokens: {tokens}.")
         mensaje = f"🐙Usuario: {email} "
         mensaje2 = f"💶Creditos Disponibles: {tokens}."
     else:

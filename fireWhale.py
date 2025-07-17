@@ -14,6 +14,7 @@ db = firestore.client()
 def obtenDatosUIDFirebase(uid):
     """
     Verifica si un UID existe en Firebase Authentication.
+    Esto con el fin de evitar que se cambié el id arbitrareamente desde localstorage.
 
     Args:
         uid (str): El User ID (UID) que se desea verificar.
@@ -23,7 +24,7 @@ def obtenDatosUIDFirebase(uid):
     """
     try:
         # Intenta obtener el usuario por su UID
-        user = auth.get_user(uid)
+        user = auth.get_user(uid) #Obtengo el objeto con todos los datos.
         print("Ésto es el user obtenido de la comprobación: ", user)
         email = user.email
         displayName = user.display_name
