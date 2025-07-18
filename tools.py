@@ -79,7 +79,6 @@ def eligeQuotaOCosto():
         #Además Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
         #if diferencia es menor que el costo de un sig.  del proceso, ve iniciando ya la otra API.
         if diferencia < globales.process_cost:
-            print("Entré a INITAPI...")
             initAPI(globales.api_cost) 
     else:
         api, tipo_api = globales.api_cost
@@ -91,8 +90,6 @@ def initAPI(api):
     
     global result_from_initAPI
     try:
-        print("Esto es API[0]...")
-        print(api[0])
         repo_id = api[0]
         llave = HfApi(token=bridges.hug)
         runtime = llave.get_space_runtime(repo_id=repo_id)

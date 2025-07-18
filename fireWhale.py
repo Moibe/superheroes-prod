@@ -23,9 +23,6 @@ def obtenDatosUIDFirebase(uid):
         bool: True si el usuario con ese UID existe, False en caso contrario.
     """
     try:
-        # Intenta obtener el usuario por su UID
-        #Todo usuario nuevo, si debería estar en auth porque previamente se registro ahí. 
-        #Pero si es nuevo, no tendrá registro en firestore, cosa que haremos en python desde superheroes-prod
         user = auth.get_user(uid) #Obtengo el objeto con todos los datos.
         print("Ésto es el user obtenido de la comprobación: ", user)
         email = user.email
@@ -43,14 +40,11 @@ def obtenDatosUIDFirebase(uid):
         print(f"❌ Error al verificar usuario con UID '{uid}': {e}")
         return None, None    
 
-#dato es el Documento que traes  como el nombre del user. 
-#info es la info de ese dato que estás buscando, como token.
 def obtenDato(coleccion, dato, info):
     
     print(f"Estoy dentro de obtenDato y los valores que recibí son: {coleccion}, {dato}, {info}...")
     #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
     doc_ref = db.collection(coleccion).document(dato) 
-    print("El doc ref recibido es: ", doc_ref)
 
     #Éste es el documento que tiene los datos de ella.
     documento = doc_ref.get()

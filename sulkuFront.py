@@ -33,9 +33,8 @@ def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
     
     try: 
-        #uid = 'gC79Iw38JSV7wpSJt4wWZwYFRgt1' 
+        #uid = '5FMrC8ldQicPBoV4Yecc1ZQCLUB3' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
         
-        print("Estoy en precarga y el usuario recibido es: ", uid)
         email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
         print(f"Email: {email}, displayName: {displayName}.")
         
@@ -58,9 +57,10 @@ def precarga(uid):
                 'fecha_registro': firestore.SERVER_TIMESTAMP # Para un timestamp del servidor
                 }
                 fireWhale.creaDatoMultiple('usuarios', uid, datos_perfil)
+                mensaje = f"🐙Usuario: {email} "
+                mensaje2 = f"💶Creditos Disponibles: 5." #Analizar si está bien dejarlo fijo y todo funciona bien.
                 #Una vez creado, crea de una vez su usuario de Stripe.
         else: #Si no existe en FIREBASE AUTH, es un usuario inválido. Future: ¿Debería regresarlo a login? 
-            print("El usuario está vacio o fue None?...")
             mensaje = "Usuario inválido."
             mensaje2 = "Recarga la página si no puedes ver tus créditos." #Future,¿éste mensaje puede ser un link a login más que un texto?
     except Exception as e:
