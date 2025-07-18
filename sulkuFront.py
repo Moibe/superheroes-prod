@@ -34,7 +34,7 @@ def precarga(uid):
 
     
     try: 
-        #uid = '5X8Hhd70uRclG1qfSJVj2zm211Q2182' 
+        uid = 'gC79Iw38JSV7wpSJt4wWZwYFRgt1' 
         print("Estoy en precarga y el usuario recibido es: ", uid)
         email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
         print(f"Email: {email}, displayName: {displayName}.")
