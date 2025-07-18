@@ -46,6 +46,7 @@ def obtenDatosUIDFirebase(uid):
 #dato es el Documento que traes  como el nombre del user. 
 #info es la info de ese dato que estás buscando, como token.
 def obtenDato(coleccion, dato, info):
+    
     print(f"Estoy dentro de obtenDato y los valores que recibí son: {coleccion}, {dato}, {info}...")
     #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
     doc_ref = db.collection(coleccion).document(dato) 
@@ -56,19 +57,21 @@ def obtenDato(coleccion, dato, info):
     print("Esto es el documento obtenido: ", documento)
       
     #Quizá éste segmento que comenté era el que producia nuevos documentos sin deber.
-    # if documento.exists:
-    #     pass #El documento si existe.        
-    # else:
-    #     print("No existe el documento, es un nuevo usuario.")
-    #     creaDato(coleccion, dato, 'tokens', 5) #porque agregará 5 tokens.       
-    
-    #Recuerda la conversión a diccionario.
-    documento = doc_ref.get() 
-    diccionario = documento.to_dict()
-    print("Esto es el diccionario: ", diccionario)
-    resultado = diccionario.get(info)
-    print("Éste es el resultado...", resultado)
-    return resultado
+    if documento.exists:
+        print("El documento existe....")
+        #Recuerda la conversión a diccionario.
+        documento = doc_ref.get() 
+        diccionario = documento.to_dict()
+        print("Esto es el diccionario: ", diccionario)
+        resultado = diccionario.get(info)
+        print("Éste es el resultado...", resultado)
+        return resultado
+        pass #El documento si existe.        
+    else:
+        print("No existe el documento, es un nuevo usuario.")
+        return None
+        #No crees nada pero avisa que no existe.
+        #creaDato(coleccion, dato, 'tokens', 5) #porque agregará 5 tokens.
 
 def editaDato(coleccion, dato, info, contenido):
 

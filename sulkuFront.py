@@ -31,10 +31,10 @@ def displayTokens(usuario):
 
 def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
-
     
     try: 
-        uid = 'gC79Iw38JSV7wpSJt4wWZwYFRgt1' 
+        #uid = 'gC79Iw38JSV7wpSJt4wWZwYFRgt1' 
+        
         print("Estoy en precarga y el usuario recibido es: ", uid)
         email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
         print(f"Email: {email}, displayName: {displayName}.")
