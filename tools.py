@@ -254,6 +254,5 @@ def reducirQuota(tipo_api):
                 #Pero si es menos tiempo de proceso hacerlo con Firestore.
                 quota_actual = fireWhale.obtenDato("quota", "quota", "segundos")
                 quota_nueva = quota_actual - globales.process_cost
-                print("La quota nueva es: ", quota_nueva)
                 fireWhale.editaDato("quota", "quota", "segundos", quota_nueva)
             #No debitas la cuota si no era gratis, solo aplica para Zero.

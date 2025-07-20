@@ -1,4 +1,4 @@
-import time
+import kraken
 import tools
 import globales
 import fireWhale
@@ -33,7 +33,7 @@ def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
     
     try: 
-        #uid = '5FMrC8ldQicPBoV4Yecc1ZQCLUB3' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
+        #uid = '0oEYBCDfPxgySnkHeqpMa2dGOIV2' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
         
         email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
         print(f"Email: {email}, displayName: {displayName}.")
@@ -47,7 +47,7 @@ def precarga(uid):
                 print(f"Tokens: {tokens}.")
                 mensaje = f"🐙Usuario: {email} "
                 mensaje2 = f"💶Creditos Disponibles: {tokens}."
-            else: #Si no significa que el usuario no existe en Firestor y deberíamos crear uno nuevo.
+            else: #Si no se encontró significa que el usuario no existe en Firestore y deberíamos crear uno nuevo.
                 #Crear usuario nuevo en firestore, con 5 tokens y guarda su info de email y displayname.
                 #fireWhale.creaDato('usuarios', uid)
                 datos_perfil = {
@@ -60,6 +60,12 @@ def precarga(uid):
                 mensaje = f"🐙Usuario: {email} "
                 mensaje2 = f"💶Creditos Disponibles: 5." #Analizar si está bien dejarlo fijo y todo funciona bien.
                 #Una vez creado, crea de una vez su usuario de Stripe.
+                site = "splashmix"
+                respuesta = kraken.crear_cliente_stripe(email, uid, site)
+                print("Respuesta de Kraken es: ")
+                print(respuesta)
+                fireWhale.editaDato('usuarios', uid, 'cus', respuesta['customer_id'])
+                print("cus agregado")
         else: #Si no existe en FIREBASE AUTH, es un usuario inválido. Future: ¿Debería regresarlo a login? 
             mensaje = "Usuario inválido."
             mensaje2 = "Recarga la página si no puedes ver tus créditos." #Future,¿éste mensaje puede ser un link a login más que un texto?
