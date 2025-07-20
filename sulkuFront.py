@@ -33,7 +33,7 @@ def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
     
     try: 
-        #uid = '0oEYBCDfPxgySnkHeqpMa2dGOIV2' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
+        #uid = 'IJNeNcHa5VPwTWDNcpMUyhGT5813' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
         
         email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
         print(f"Email: {email}, displayName: {displayName}.")
