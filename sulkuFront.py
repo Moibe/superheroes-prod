@@ -40,7 +40,7 @@ def precarga(uid):
         
         if email or displayName: #Si encontró a cualquiera de los dos significa que si existe en firebase auth.  
             #Camino 1: Si hubo un usuario.
-            print("Ésto es el usuario_local: ", uid) 
+            print("Camino 1") 
             tokens = fireWhale.obtenDato('usuarios', uid, 'tokens') #En firestore los usuarios estarán identificados por su uid de auth.
             if tokens is not None: #Significa que el usuario si tiene un registro previo en firebase.
             #La lógica de crear un usuario nuevo debería estar afuera, aquí.
@@ -50,6 +50,7 @@ def precarga(uid):
             else: #Si no se encontró significa que el usuario no existe en Firestore y deberíamos crear uno nuevo.
                 #Crear usuario nuevo en firestore, con 5 tokens y guarda su info de email y displayname.
                 #fireWhale.creaDato('usuarios', uid)
+                print("Camino 2: Usuario Nuevo:")
                 datos_perfil = {
                 'diplayName': displayName,
                 'email': email,
@@ -67,6 +68,7 @@ def precarga(uid):
                 fireWhale.editaDato('usuarios', uid, 'cus', respuesta['customer_id'])
                 print("cus agregado")
         else: #Si no existe en FIREBASE AUTH, es un usuario inválido. Future: ¿Debería regresarlo a login? 
+            print("No hay email ni displayname?")
             mensaje = "Usuario inválido."
             mensaje2 = "Recarga la página si no puedes ver tus créditos." #Future,¿éste mensaje puede ser un link a login más que un texto?
     except Exception as e:
