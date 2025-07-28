@@ -124,3 +124,30 @@ def verificar_token(id_token):
     except auth.InvalidIdTokenError as e:
         print(f"Token inválido: {e}")
         return None  # Retorna None si el token es inválido
+
+def incrementar_campo_numerico(collection_name, document_id, field_name, amount=1):
+    """
+    Incrementa un campo numérico en un documento de Firestore de forma atómica.
+    Si el documento no existe, lo crea e inicializa el campo con el 'amount'.
+    Si el campo no existe en un documento existente, lo inicializa y aplica el incremento.
+
+    Args:
+        collection_name (str): El nombre de la colección.
+        document_id (str): El ID del documento.
+        field_name (str): El nombre del campo numérico a incrementar.
+        amount (int/float): La cantidad por la cual incrementar (puede ser negativo para decrementar).
+    """
+    doc_ref = db.collection(collection_name).document(document_id)
+
+    try:
+        # Usamos .set() con merge=True para comportamiento de "upsert".
+        # Si el documento no existe, lo crea.
+        # Si el campo no existe, lo crea e inicializa con 'amount'.
+        # Si el campo ya existe, lo incrementa con 'amount'.
+        doc_ref.set(
+            {field_name: firestore.Increment(amount)},
+            merge=True  # Esta es la clave para que se cree si no existe y no sobrescriba otros campos
+        )
+        print(f"✔️ Campo '{field_name}' en el documento '{document_id}' actualizado/creado e incrementado en {amount}.")
+    except Exception as e:
+        print(f"❌ Error al operar en el campo '{field_name}' del documento '{document_id}': {e}")

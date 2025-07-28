@@ -33,6 +33,8 @@ def displayTokens(usuario):
 def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
 
+    uid = '5X8Hhd70uRclG1qfSJVj2zm211Q2' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
+
     print("Estoy en precarga y el valor de uid es: ", uid)
     if uid == None:
         #Aquí tenemos que hacer el redireccionamiento si no hay uid.
@@ -41,9 +43,7 @@ def precarga(uid):
         return uid, gr.Accordion(label=mensaje, open=True), gr.Button(value="Login 👋🏻"), gr.Accordion(label=mensaje2, open=False)
     
     else: #Si si hubo uid continuas el camino normal. 
-        try: 
-            #uid = 'IJNeNcHa5VPwTWDNcpMUyhGT5813' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
-            
+        try:
             email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
             print(f"Email: {email}, displayName: {displayName}.")
             
@@ -174,10 +174,11 @@ def actualizador_navbar(usuario, result, info_window):
 
     if "jpg" in result: #Cuando la imagen es correcta. El resultado es un archivo .jpg
         #Debita uno de la cuota de ese usuario y despliegalo.
-        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
-        print("Estos son los tokens que tiene actualmente el usuario:", tokens)
-        tokens = tokens - globales.costo_work #debitas
-        fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
+        fireWhale.incrementar_campo_numerico('usuarios', usuario, 'tokens', amount=-globales.costo_work)
+        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #A pesar de la maniobra para obtener y restar, para poder desplegarlo de todas formas necesitaremos hacer otra lectura de firebase.
+        # print("Estos son los tokens que tiene actualmente el usuario:", tokens)
+        # tokens = tokens - globales.costo_work #debitas
+        # fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
         print(f"Después de debitar tienes {tokens} tokens.")
     else: 
         #Lo demás debería ser un error.
@@ -186,4 +187,4 @@ def actualizador_navbar(usuario, result, info_window):
         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
         print("Estos son los tokens que tiene actualmente el usuario:", tokens)
         #Por ahora no debites.
-    return gr.Accordion(label=f"Moibe - 💶Creditos Disponibles: {tokens}", open=False)
+    return gr.Accordion(label=f"💶Creditos Disponibles: {tokens}", open=True)
