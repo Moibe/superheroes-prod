@@ -83,7 +83,7 @@ def precarga(uid):
         except Exception as e:
             f"Excepción: {e}"
             
-        return uid, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
+        return uid, gr.Accordion(label=mensaje, open=False), gr.Button(), gr.Accordion(label=mensaje2, open=False)  
 
 def visualizar_creditos(nuevos_creditos, usuario):
 
