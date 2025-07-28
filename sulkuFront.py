@@ -168,10 +168,18 @@ def presentacionFinal(usuario, accion):
 
 def actualizador_navbar(usuario, result, info_window):
     print("Estoy en actualizador de navbar...")
+    print("Ésto es usuario: ", usuario)
+    print("Ésto es result: ", result)
+    print("Ésto es info_window: ", info_window)
+    
+    #Controla si se abre el botón de recargar créditos.
+    if "no-credits" in result:
+        apertura = True
+    else:
+        apertura = False
 
     #Dependiendo del resultado obtenido deberé debitar o no:     
-    #Cuando no hay imagen (Error directo de mass): error.png 
-
+    #Cuando no hay imagen (Error directo de mass): error.png
     if "jpg" in result: #Cuando la imagen es correcta. El resultado es un archivo .jpg
         #Debita uno de la cuota de ese usuario y despliegalo.
         fireWhale.incrementar_campo_numerico('usuarios', usuario, 'tokens', amount=-globales.costo_work)
@@ -187,4 +195,4 @@ def actualizador_navbar(usuario, result, info_window):
         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
         print("Estos son los tokens que tiene actualmente el usuario:", tokens)
         #Por ahora no debites.
-    return gr.Accordion(label=f"💶Creditos Disponibles: {tokens}", open=True)
+    return gr.Accordion(label=f"💶Creditos Disponibles: {tokens}", open=apertura)

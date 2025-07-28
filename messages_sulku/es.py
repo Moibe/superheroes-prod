@@ -1,7 +1,7 @@
 import globales 
 
 result_ok = "¡Arte lista!" #Future que el texto de result ok, sea globales para q se relacione con la app en cuestión.
-out_of_credits = "Necesitas más créditos, puedes recargar fácilmente ⬆️ arriba, en el botón de 'Recargar Créditos ⚡' ."
+out_of_credits = "Necesitas adquirir créditos, puedes recargar fácilmente ⬆️ arriba, en el botón de 'Recargar Créditos ⚡' ."
 
 PAUSED = "La red neuronal está pausada, pronto estará lista."
 RUNTIME_ERROR= "Error construyendo el ambiente de IA, por favor contactame. Moibe."
