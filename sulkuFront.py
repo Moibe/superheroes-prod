@@ -5,6 +5,7 @@ import fireWhale
 import gradio as gr
 from firebase_admin import firestore
 mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang) #import modulo_correspondiente
+import time
 
 result_from_displayTokens = None 
 result_from_initAPI = None    
@@ -31,50 +32,58 @@ def displayTokens(usuario):
 
 def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
+
+    print("Estoy en precarga y el valor de uid es: ", uid)
+    if uid == None:
+        #Aquí tenemos que hacer el redireccionamiento si no hay uid.
+        mensaje = 'Necesitas loguearte al sistema.'
+        mensaje2 = ''
+        return uid, gr.Accordion(label=mensaje, open=True), gr.Button(value="Login 👋🏻"), gr.Accordion(label=mensaje2, open=False)
     
-    try: 
-        #uid = 'IJNeNcHa5VPwTWDNcpMUyhGT5813' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
-        
-        email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
-        print(f"Email: {email}, displayName: {displayName}.")
-        
-        if email or displayName: #Si encontró a cualquiera de los dos significa que si existe en firebase auth.  
-            #Camino 1: Si hubo un usuario.
-            print("Camino 1") 
-            tokens = fireWhale.obtenDato('usuarios', uid, 'tokens') #En firestore los usuarios estarán identificados por su uid de auth.
-            if tokens is not None: #Significa que el usuario si tiene un registro previo en firebase.
-            #La lógica de crear un usuario nuevo debería estar afuera, aquí.
-                print(f"Tokens: {tokens}.")
-                mensaje = f"🐙Usuario: {email} "
-                mensaje2 = f"💶Creditos Disponibles: {tokens}."
-            else: #Si no se encontró significa que el usuario no existe en Firestore y deberíamos crear uno nuevo.
-                #Crear usuario nuevo en firestore, con 5 tokens y guarda su info de email y displayname.
-                #fireWhale.creaDato('usuarios', uid)
-                print("Camino 2: Usuario Nuevo:")
-                datos_perfil = {
-                'diplayName': displayName,
-                'email': email,
-                'tokens': 5,
-                'fecha_registro': firestore.SERVER_TIMESTAMP # Para un timestamp del servidor
-                }
-                fireWhale.creaDatoMultiple('usuarios', uid, datos_perfil)
-                mensaje = f"🐙Usuario: {email} "
-                mensaje2 = f"💶Creditos Disponibles: 5." #Analizar si está bien dejarlo fijo y todo funciona bien.
-                #Una vez creado, crea de una vez su usuario de Stripe.
-                site = "splashmix"
-                respuesta = kraken.crear_cliente_stripe(email, uid, site)
-                print("Respuesta de Kraken es: ")
-                print(respuesta)
-                fireWhale.editaDato('usuarios', uid, 'cus', respuesta['customer_id'])
-                print("cus agregado")
-        else: #Si no existe en FIREBASE AUTH, es un usuario inválido. Future: ¿Debería regresarlo a login? 
-            print("No hay email ni displayname?")
-            mensaje = "Usuario inválido."
-            mensaje2 = "Recarga la página si no puedes ver tus créditos." #Future,¿éste mensaje puede ser un link a login más que un texto?
-    except Exception as e:
-        f"Excepción: {e}"
-        
-    return uid, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
+    else: #Si si hubo uid continuas el camino normal. 
+        try: 
+            #uid = 'IJNeNcHa5VPwTWDNcpMUyhGT5813' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
+            
+            email, displayName = fireWhale.obtenDatosUIDFirebase(uid)
+            print(f"Email: {email}, displayName: {displayName}.")
+            
+            if email or displayName: #Si encontró a cualquiera de los dos significa que si existe en firebase auth.  
+                #Camino 1: Si hubo un usuario.
+                print("Camino 1") 
+                tokens = fireWhale.obtenDato('usuarios', uid, 'tokens') #En firestore los usuarios estarán identificados por su uid de auth.
+                if tokens is not None: #Significa que el usuario si tiene un registro previo en firebase.
+                #La lógica de crear un usuario nuevo debería estar afuera, aquí.
+                    print(f"Tokens: {tokens}.")
+                    mensaje = f"🐙Usuario: {email} "
+                    mensaje2 = f"💶Creditos Disponibles: {tokens}."
+                else: #Si no se encontró significa que el usuario no existe en Firestore y deberíamos crear uno nuevo.
+                    #Crear usuario nuevo en firestore, con 5 tokens y guarda su info de email y displayname.
+                    #fireWhale.creaDato('usuarios', uid)
+                    print("Camino 2: Usuario Nuevo:")
+                    datos_perfil = {
+                    'diplayName': displayName,
+                    'email': email,
+                    'tokens': 5,
+                    'fecha_registro': firestore.SERVER_TIMESTAMP # Para un timestamp del servidor
+                    }
+                    fireWhale.creaDatoMultiple('usuarios', uid, datos_perfil)
+                    mensaje = f"🐙Usuario: {email} "
+                    mensaje2 = f"💶Creditos Disponibles: 5." #Analizar si está bien dejarlo fijo y todo funciona bien.
+                    #Una vez creado, crea de una vez su usuario de Stripe.
+                    site = "splashmix"
+                    respuesta = kraken.crear_cliente_stripe(email, uid, site)
+                    print("Respuesta de Kraken es: ")
+                    print(respuesta)
+                    fireWhale.editaDato('usuarios', uid, 'cus', respuesta['customer_id'])
+                    print("cus agregado")
+            else: #Si no existe en FIREBASE AUTH, es un usuario inválido. Future: ¿Debería regresarlo a login? 
+                print("No hay email ni displayname?")
+                mensaje = "Usuario inválido."
+                mensaje2 = "Recarga la página si no puedes ver tus créditos." #Future,¿éste mensaje puede ser un link a login más que un texto?
+        except Exception as e:
+            f"Excepción: {e}"
+            
+        return uid, gr.Accordion(label=mensaje, open=False), gr.Accordion(label=mensaje2, open=False)  
 
 def visualizar_creditos(nuevos_creditos, usuario):
 

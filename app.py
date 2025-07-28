@@ -1,10 +1,11 @@
 import inputs
+import random
 import globales
 import funciones
 import sulkuFront
 import gradio as gr
-import firehead, fire, fuego, aire 
-import random
+import firehead, fire, fuego, aire, tierra, magma 
+
 #import tools
 #mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
@@ -39,11 +40,11 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
         with gr.Column():
             acordeon = gr.Accordion(open=False)
             with acordeon:   
-             btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', link="https://app.splashmix.ink/login", variant='primary')
+             btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', variant='primary')
         with gr.Column():
             acordeon2 = gr.Accordion(open=False)
             with acordeon2: 
-                gr.Button(value="Recargar Créditos ⚡", size='lg', link="https://app.splashmix.ink/buy", variant='primary')
+                compra = gr.Button(value="Recargar Créditos ⚡", size='lg', variant='primary')
  
     with gr.Row():
         demo = gr.Interface(
@@ -55,6 +56,14 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
+    compra.click(None, usuario_firebase, None, js=tierra.js)
     btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
-    main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
+    btn_logout.click(
+            fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
+            inputs=[usuario_firebase],
+            outputs=[],
+            js="() => window.location.href = 'https://www.google.com'" 
+        # Esta línea de JavaScript abre la URL en la misma pestaña
+            )
+    main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, btn_logout, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
 iniciar()

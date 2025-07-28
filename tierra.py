@@ -1,13 +1,12 @@
 js = f"""
-function funcion() {{
-    console.log("Ésto es un console log normal desde fuego.js @ PRECARGA")        
+function funcion(a) {{
+    console.log("Ésto es un console log desde tierra.js @ comprar.click") 
+    console.log("Trajo a a?: ", a)       
     resultado = localStorage.getItem('uid');
-    console.log("Éste es el usuario que obtuvo fuego: ", resultado)
+    console.log("Éste es el usuario que obtuvo tierra: ", resultado)
     // Verificar si resultado está vacío
     if (!resultado || resultado === "" || resultado === "null" || resultado === "undefined") {{
     console.log("Resultado está vacío o es null/undefined, redireccionando...");
-    //window.location.href = 'https://app.splashmix.ink/login'
-    return null;
     }} else {{
     console.log("Resultado no está vacío, no se redirecciona.");
     }}
