@@ -39,9 +39,9 @@ def perform(input1, gender, personaje, usuario):
 
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1, gender, hero):
-
+    
     print("Estoy en MASS....")
-        
+       
     #Al parecer la API se elige hasta perform, basado en lo que se especifico en globales.
     api, tipo_api = tools.eligeAPI(globales.seleccion_api) 
     print(f"De vuelta en mass la api elegida es {api} y el tipo es {tipo_api}...") 
@@ -60,18 +60,7 @@ def mass(input1, gender, hero):
     
     #Ésta parte es para obtener el nombre de la posición y guardarla en el log.
     #nombre_posicion = imagenPosition['path'].rsplit("\\", 1)[1] 
-      
-    #Objeto a Crear
-    #creacion_seleccionada = datos["creacion"]
-    #selected_databank = datos["selected_databank"] #Se usa cuando viene de objeto no de dropdown.
-    #creacion=splash_tools.creadorObjeto(creacion_seleccionada, selected_databank) #Se usa solo si se arma como objeto random.
-    #1) Aquí podrías pasarle style="anime".
-    #2) Aquí con los parámetros que te estuviera pasando por ejemplo via input.
-    #En éste ejemplo haríamos que siempre sea ánime. #creacion.style = "Anime"
-    
-    #Prompt, que también usará que objeto és y su género.
-    #prompt = prompter.prompteador(creacion, gender)    
-    #Fraseador se usa cuando traemos el que heroe es directo del dropdownlist.
+
     prompt = prompter.fraseador(hero, gender)
 
     try:     

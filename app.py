@@ -44,7 +44,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
         with gr.Column():
             acordeon2 = gr.Accordion(open=False)
             with acordeon2: 
-                compra = gr.Button(value="Recargar Créditos ⚡", link="https://app.splashmix.ink/buy", size='lg', variant='primary')
+                compra = gr.Button(value="Recargar Créditos ⚡", size='lg', variant='primary')
  
     with gr.Row():
         demo = gr.Interface(
@@ -56,13 +56,21 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
-    compra.click(None, usuario_firebase, None, js=tierra.js)
-    btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
+    # compra.click(None, usuario_firebase, None, js=tierra.js)
+    # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
+    
     btn_logout.click(
             fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
             inputs=[usuario_firebase],
             outputs=[],
             js="() => window.location.href = 'https://app.splashmix.ink/login'" 
+        # Esta línea de JavaScript abre la URL en la misma pestaña
+            )
+    compra.click(
+            fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
+            inputs=[usuario_firebase],
+            outputs=[],
+            js="() => window.location.href = 'https://app.splashmix.ink/buy'" 
         # Esta línea de JavaScript abre la URL en la misma pestaña
             )
     main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, btn_logout, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
