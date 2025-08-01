@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.6.3" #Links para cerrar sesión y comprar.
+version = "1.6.4" #Nuevo Firebase sincronizado.
 
 nombre_diccionario = "datos_superheroe"
 

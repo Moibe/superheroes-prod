@@ -64,7 +64,7 @@ def eligeAOB():
 
 def eligeQuotaOCosto():
 
-    print("Estoy en elige qupta o costo...")
+    print("Estoy en elige quota o costo...")
     #que se eligirá en los casos en los que se use Zero, para extender las posibilidades de Quota y después usar Costo.
     
     #Para decidir si deberíamos usar quota o costo, tenemos 1ero que ver como está nuestro nivel de quota.
@@ -79,6 +79,7 @@ def eligeQuotaOCosto():
         #Además Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
         #if diferencia es menor que el costo de un sig.  del proceso, ve iniciando ya la otra API.
         if diferencia < globales.process_cost:
+            print("Prendiendo segundo server preventivamente.")
             initAPI(globales.api_cost) 
     else:
         api, tipo_api = globales.api_cost
@@ -248,7 +249,7 @@ def renombra_imagen(hero, resultado):
     return resultado
 
 def reducirQuota(tipo_api):
-
+            print("Estoy en reducir quota.")
             if tipo_api == "quota":
                 #sulkuPypi.updateQuota(globales.process_cost) #Ahora se usará fireWhale, son más líneas porque la api hacia todo.
                 #Pero si es menos tiempo de proceso hacerlo con Firestore.
