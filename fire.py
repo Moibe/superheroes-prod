@@ -18,7 +18,7 @@ function normal(a) {{
     }}, 10000);
     }}   
 
-    window.addEventListener('unload', () => {{    
+    window.addEventListener('pagehide', () => {{    
     localStorage.removeItem('reloaded');
     console.log("Variable 'reloaded' borrada de localStorage al cerrar la página.");
 }}); 
