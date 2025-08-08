@@ -1,7 +1,7 @@
 #Si está en uso, es con el que lee auth de la correspondiente base.
 import globales 
 
-if globales.firebase_auth == 'prod':
+if globales.firebase_auth == 'dev':
   
   firebase_config = """
   const firebaseConfig = {
