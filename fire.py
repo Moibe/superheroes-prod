@@ -9,8 +9,8 @@ function normal(a) {{
     console.log("Estoy por hacer reload...");
     recargado = localStorage.getItem('reloaded');
     console.log("Reloaded en localstorage es:", recargado);
-    if (recargado === 'false') {{
-      console.log("Recargando por que estaba en false...");
+    if (recargado ===  null) {{
+      console.log("Recargando por que estaba en null...");
       console.log("Antes de irme cambio a true")
       localStorage.setItem('reloaded', 'true')
       setTimeout(() => {{
