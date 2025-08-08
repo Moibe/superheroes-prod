@@ -8,7 +8,7 @@ function normal(a) {{
     console.log("1Éste es el usuario que obtuvo fuego cuando hay user auth desde afuera de fire: ", resultado);
     console.log("Estoy por hacer reload...");
     recargado = localStorage.getItem('reloaded');
-    console.log("Reloaded en localstorage es:", reloaded);
+    console.log("Reloaded en localstorage es:", recargado);
     setTimeout(() => {{
   window.location.reload();
     }}, 10000);
