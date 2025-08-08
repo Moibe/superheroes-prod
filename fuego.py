@@ -12,7 +12,8 @@ function funcion() {{
     }} else {{
     console.log("Resultado no está vacío, si hay user de firebase, no se redirecciona a login.");
     }}
-    
+
+    //resultado = "MOIBE182"
     return resultado       
     }}
 
