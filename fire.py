@@ -16,7 +16,12 @@ function normal(a) {{
       setTimeout(() => {{
   window.location.reload();
     }}, 10000);
-    }}    
+    }}   
+
+    window.addEventListener('unload', () => {{    
+    localStorage.removeItem('reloaded');
+    console.log("Variable 'reloaded' borrada de localStorage al cerrar la página.");
+}}); 
     
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
