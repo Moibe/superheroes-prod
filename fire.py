@@ -4,6 +4,8 @@ js = f"""
 function normal(a) {{
 
     console.log("Entré a fire.js @ BLOCKS y esto es a: ", a)
+    resultado = localStorage.getItem('uid');
+    console.log("Éste es el usuario que obtuvo fuego cuando hay user auth desde afuera de fire: ", resultado)
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
