@@ -32,10 +32,10 @@ def displayTokens(usuario):
 
 def precarga(uid):
     #gr.Info(title="¡Bienvenido!", message=mensajes.lbl_info_welcome, duration=None)
-
+    print("Estoy en precarga y el valor de uid es: ", uid)
     #uid = 'uQDteq2ezQP6S1KNh1mf80wMYPg1' #Asumimos que ya lo traemos de auth y que aún no se guarda en firestore.
 
-    print("Estoy en precarga y el valor de uid es: ", uid)
+    
     if uid == None:
         #Aquí tenemos que hacer el redireccionamiento si no hay uid.
         mensaje = 'Necesitas loguearte al sistema.'

@@ -1,8 +1,8 @@
 js = f"""
 function funcion() {{
     console.log("Ésto es un console log normal desde fuego.js @ PRECARGA")        
-    resultado = localStorage.getItem('uid');
-    console.log("Éste es el usuario que obtuvo fuego: ", resultado)
+    //resultado = localStorage.getItem('uid');
+    //console.log("Éste es el usuario que obtuvo fuego: ", resultado)
     
     // Verificar si resultado está vacío
     if (!resultado || resultado === "" || resultado === "null" || resultado === "undefined") {{
