@@ -15,9 +15,13 @@ function normal(a) {{
             localStorage.setItem('uid', user.uid);
             localStorage.setItem('email', user.email);
             localStorage.setItem('name', user.displayName); 
-            localStorage.setItem('photo', user.photoURL);   
+            localStorage.setItem('photo', user.photoURL);
+            resultado = localStorage.getItem('uid');
+            console.log("Éste es el usuario que obtuvo fuego cuando hay user auth: ", resultado)   
         }} else {{
-        console.log("No hay usuario...")        
+        console.log("No hay usuario...") 
+        resultado = localStorage.getItem('uid');
+        console.log("Éste es el usuario que obtuvo fuego cuando no hay usuario auth: ", resultado)       
             //Si el usuario se sale o no está. Importante: Revisar por que tengo comentado ésto.
             //localStorage.setItem('estadoUsuario', 'Desconectado');
             //localStorage.setItem('usuario', ""); 
