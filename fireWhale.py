@@ -1,12 +1,14 @@
+import globales
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-import time
-
 from firebase_admin import auth
 
-# Use the application default credentials.
-cred = credentials.Certificate('config.json')
+if globales.firebase_auth == 'prod':
+    cred = credentials.Certificate('config_prod.json')
+else: 
+    cred = credentials.Certificate('config_dev.json')
+    
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()

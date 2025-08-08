@@ -1,10 +1,10 @@
-import fireconfig
+import fireconfig1
 
 js = f"""
 function normal(a) {{
 
     console.log("Entré a fire.js @ BLOCKS")
-    {fireconfig.firebase_config}
+    {fireconfig1.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
     
