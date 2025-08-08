@@ -9,12 +9,13 @@ function normal(a) {{
     console.log("Estoy por hacer reload...");
     recargado = localStorage.getItem('reloaded');
     console.log("Reloaded en localstorage es:", recargado);
-    if (recargado === 'true') {{
-      console.log("Recargado si es true");
-    }}    
-    setTimeout(() => {{
+    if (recargado === 'false') {{
+      console.log("Recargando por que estaba en false...");
+      setTimeout(() => {{
   window.location.reload();
     }}, 10000);
+    }}    
+    
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
