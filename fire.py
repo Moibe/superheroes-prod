@@ -3,7 +3,7 @@ import fireconfig
 js = f"""
 function normal(a) {{
 
-    console.log("Entré a fire.js @ BLOCKS")
+    console.log("Entré a fire.js @ BLOCKS y esto es a: ", a)
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
