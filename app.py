@@ -72,5 +72,6 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             js="() => window.location.href = 'https://app.splashmix.ink/buy'" 
         # Esta línea de JavaScript abre la URL en la misma pestaña
             )
-    main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, btn_logout, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
+    print("Print antes de load? Usuario_firebase: ", usuario_firebase)
+    main.load(sulkuFront.precarga, 'uQDteq2ezQP6S1KNh1mf80wMYPg1', [usuario_firebase, acordeon, btn_logout, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
 iniciar()
