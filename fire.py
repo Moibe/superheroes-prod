@@ -7,6 +7,9 @@ function normal(a) {{
     resultado = localStorage.getItem('uid');
     console.log("1Éste es el usuario que obtuvo fuego cuando hay user auth desde afuera de fire: ", resultado);
     console.log("Estoy por hacer reload...");
+    setTimeout(() => {{
+  window.location.reload();
+    }}, 10000);
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
     const provider = new firebase.auth.GoogleAuthProvider();
