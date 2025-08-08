@@ -30,6 +30,9 @@ function normal(a) {{
         }}
     }})
 
+    console.log("Estoy por retornar resultado...")
+    return resultado
+
     }}  
 
 """
