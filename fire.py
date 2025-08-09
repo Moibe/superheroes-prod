@@ -13,13 +13,13 @@ function normal(a) {{
     const reloadFlag = 'hasBeenReloaded';
 
     
-    if (sessionStorage.getItem(reloadFlag) === null) {{
+    if (localStorage.getItem(reloadFlag) === null) {{
         
 
         console.log("Primera visita de la sesión. La página se recargará en 10 segundos.");
 
        
-        sessionStorage.setItem(reloadFlag, 'true');
+        localStorage.setItem(reloadFlag, 'true');
 
       
         setTimeout(() => {{
