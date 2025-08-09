@@ -7,21 +7,43 @@ function normal(a) {{
     resultado = localStorage.getItem('uid');
     console.log("1Éste es el usuario que obtuvo fuego cuando hay user auth desde afuera de fire: ", resultado);
     console.log("Estoy por hacer reload...");
-    recargado = localStorage.getItem('reloaded');
-    console.log("Reloaded en localstorage es:", recargado);
-    if (recargado ===  null) {{
-      console.log("Recargando por que estaba en null...");
-      console.log("Antes de irme cambio a true")
-      localStorage.setItem('reloaded', 'true')
-      setTimeout(() => {{
-  window.location.reload();
-    }}, 10000);
-    }}   
 
-    window.addEventListener('pagehide', () => {{    
-    localStorage.removeItem('reloaded');
-    console.log("Variable 'reloaded' borrada de localStorage al cerrar la página.");
-}}); 
+    document.addEventListener('DOMContentLoaded', () => {{
+    
+    const reloadFlag = 'hasBeenReloaded';
+
+    
+    if (sessionStorage.getItem(reloadFlag) === null) {{
+        
+
+        console.log("Primera visita de la sesión. La página se recargará en 10 segundos.");
+
+       
+        sessionStorage.setItem(reloadFlag, 'true');
+
+      
+        setTimeout(() => {{
+            window.location.reload();
+        }}, 10000); // 10000 milisegundos = 10 segundos
+
+    }} else {{
+       
+        console.log("La página ya se recargó en esta sesión. No se hará nada.");
+    }}
+    }});
+
+
+
+
+
+
+
+
+
+    
+      
+
+    
     
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
