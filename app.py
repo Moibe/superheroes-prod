@@ -5,6 +5,10 @@ import funciones
 import sulkuFront
 import gradio as gr
 import firehead, fire, fuego, aire, tierra, magma 
+from huggingface_hub import login
+import bridges
+
+login(token=bridges.hug)
 
 #import tools
 #mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
@@ -46,7 +50,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             with acordeon:   
              btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', variant='primary')
         with gr.Column():
-            acordeon2 = gr.Accordion(label = "Terminal Loading...", open=False)
+            acordeon2 = gr.Accordion(label = "Por favor refresca la página (F5)...", open=False)
             with acordeon2: 
                 compra = gr.Button(value="Recargar Créditos ⚡", size='lg', variant='primary')
  
@@ -60,7 +64,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
-    input1.change(tester, js=fuego.js)
+    gender.select(tester, js=fuego.js) #Ésto recarga los créditos por si no se logró al inicio.
     # compra.click(None, usuario_firebase, None, js=tierra.js)
     # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
