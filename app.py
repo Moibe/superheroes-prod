@@ -28,7 +28,7 @@ input1, gender, personaje, result = inputs.inputs_selector(globales.seto)
 
 #Otros Controles y Personalizaciones
 nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
-submit_btn = gr.Button(value="Enviar")
+submit_btn = gr.Button(value="Enviar182")
 
 def tester():
     print("Ésto es tester")
