@@ -39,7 +39,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
     
     usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase 
     acheteemeele = gr.HTML(visible=False)
-        
+
     with gr.Row(variant='compact', show_progress=False):
         with gr.Column():
             acordeon = gr.Accordion(label = "Splashmix IA", open=False)
@@ -60,7 +60,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
-    
+    input1.change(tester, js=fuego.js)
     # compra.click(None, usuario_firebase, None, js=tierra.js)
     # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
