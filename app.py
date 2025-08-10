@@ -25,6 +25,10 @@ input1, gender, personaje, result = inputs.inputs_selector(globales.seto)
 #Otros Controles y Personalizaciones
 nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
 
+
+def tester():
+    print("Ésto es tester")
+
 def welcome(usuario_firebase): 
     print("Esto es una prueba de welcome:", usuario_firebase)
     botones = ['huggingface', 'primary', 'secondary', 'stop']
@@ -34,15 +38,15 @@ def welcome(usuario_firebase):
 with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer {visibility: hidden}") as main:
     
     usuario_firebase = gr.Textbox(visible=False) #Espacio para almacenar el usuario de firebase 
-    acheteemeele = gr.HTML(visible=False) 
-    
+    acheteemeele = gr.HTML(visible=False)
+        
     with gr.Row(variant='compact', show_progress=False):
         with gr.Column():
             acordeon = gr.Accordion(label = "Splashmix IA", open=False)
             with acordeon:   
              btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', variant='primary')
         with gr.Column():
-            acordeon2 = gr.Accordion(label = usuario_firebase.value, open=False)
+            acordeon2 = gr.Accordion(label = "Terminal Loading...", open=False)
             with acordeon2: 
                 compra = gr.Button(value="Recargar Créditos ⚡", size='lg', variant='primary')
  
@@ -56,6 +60,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
+    
     # compra.click(None, usuario_firebase, None, js=tierra.js)
     # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
@@ -72,6 +77,6 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             js="() => window.location.href = 'https://app.splashmix.ink/buy'" 
         # Esta línea de JavaScript abre la URL en la misma pestaña
             )
-    print("Print antes de load? Usuario_firebase: ", usuario_firebase.value)
+    #print("Print antes de load? Usuario_firebase: ", usuario_firebase.value)
     main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, btn_logout, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
 iniciar()
