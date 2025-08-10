@@ -42,7 +42,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             with acordeon:   
              btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', variant='primary')
         with gr.Column():
-            acordeon2 = gr.Accordion(label = usuario_firebase, open=False)
+            acordeon2 = gr.Accordion(label = usuario_firebase.value, open=False)
             with acordeon2: 
                 compra = gr.Button(value="Recargar Créditos ⚡", size='lg', variant='primary')
  
