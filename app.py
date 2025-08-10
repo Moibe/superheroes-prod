@@ -64,7 +64,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
-    gender.select(tester, js=fuego.js) #Ésto recarga los créditos por si no se logró al inicio.
+    gender.select(fn=tester, js=fuego.js) #Ésto recarga los créditos por si no se logró al inicio.
     # compra.click(None, usuario_firebase, None, js=tierra.js)
     # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
