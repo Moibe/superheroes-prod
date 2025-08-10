@@ -9,7 +9,7 @@ function normal(a) {{
     console.log("Estoy por hacer reload...");
 
     document.addEventListener('DOMContentLoaded', () => {{
-    
+    console.log("Document DOC content loaded...)
     const reloadFlag = 'hasBeenReloaded';
 
     
