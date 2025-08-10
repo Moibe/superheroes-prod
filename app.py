@@ -40,11 +40,11 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
         with gr.Column():
             acordeon = gr.Accordion(open=False)
             with acordeon:   
-             btn_logout = gr.Button(value="Cerrar Sesión 👋🏻", size='lg', variant='primary')
+             btn_logout = gr.Button(label = "Splashmix IA", value="Cerrar Sesión 👋🏻", size='lg', variant='primary')
         with gr.Column():
             acordeon2 = gr.Accordion(open=False)
             with acordeon2: 
-                compra = gr.Button(value="Recargar Créditos ⚡", size='lg', variant='primary')
+                compra = gr.Button(label = usuario_firebase, value="Recargar Créditos ⚡", size='lg', variant='primary')
  
     with gr.Row():
         demo = gr.Interface(
