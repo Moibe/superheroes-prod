@@ -28,7 +28,7 @@ input1, gender, personaje, result = inputs.inputs_selector(globales.seto)
 
 #Otros Controles y Personalizaciones
 nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
-
+submit_btn = gr.Button(value="Enviar")
 
 def tester():
     print("Ésto es tester")
@@ -60,11 +60,12 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             inputs=[input1, gender, personaje, usuario_firebase], 
             outputs=[result, lbl_console], 
             flagging_mode=globales.flag,
-            js=fuego.js
+            js=fuego.js,
+            submit_btn=submit_btn
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
-    gender.select(fn=tester, js=fuego.js) #Ésto recarga los créditos por si no se logró al inicio.
+    gender.select(tester, None, None, js=fuego.js) #Ésto recarga los créditos por si no se logró al inicio.
     # compra.click(None, usuario_firebase, None, js=tierra.js)
     # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
