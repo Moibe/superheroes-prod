@@ -28,7 +28,7 @@ input1, gender, personaje, result = inputs.inputs_selector(globales.seto)
 
 #Otros Controles y Personalizaciones
 nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
-submit_btn = gr.Button(value="Enviar182")
+boton = gr.Button(value="Enviar182")
 
 def tester():
     print("Ésto es tester")
@@ -61,7 +61,8 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             outputs=[result, lbl_console], 
             flagging_mode=globales.flag,
             js=fuego.js,
-            submit_btn=submit_btn
+            submit_btn=boton,
+            clear_btn=None;
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
