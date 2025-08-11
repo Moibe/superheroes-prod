@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.7.4" #Firebase con Dev y Prod.
+version = "1.8.4 👾" #Firebase con Dev y Prod. 👾 Significa que es dev.
 firebase_auth = "dev" #o prod es si entrará al proyecto de dev(splashmix) o de prod(splashmix-ai) en firebase.
 
 nombre_diccionario = "datos_superheroe"
