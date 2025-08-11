@@ -62,7 +62,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             flagging_mode=globales.flag,
             js=fuego.js,
             submit_btn=boton,
-            clear_btn=None;
+            clear_btn="Reiniciar";
             )        
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
