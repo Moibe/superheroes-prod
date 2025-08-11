@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.8.4 👾" #Firebase con Dev y Prod. 👾 Significa que es dev.
+version = "1.8.5 👾" #Dev Ready. 👾 Significa que es dev.
 firebase_auth = "dev" #o prod es si entrará al proyecto de dev(splashmix) o de prod(splashmix-ai) en firebase.
 
 nombre_diccionario = "datos_superheroe"
@@ -21,7 +21,7 @@ process_cost = 24
 
 seto = "splashmix"
 work = "picswap"
-costo_work = 1 #Se integró costo_work para definir aquí directamente lo que cueta picswap, y dejar de usar la var work.
+costo_work = 1 #Se integró costo_work para definir aquí directamente lo que cuesta picswap, y dejar de usar la var work.
 
 tema = gr.themes.Base()
 flag = "never"

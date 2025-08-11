@@ -8,7 +8,7 @@ import firehead, fire, fuego, aire, tierra, magma
 from huggingface_hub import login
 import bridges
 
-login(token=bridges.hug)
+# login(token=bridges.hug)
 
 #import tools
 #mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
@@ -71,13 +71,13 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
     # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
     btn_logout.click(
-            fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
+            fn=tester,  # Una función Python, aunque no haga nada relevante para la redirección
             inputs=[usuario_firebase],
             outputs=[],
             js=tierra.js
             )
     compra.click(
-            fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
+            fn=tester,  # Una función Python, aunque no haga nada relevante para la redirección
             inputs=[usuario_firebase],
             outputs=[],
             js="() => window.location.href = 'https://app.splashmix.ink/buy'" 
