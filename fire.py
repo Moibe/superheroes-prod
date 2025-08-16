@@ -31,7 +31,7 @@ function normal(a) {{
         // Ejecuta la recarga de la página con un retraso de 10 segundos
         setTimeout(() => {{
             window.location.reload();
-        }}, 2000); 2 segundos
+        }}, 2000); //2 segundos
     }}
     
     {fireconfig.firebase_config}
