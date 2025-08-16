@@ -10,6 +10,14 @@ function normal(a) {{
     console.log("Estos son los URL params")
     console.log(urlParams)
     console.log("Estoy por hacer reload...");
+    if (urlParams.get('reload') === 'true') {{
+        console.log("Parámetro 'reload=true' encontrado. Recargando la página en 10 segundos...");
+        
+        // Ejecuta la recarga de la página con un retraso de 10 segundos
+        setTimeout(() => {{
+            window.location.reload();
+        }}, 10000); // 10000 milisegundos = 10 segundos
+    }}
 
     document.addEventListener('DOMContentLoaded', () => {{
     
