@@ -12,53 +12,27 @@ function normal(a) {{
     console.log("Estoy por hacer reload...");
     if (urlParams.get('reload') === 'true') {{
         console.log("Parámetro 'reload=true' encontrado. Recargando la página en 10 segundos...");
-        // Elimina el parámetro 'reload' de la URL antes de la recarga
+        // 1. Elimina el parámetro 'reload'
         urlParams.delete('reload');
-        const newUrl = `${{window.location.pathname}}?${{urlParams.toString()}}${{window.location.hash}}`;
+        
+        // 2. Construye la URL sin el parámetro
+        let newUrl;
+        if (urlParams.toString()) {{
+            // Si hay otros parámetros, los mantiene
+            newUrl = `${{window.location.pathname}}?${{urlParams.toString()}}${{window.location.hash}}`;
+        }} else {{
+            // Si no quedan parámetros, quita el signo de interrogación
+            newUrl = `${{window.location.pathname}}${{window.location.hash}}`;
+        }}
+        
+        // 3. Modifica la URL en la barra de direcciones
         history.pushState(null, '', newUrl);
         
         // Ejecuta la recarga de la página con un retraso de 10 segundos
         setTimeout(() => {{
             window.location.reload();
-        }}, 10000); // 10000 milisegundos = 10 segundos
+        }}, 2000); 2 segundos
     }}
-
-    document.addEventListener('DOMContentLoaded', () => {{
-    
-    console.log("Document DOC content loaded...");
-    const reloadFlag = 'hasBeenReloaded';
-    
-    if (localStorage.getItem(reloadFlag) === null) {{
-        
-
-        console.log("Primera visita de la sesión. La página se recargará en 10 segundos.");
-
-       
-        localStorage.setItem(reloadFlag, 'true');
-
-      
-        setTimeout(() => {{
-            window.location.reload();
-        }}, 10000); // 10000 milisegundos = 10 segundos
-
-    }} else {{
-       
-        console.log("La página ya se recargó en esta sesión. No se hará nada.");
-    }}
-    }});
-
-
-
-
-
-
-
-
-
-    
-      
-
-    
     
     {fireconfig.firebase_config}
     firebase.initializeApp(firebaseConfig);
