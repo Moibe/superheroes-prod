@@ -12,6 +12,10 @@ function normal(a) {{
     console.log("Estoy por hacer reload...");
     if (urlParams.get('reload') === 'true') {{
         console.log("Parámetro 'reload=true' encontrado. Recargando la página en 10 segundos...");
+        // Elimina el parámetro 'reload' de la URL antes de la recarga
+        urlParams.delete('reload');
+        const newUrl = `${{window.location.pathname}}?${{urlParams.toString()}}${{window.location.hash}}`;
+        history.pushState(null, '', newUrl);
         
         // Ejecuta la recarga de la página con un retraso de 10 segundos
         setTimeout(() => {{
