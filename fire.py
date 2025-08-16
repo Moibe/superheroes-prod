@@ -6,6 +6,9 @@ function normal(a) {{
     console.log("Entré a fire.js @ BLOCKS y esto es a: ", a)
     resultado = localStorage.getItem('uid');
     console.log("1Éste es el usuario que obtuvo fuego cuando hay user auth desde afuera de fire: ", resultado);
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log("Estos son los URL params")
+    console.log(urlParams)
     console.log("Estoy por hacer reload...");
 
     document.addEventListener('DOMContentLoaded', () => {{
