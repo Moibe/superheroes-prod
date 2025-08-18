@@ -80,7 +80,7 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             fn=tester,  # Una función Python, aunque no haga nada relevante para la redirección
             inputs=[usuario_firebase],
             outputs=[],
-            js="() => window.location.href = 'https://app.splashmix.ink/buy'" 
+            js="() => window.location.href = 'https://app.splashmix.ink/buy'" #Quizá aquí en el futuro necesite un reload con params.
         # Esta línea de JavaScript abre la URL en la misma pestaña
             )
     #print("Print antes de load? Usuario_firebase: ", usuario_firebase.value)

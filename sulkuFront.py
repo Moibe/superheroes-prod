@@ -149,9 +149,14 @@ def evaluaResultadoUsuario(resultado, personaje):
 def presentacionFinal(usuario, accion):        
     
     if accion == "debita":        
-        tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
-        tokens = tokens - globales.costo_work #debitas
-        fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
+        # tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
+        # tokens = tokens - globales.costo_work #debitas
+        # fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
+
+        fireWhale.incrementar_campo_numerico('usuarios', usuario, 'tokens', amount=-(globales.costo_work))
+
+
+
         print(f"Después de debitar tienes {tokens} tokens.")
         info_window = sulkuMessages.result_ok
     elif accion == "no-debitar": #Aquí llega si está en modo libre.

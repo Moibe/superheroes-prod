@@ -22,7 +22,7 @@ def perform(input1, gender, personaje, usuario):
     tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
     
     #1: Reglas sobre autorización si se tiene el crédito suficiente.
-    if tokens >= globales.costo_work: 
+    if tokens >= globales.costo_work: #Lo hará solo si tiene el crédito suficiente.
         try:            
             resultado = mass(input1, gender, personaje)
         except Exception as e:      
