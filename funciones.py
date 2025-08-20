@@ -40,10 +40,12 @@ def perform(input1, gender, personaje, usuario):
 #MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1, gender, hero):   
        
-    #Al parecer la API se elige hasta perform, basado en lo que se especifico en globales.
-    api, tipo_api = tools.eligeAPI(globales.seleccion_api) 
+    #La API se elige ahora directo en mass.
+    api, tipo_api, usuario = tools.eligeAPI(globales.seleccion_api) 
     print(f"De vuelta en mass la api elegida es {api} y el tipo es {tipo_api}...") 
-    client = gradio_client.Client(api, hf_token=bridges.hug)
+    #Aquí es donde se usará el server elegido.
+    token_usuario = getattr(bridges, usuario)
+    client = gradio_client.Client(api, hf_token=token_usuario)
     
     #Adquisición Databank Particular para ese objeto y género....
     nombre_databank = gender
@@ -88,6 +90,7 @@ def mass(input1, gender, hero):
         #Así es que por ahora asumiré que la única forma en la que InstantID regresa error es porque no detecto un rostro...
         #Y de ahí partiré.  
 
+        #Importante: La cuota solo se debita aquí, después de hacer el client.predict.
         tools.reducirQuota(tipo_api) #Si estamos en sistema de quotas. Aplica un IF.
             
         result = tools.desTuplaResultado(result)

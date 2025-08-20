@@ -1,13 +1,13 @@
 import random
 import gradio as gr
 import globales
-from huggingface_hub import HfApi
 import bridges
 import importlib
 import fireWhale
 import os 
 import time
-
+import bridges
+from huggingface_hub import HfApi
 
 def theme_selector():
     temas_posibles = [
@@ -29,16 +29,17 @@ def eligeAPI(opcion):
     print(opcion)
     funciones = {
         "eligeQuotaOCosto": eligeQuotaOCosto, #Ésta es la usada por mi InstantID.
-        "eligeAOB": eligeAOB,
-        "eligeGratisOCosto": eligeGratisOCosto
+        "eligeAOB": eligeAOB, #Se elige una u otra de un par determinado.
+        "eligeGratisOCosto": eligeGratisOCosto #Cuando una instancia gratuita tiene el suficiente poder para operar y costo solo otorga ventajas adicionales como velocidad.
+        #Contemplar otra opción triquota.
     }    
     if opcion in funciones:
         funcion_elegida = funciones[opcion]
-        api, tipo_api = funcion_elegida()
+        api, tipo_api, usuario = funcion_elegida()
     else:
         print("Opción no válida")
 
-    return api, tipo_api
+    return api, tipo_api, usuario
 
 #Los tipos de elección son diferentes porque tienen diferentes reglas de negocio.
 
@@ -63,29 +64,38 @@ def eligeAOB():
     return api, tipo_api
 
 def eligeQuotaOCosto():
+    #Importante, ahora habrá varios proveedores de segundos disponibles, y mientras cualquiera de ellos tenga segundos disponibles, nos quedamos en ésta.
+    #Para que sea transparente para éste proceso, al final obtendremos quota_disponible y pasará el resto del proceso de forma transparente.
+    usuario, quota_disponible = revisorCuotas()
 
-    print("Estoy en elige quota o costo...")
-    #que se eligirá en los casos en los que se use Zero, para extender las posibilidades de Quota y después usar Costo.
-    
-    #Para decidir si deberíamos usar quota o costo, tenemos 1ero que ver como está nuestro nivel de quota.
-    #diferencia es lo que quedaría después de aplicar una transformación.
-    quota_disponible = fireWhale.obtenDato("quota", "quota", "segundos")
-    print("Al inicio, la quota disponible es: ", quota_disponible)
-    diferencia =  quota_disponible - globales.process_cost
-    print("La cuota que quedaría (diferencia) si hicieramos un proceso es: ", diferencia)
+    if usuario == 'costo': 
+        api, tipo_api = globales.api_cost 
+        return api, tipo_api, usuario
+    else: 
+        api, tipo_api = globales.api_zero 
+        return api, tipo_api, usuario
 
-    if diferencia >= 0: #Entonces puedes usar Zero.        
-        api, tipo_api = globales.api_zero
-        #Además Si el resultado puede usar la Zero "por última vez", debe de ir prendiendo la otra.
-        #if diferencia es menor que el costo de un sig.  del proceso, ve iniciando ya la otra API.
-        if diferencia < globales.process_cost:
-            print("Prendiendo segundo server preventivamente.")
-            initAPI(globales.api_cost) 
-    else:
-        api, tipo_api = globales.api_cost
+def revisorCuotas(): 
+    proveedores_poder = globales.proveedores
+    total_elementos = len(proveedores_poder)
 
-    print(f"La api que usaremos es {api} y su tipo es : {tipo_api}.")
-    return api, tipo_api
+    for indice, elemento in enumerate(proveedores_poder):
+        print(elemento) 
+        quota_disponible = fireWhale.obtenDato("quota", elemento, "segundos")
+        print(f"Servidor: {elemento}: segundos: {quota_disponible}.")
+        if quota_disponible > globales.process_cost: 
+            #Si la quota_disponible es mayor que lo que nos costará el proceso, selecciona ese servidor. 
+            print(f"Servidor seleccionado: {elemento}, que tiene {quota_disponible} segundos disponibles.")
+            if indice == total_elementos - 1: #Si el seleccionado es el último elemento, revisar si sus segundos quedaron al limite para hacer el encendido preventivo.
+                print("¡Estamos en el último elemento, revisión de límite para encendido preventivo.")
+                if quota_disponible < globales.process_cost:
+                    initAPI(globales.api_cost) 
+                   #proveedor, segundos disponibles.
+            return elemento, quota_disponible        
+    #Si llegó aquí es porque ninguno de los procesos tuvo cuota suficiente para llevar a cabo el proceso. 
+    #Por lo tanto encenderemos el de costo:
+    initAPI(globales.api_cost) 
+    return 'costo', None #Regresa None si ningúno de los elementos tiene cuota disponible. 
 
 def initAPI(api):
     
@@ -99,12 +109,10 @@ def initAPI(api):
             llave.restart_space(repo_id=repo_id)
             print("Hardware: ", runtime.hardware)
         result_from_initAPI = runtime.stage
-
     except Exception as e:
         #Aquí llegó porque se le dio una tupla y no un string con el nombre de la api.
         print("No api, encendiendo: ", e)
         result_from_initAPI = str(e)    
-    
     return result_from_initAPI
 
 def titulizaExcepDeAPI(e): 

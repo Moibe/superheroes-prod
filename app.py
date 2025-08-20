@@ -8,8 +8,6 @@ import firehead, fire, fuego, aire, tierra, magma
 from huggingface_hub import login
 import bridges
 
-# login(token=bridges.hug)
-
 #import tools
 #mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
@@ -31,9 +29,6 @@ nombre_posicion = gr.Label(label="Posición", visible=globales.posicion_marker)
 
 enviar_btn=gr.Button("Enviar", variant="primary"),
 despejar_btn=gr.Button("Borrar", variant="secondary"),  
-
-def tester(input1):
-    print("Ésto es tester")
 
 def welcome(usuario_firebase): 
     print("Esto es una prueba de welcome:", usuario_firebase)
@@ -71,13 +66,13 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
     # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
     btn_logout.click(
-            fn=tester,  # Una función Python, aunque no haga nada relevante para la redirección
+            fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
             inputs=[usuario_firebase],
             outputs=[],
             js=tierra.js
             )
     compra.click(
-            fn=tester,  # Una función Python, aunque no haga nada relevante para la redirección
+            fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
             inputs=[usuario_firebase],
             outputs=[],
             js="() => window.location.href = 'https://app.splashmix.ink/buy'" #Quizá aquí en el futuro necesite un reload con params.

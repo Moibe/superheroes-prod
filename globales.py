@@ -4,15 +4,17 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.8.5 👾" #Dev Ready. 👾 Significa que es dev.
+version = "1.9.5 👾" #👾 Significa que es dev. Múltiples proveedores de poder de procesamiento.
 firebase_auth = "dev" #o prod es si entrará al proyecto de dev(splashmix) o de prod(splashmix-ai) en firebase.
 
 nombre_diccionario = "datos_superheroe"
 
+#Aquí se elije el tipo de selección, no la api en si.
 seleccion_api = "eligeQuotaOCosto" #eligeQuotaOCosto , eligeAOB o eligeGratisOCosto
 max_size = 20
+
 #Quota o Costo
-api_zero = ("Moibe/InstantID2", "quota")
+api_zero = ("Moibe/InstantID2", "quota") #Indíca la url del api y su tipo.
 api_cost = ("Moibe/InstantID2-B", "costo")
 
 interface_api_name = "/generate_image" #El endpoint al que llamará client.
@@ -34,3 +36,5 @@ usuario = "ella" #Ella se puede usar como el usuario infinito, por eso se deja l
 credits_visibility = False
 
 posicion_marker = False
+
+proveedores = ['moibe', 'ss', 'bw', 'sun']

@@ -44,17 +44,14 @@ def obtenDatosUIDFirebase(uid):
 
 def obtenDato(coleccion, dato, info):
     
-    print(f"Estoy dentro de obtenDato y los valores que recibí son: {coleccion}, {dato}, {info}...")
     #Primero debemos definir la referencia al documento, o sea a la hoja de usuario.
     doc_ref = db.collection(coleccion).document(dato) 
 
     #Éste es el documento que tiene los datos de ella.
     documento = doc_ref.get()
-    print("Esto es el documento obtenido: ", documento)
-      
+          
     #Quizá éste segmento que comenté era el que producia nuevos documentos sin deber.
     if documento.exists:
-        print("El documento existe....")
         #Recuerda la conversión a diccionario.
         documento = doc_ref.get() 
         diccionario = documento.to_dict()
