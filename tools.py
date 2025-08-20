@@ -1,5 +1,4 @@
 import random
-import gradio as gr
 import globales
 import bridges
 import importlib
@@ -7,6 +6,7 @@ import fireWhale
 import os 
 import time
 import bridges
+import gradio as gr
 from huggingface_hub import HfApi
 
 def theme_selector():
@@ -35,11 +35,11 @@ def eligeAPI(opcion):
     }    
     if opcion in funciones:
         funcion_elegida = funciones[opcion]
-        api, tipo_api, usuario = funcion_elegida()
+        api, tipo_api, usuario_proveedor = funcion_elegida()
     else:
         print("Opción no válida")
 
-    return api, tipo_api, usuario
+    return api, tipo_api, usuario_proveedor
 
 #Los tipos de elección son diferentes porque tienen diferentes reglas de negocio.
 
@@ -66,14 +66,14 @@ def eligeAOB():
 def eligeQuotaOCosto():
     #Importante, ahora habrá varios proveedores de segundos disponibles, y mientras cualquiera de ellos tenga segundos disponibles, nos quedamos en ésta.
     #Para que sea transparente para éste proceso, al final obtendremos quota_disponible y pasará el resto del proceso de forma transparente.
-    usuario, quota_disponible = revisorCuotas()
+    usuario_proveedor, quota_disponible = revisorCuotas()
 
-    if usuario == 'costo': 
+    if usuario_proveedor == 'costo': 
         api, tipo_api = globales.api_cost 
-        return api, tipo_api, usuario
+        return api, tipo_api, usuario_proveedor
     else: 
         api, tipo_api = globales.api_zero 
-        return api, tipo_api, usuario
+        return api, tipo_api, usuario_proveedor
 
 def revisorCuotas(): 
     proveedores_poder = globales.proveedores
@@ -256,12 +256,12 @@ def renombra_imagen(hero, resultado):
    
     return resultado
 
-def reducirQuota(tipo_api):
+def reducirQuota(tipo_api, usuario_proveedor):
             print("Estoy en reducir quota.")
             if tipo_api == "quota":
-                #sulkuPypi.updateQuota(globales.process_cost) #Ahora se usará fireWhale, son más líneas porque la api hacia todo.
-                #Pero si es menos tiempo de proceso hacerlo con Firestore.
-                quota_actual = fireWhale.obtenDato("quota", "quota", "segundos")
-                quota_nueva = quota_actual - globales.process_cost
-                fireWhale.editaDato("quota", "quota", "segundos", quota_nueva)
+                #Ahora se hace sobre el usuario_proveedor que elegimos.
+                # quota_actual = fireWhale.obtenDato("quota", "quota", "segundos")
+                # quota_nueva = quota_actual - globales.process_cost
+                # fireWhale.editaDato("quota", "quota", "segundos", quota_nueva)
+                fireWhale.incrementar_campo_numerico('quota', usuario_proveedor, 'segundos', amount=-globales.costo_work)
             #No debitas la cuota si no era gratis, solo aplica para Zero.

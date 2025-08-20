@@ -41,10 +41,10 @@ def perform(input1, gender, personaje, usuario):
 def mass(input1, gender, hero):   
        
     #La API se elige ahora directo en mass.
-    api, tipo_api, usuario = tools.eligeAPI(globales.seleccion_api) 
+    api, tipo_api, usuario_proveedor = tools.eligeAPI(globales.seleccion_api) 
     print(f"De vuelta en mass la api elegida es {api} y el tipo es {tipo_api}...") 
     #Aquí es donde se usará el server elegido.
-    token_usuario = getattr(bridges, usuario)
+    token_usuario = getattr(bridges, usuario_proveedor)
     client = gradio_client.Client(api, hf_token=token_usuario)
     
     #Adquisición Databank Particular para ese objeto y género....
@@ -56,15 +56,13 @@ def mass(input1, gender, hero):
     carpeta_positions = datos["positions_path"]  
     imagenPosition = gradio_client.handle_file(splash_tools.getPosition(carpeta_positions)) 
 
-    #nombre_posicion = imagenPosition['path']
-    
+    #nombre_posicion = imagenPosition['path']    
     #Ésta parte es para obtener el nombre de la posición y guardarla en el log.
     #nombre_posicion = imagenPosition['path'].rsplit("\\", 1)[1] 
 
     prompt = prompter.fraseador(hero, gender)
 
-    try:     
-
+    try:
         result = client.predict(
                 imagenSource,
                 imagenPosition,
@@ -91,7 +89,7 @@ def mass(input1, gender, hero):
         #Y de ahí partiré.  
 
         #Importante: La cuota solo se debita aquí, después de hacer el client.predict.
-        tools.reducirQuota(tipo_api) #Si estamos en sistema de quotas. Aplica un IF.
+        tools.reducirQuota(tipo_api, usuario_proveedor) #Si estamos en sistema de quotas. Aplica un IF.
             
         result = tools.desTuplaResultado(result)
         return result

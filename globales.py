@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.9.5 👾" #👾 Significa que es dev. Múltiples proveedores de poder de procesamiento.
+version = "1.9.6 👾" #Reducción de quota aplica a usuario_proveedor.
 firebase_auth = "dev" #o prod es si entrará al proyecto de dev(splashmix) o de prod(splashmix-ai) en firebase.
 
 nombre_diccionario = "datos_superheroe"
