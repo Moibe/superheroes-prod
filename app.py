@@ -6,7 +6,6 @@ import sulkuFront
 import gradio as gr
 import firehead, fire, fuego, aire, tierra, magma 
 from huggingface_hub import login
-import bridges
 
 #import tools
 #mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)

@@ -46,7 +46,7 @@ def perform(input1, gender, personaje, usuario):
     resultado, info_window = sulkuFront.evaluaResultadoUsuario(resultado, personaje) #No fue frenado por falta de crédito o or imagen vacía, paso a la API (se debita)
     return resultado, info_window
 
-def mass(input1, gender, hero, api, tipo_api, usuario_proveedor):
+def mass(input1, gender, hero, api, usuario_proveedor):
     #Aquí es donde se usará el server elegido.
     token_usuario = getattr(bridges, usuario_proveedor)
     client = gradio_client.Client(api, hf_token=token_usuario)
