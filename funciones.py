@@ -37,8 +37,7 @@ def perform(input1, gender, personaje, usuario):
     resultado, info_window = sulkuFront.evaluaResultadoUsuario(resultado, personaje) #No fue frenado por falta de crédito o or imagen vacía, paso a la API (se debita)
     return resultado, info_window
 
-def mass(input1, gender, hero):   
-       
+def mass(input1, gender, hero):
     #La API se elige ahora directo en mass.
     api, tipo_api, usuario_proveedor = tools.eligeAPI(globales.seleccion_api) 
     print(f"De vuelta en mass la api elegida es {api} y el tipo es {tipo_api}...") 
@@ -95,5 +94,8 @@ def mass(input1, gender, hero):
 
     except Exception as e:
         #La no detección de un rostro es mandado aquí?! Siempre? SI SIEMPRE, porque instantID es diferente y no reporta ese error integramente, pero aquí llega.
+        print("Llegamos a la excepción de fallo en cliente y el usuario proveedor es: ", usuario_proveedor)
+        if "401" in str(e): #Inhabilitará el server si tiene un 401, para evitar el problema con otros usuarios.        
+            fireWhale.inhabilitaUsuarioProveedor(usuario_proveedor)
         mensaje = tools.titulizaExcepDeAPI(e)        
         return mensaje

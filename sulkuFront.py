@@ -147,29 +147,6 @@ def evaluaResultadoUsuario(resultado, personaje):
         return resultado, info_window         
            
     return resultado, info_window
-    
-# def presentacionFinal(usuario, accion):
-#     #Ya no está en uso.
-#     if accion == "debita":        
-#         # tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens') #obtienes
-#         # tokens = tokens - globales.costo_work #debitas
-#         # fireWhale.editaDato('usuarios', usuario, 'tokens', tokens) #editas
-
-#         fireWhale.incrementar_campo_numerico('usuarios', usuario, 'tokens', amount=-(globales.costo_work))
-
-#         print(f"Después de debitar tienes {tokens} tokens.")
-#         info_window = sulkuMessages.result_ok
-#     elif accion == "no-debitar": #Aquí llega si está en modo libre.
-#         info_window = sulkuMessages.result_ok
-#         tokens = "Free"        
-#     else: 
-#         info_window = "No face in source path detected."
-#         #tokens = sulkuPypi.getTokens(capsule, globales.env)
-#         tokens = fireWhale.obtenDato('usuarios', usuario, 'tokens')
-    
-#     html_credits = visualizar_creditos(tokens, usuario)       
-    
-#     return html_credits, info_window
 
 def actualizador_navbar(usuario, result, info_window):
     

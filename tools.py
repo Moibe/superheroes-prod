@@ -92,11 +92,11 @@ def revisorCuotas():
                 if quota_disponible < globales.process_margin:
                     initAPI(globales.api_cost) 
                    #proveedor, segundos disponibles.
-            return elemento, quota_disponible        
+            return elemento        
     #Si llegó aquí es porque ninguno de los procesos tuvo cuota suficiente para llevar a cabo el proceso. 
     #Por lo tanto encenderemos el de costo:
     initAPI(globales.api_cost) 
-    return 'costo', None #Regresa None si ningúno de los elementos tiene cuota disponible. 
+    return 'costo' #Regresa 'costo' si ninguno de los elementos tiene cuota disponible. 
 
 def initAPI(api):
     
