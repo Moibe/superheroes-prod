@@ -23,9 +23,18 @@ def perform(input1, gender, personaje, usuario):
     
     #1: Reglas sobre autorización si se tiene el crédito suficiente.
     if tokens >= globales.costo_work: #Lo hará solo si tiene el crédito suficiente.
-        try:            
-            resultado = mass(input1, gender, personaje)
-        except Exception as e:      
+        try:
+            #La API se elige ahora afuera de mass.
+            api, tipo_api, usuario_proveedor = tools.eligeAPI(globales.seleccion_api)             
+            resultado = mass(input1, gender, personaje, api, usuario_proveedor)
+            #Importante: La cuota solo se debita aquí, después de hacer el client.predict.
+            tools.reducirQuota(tipo_api, usuario_proveedor) #Si estamos en sistema de quotas. Aplica un IF.
+        except Exception as e:
+            print("Llegamos a la excepción de fallo en cliente y el usuario proveedor es: ", usuario_proveedor)            
+            if "401" in str(e): #Inhabilitará el server si tiene un 401, para evitar el problema con otros usuarios.        
+                fireWhale.inhabilitaUsuarioProveedor(usuario_proveedor)
+            print("Por titulizar mensaje de API...")
+            time.sleep(1)       
             resultado, info_window  = sulkuFront.aError(excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window          
     else:
@@ -37,10 +46,7 @@ def perform(input1, gender, personaje, usuario):
     resultado, info_window = sulkuFront.evaluaResultadoUsuario(resultado, personaje) #No fue frenado por falta de crédito o or imagen vacía, paso a la API (se debita)
     return resultado, info_window
 
-def mass(input1, gender, hero):
-    #La API se elige ahora directo en mass.
-    api, tipo_api, usuario_proveedor = tools.eligeAPI(globales.seleccion_api) 
-    print(f"De vuelta en mass la api elegida es {api} y el tipo es {tipo_api}...") 
+def mass(input1, gender, hero, api, tipo_api, usuario_proveedor):
     #Aquí es donde se usará el server elegido.
     token_usuario = getattr(bridges, usuario_proveedor)
     client = gradio_client.Client(api, hf_token=token_usuario)
@@ -84,18 +90,12 @@ def mass(input1, gender, hero):
 
         #IMPORTANTE: cuando InstantID no detecta un rostro, no dice que eso fue el error. 
         #Así es que por ahora asumiré que la única forma en la que InstantID regresa error es porque no detecto un rostro...
-        #Y de ahí partiré.  
-
-        #Importante: La cuota solo se debita aquí, después de hacer el client.predict.
-        tools.reducirQuota(tipo_api, usuario_proveedor) #Si estamos en sistema de quotas. Aplica un IF.
+        #Y de ahí partiré. 
             
         result = tools.desTuplaResultado(result)
         return result
 
     except Exception as e:
-        #La no detección de un rostro es mandado aquí?! Siempre? SI SIEMPRE, porque instantID es diferente y no reporta ese error integramente, pero aquí llega.
-        print("Llegamos a la excepción de fallo en cliente y el usuario proveedor es: ", usuario_proveedor)
-        if "401" in str(e): #Inhabilitará el server si tiene un 401, para evitar el problema con otros usuarios.        
-            fireWhale.inhabilitaUsuarioProveedor(usuario_proveedor)
+        #La no detección de un rostro es mandado aquí?! Siempre? SI SIEMPRE, porque instantID es diferente y no reporta ese error integramente, pero aquí llega. 
         mensaje = tools.titulizaExcepDeAPI(e)        
         return mensaje
