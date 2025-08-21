@@ -125,6 +125,8 @@ def manejadorExcepciones(excepcion):
         info_window = sulkuMessages.NO_FILE
     elif excepcion == "NO_POSITION": #Solo aplíca para Splashmix.
         info_window = sulkuMessages.NO_POSITION
+    elif excepcion == "UNAUTHORIZED": #Solo aplíca para Splashmix.
+        info_window = sulkuMessages.UNAUTHORIZED
     elif "quota" in excepcion: #Caso especial porque el texto cambiará citando la cuota.
         info_window = excepcion
     else:
