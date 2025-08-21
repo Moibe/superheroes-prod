@@ -26,6 +26,7 @@ def theme_selector():
     return tema
 
 def eligeAPI(opcion):
+    #Elige API y usuario proveedor.
     print(opcion)
     funciones = {
         "eligeQuotaOCosto": eligeQuotaOCosto, #Ésta es la usada por mi InstantID.
@@ -141,6 +142,8 @@ def titulizaExcepDeAPI(e):
         resultado = "NO_FACE"
     elif "positions" in str(e):
         resultado = "NO_POSITION"
+    elif "401" in str(e):
+        resultado = "UNAUTHORIZED"
     else: 
         resultado = "GENERAL"
 

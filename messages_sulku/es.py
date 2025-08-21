@@ -10,6 +10,7 @@ HANDSHAKE_ERROR = "Error de conexión, intenta de nuevo."
 NO_FILE = "No hay archivo, por favor agrega uno válido."
 NO_FACE = "No fue posible detectar una cara en la imagen. Por favor sube una foto con una cara visible."
 NO_POSITION = "Falta el cálculo de la posición, por favor contáctame, no te fueron debitados créditos."
+UNAUTHORIZED = "401 Not Authorized."
 GENERAL = "Error en la red, no te fueron debitados créditos, intenta otra vez."
 ELSE = "Error. No te fueron debitados créditos."
 
