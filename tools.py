@@ -67,7 +67,7 @@ def eligeAOB():
 def eligeQuotaOCosto():
     #Importante, ahora habrá varios proveedores de segundos disponibles, y mientras cualquiera de ellos tenga segundos disponibles, nos quedamos en ésta.
     #Para que sea transparente para éste proceso, al final obtendremos quota_disponible y pasará el resto del proceso de forma transparente.
-    usuario_proveedor, quota_disponible = revisorCuotas()
+    usuario_proveedor = revisorCuotas()
 
     if usuario_proveedor == 'costo': 
         api, tipo_api = globales.api_cost 
