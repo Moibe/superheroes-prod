@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.10.6 👾" #Process Margin.
+version = "1.11.6 👾" #Irina
 firebase_auth = "dev" #o prod es si entrará al proyecto de dev(splashmix) o de prod(splashmix-ai) en firebase.
 
 nombre_diccionario = "datos_superheroe"
@@ -38,4 +38,4 @@ credits_visibility = False
 
 posicion_marker = False
 
-proveedores = ['moibe', 'ss', 'bw', 'sun']
+proveedores = ['iri', 'moibe', 'ss', 'bw', 'sun']
