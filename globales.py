@@ -4,7 +4,7 @@ app_path = "/superheroes-prod"
 server_port=7800
 
 #MAIN
-version = "1.9.6 👾" #Reducción de quota aplica a usuario_proveedor.
+version = "1.10.6 👾" #Process Margin.
 firebase_auth = "dev" #o prod es si entrará al proyecto de dev(splashmix) o de prod(splashmix-ai) en firebase.
 
 nombre_diccionario = "datos_superheroe"
@@ -19,11 +19,12 @@ api_cost = ("Moibe/InstantID2-B", "costo")
 
 interface_api_name = "/generate_image" #El endpoint al que llamará client.
 
-process_cost = 24
-
 seto = "splashmix"
-work = "picswap"
-costo_work = 1 #Se integró costo_work para definir aquí directamente lo que cuesta picswap, y dejar de usar la var work.
+#work = "picswap" #Se usaba para definir el tipo de trabajo para diferentes cobros.
+
+process_cost = 12 #Los segundos que cuesta el procesamiento.
+process_margin = 60 #Aunque solo requiere 12, arranca con 60 disponibles si no, no funciona (comprobar)
+costo_work = 1 #Esto es el costo en créditos para el usuario. 
 
 tema = gr.themes.Base()
 flag = "never"

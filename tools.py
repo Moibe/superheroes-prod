@@ -83,12 +83,12 @@ def revisorCuotas():
         print(elemento) 
         quota_disponible = fireWhale.obtenDato("quota", elemento, "segundos")
         print(f"Servidor: {elemento}: segundos: {quota_disponible}.")
-        if quota_disponible > globales.process_cost: 
+        if quota_disponible > globales.process_margin: 
             #Si la quota_disponible es mayor que lo que nos costará el proceso, selecciona ese servidor. 
             print(f"Servidor seleccionado: {elemento}, que tiene {quota_disponible} segundos disponibles.")
             if indice == total_elementos - 1: #Si el seleccionado es el último elemento, revisar si sus segundos quedaron al limite para hacer el encendido preventivo.
                 print("¡Estamos en el último elemento, revisión de límite para encendido preventivo.")
-                if quota_disponible < globales.process_cost:
+                if quota_disponible < globales.process_margin:
                     initAPI(globales.api_cost) 
                    #proveedor, segundos disponibles.
             return elemento, quota_disponible        
@@ -257,11 +257,6 @@ def renombra_imagen(hero, resultado):
     return resultado
 
 def reducirQuota(tipo_api, usuario_proveedor):
-            print("Estoy en reducir quota.")
             if tipo_api == "quota":
-                #Ahora se hace sobre el usuario_proveedor que elegimos.
-                # quota_actual = fireWhale.obtenDato("quota", "quota", "segundos")
-                # quota_nueva = quota_actual - globales.process_cost
-                # fireWhale.editaDato("quota", "quota", "segundos", quota_nueva)
-                fireWhale.incrementar_campo_numerico('quota', usuario_proveedor, 'segundos', amount=-globales.costo_work)
+                fireWhale.incrementar_campo_numerico('quota', usuario_proveedor, 'segundos', amount=-globales.process_cost)
             #No debitas la cuota si no era gratis, solo aplica para Zero.

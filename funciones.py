@@ -37,7 +37,6 @@ def perform(input1, gender, personaje, usuario):
     resultado, info_window = sulkuFront.evaluaResultadoUsuario(resultado, personaje) #No fue frenado por falta de crédito o or imagen vacía, paso a la API (se debita)
     return resultado, info_window
 
-#MASS es la que ejecuta la aplicación EXTERNA
 def mass(input1, gender, hero):   
        
     #La API se elige ahora directo en mass.
