@@ -5,10 +5,6 @@ import funciones
 import sulkuFront
 import gradio as gr
 import firehead, fire, fuego, aire, tierra, magma 
-from huggingface_hub import login
-
-#import tools
-#mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
 def iniciar():    
     app_path = globales.app_path
@@ -61,8 +57,6 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
     
     result.change(sulkuFront.actualizador_navbar, [usuario_firebase, result, lbl_console], acordeon2)
     #gender.select(tester, input1, input1, js=fuego.js) #Ésto recarga los créditos por si no se logró al inicio.
-    # compra.click(None, usuario_firebase, None, js=tierra.js)
-    # btn_logout.click(welcome, usuario_firebase, btn_logout, js=aire.js)
     
     btn_logout.click(
             fn=welcome,  # Una función Python, aunque no haga nada relevante para la redirección
@@ -75,8 +69,6 @@ with gr.Blocks(theme=globales.tema, head=firehead.head, js=fire.js, css="footer 
             inputs=[usuario_firebase],
             outputs=[],
             js="() => window.location.href = 'https://app.splashmix.ink/buy'" #Quizá aquí en el futuro necesite un reload con params.
-        # Esta línea de JavaScript abre la URL en la misma pestaña
             )
-    #print("Print antes de load? Usuario_firebase: ", usuario_firebase.value)
     main.load(sulkuFront.precarga, usuario_firebase, [usuario_firebase, acordeon, btn_logout, acordeon2], js=fuego.js) if globales.acceso != "libre" else None
 iniciar()
