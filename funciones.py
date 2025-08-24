@@ -14,7 +14,6 @@ import time
 
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
-#PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, gender, personaje, usuario):
 
     gender = gender or "superhero" #default es superhero.
@@ -29,12 +28,10 @@ def perform(input1, gender, personaje, usuario):
             resultado = mass(input1, gender, personaje, api, usuario_proveedor)
             #Importante: La cuota solo se debita aquí, después de hacer el client.predict.
             tools.reducirQuota(tipo_api, usuario_proveedor) #Si estamos en sistema de quotas. Aplica un IF.
-        except Exception as e:
-            print("Llegamos a la excepción de fallo en cliente y el usuario proveedor es: ", usuario_proveedor)            
+        except Exception as e:           
             if "401" in str(e): #Inhabilitará el server si tiene un 401, para evitar el problema con otros usuarios.        
                 fireWhale.inhabilitaUsuarioProveedor(usuario_proveedor)
-            print("Por titulizar mensaje de API...")
-            time.sleep(1)       
+            print("Por titulizar mensaje de API...")    
             resultado, info_window  = sulkuFront.aError(excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window          
     else:
