@@ -11,7 +11,7 @@ from huggingface_hub import login
 #mensajes, sulkuMessages = tools.get_mensajes(globales.mensajes_lang)
 
 def iniciar():    
-    app_path = "/superheroes-prod"
+    app_path = globales.app_path
     main.queue(max_size=globales.max_size)
     main.launch(root_path=app_path, server_port=globales.server_port)
 
