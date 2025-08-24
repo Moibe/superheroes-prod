@@ -1,11 +1,11 @@
+import ambiente
 import gradio as gr
 
-app_path = "/superheroes-prod"
-server_port=7800
-
-#MAIN
-version = "1.12.7 👾" #Obtención de proveedor antes de mass, reducir cuota después.
-firebase_auth = "dev" #o prod es si entrará al proyecto de dev(splashmix) o de prod(splashmix-ai) en firebase.
+#Ambiente.py
+app_path = ambiente.app_path
+server_port=ambiente.server_port
+version = ambiente.firebase_auth 
+firebase_auth = ambiente.firebase_auth 
 
 nombre_diccionario = "datos_superheroe"
 

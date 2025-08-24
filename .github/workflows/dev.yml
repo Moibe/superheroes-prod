@@ -1,9 +1,9 @@
-name: Splashmix Producción 🚀
+name: Splashmix Dev 👾
 
 on:
     push:
         branches:
-            - main
+            - dev
 jobs:
     run_pull:
         name: run pull 
@@ -19,7 +19,7 @@ jobs:
         - name: connect and pull
           run: | 
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-              "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} \
+              "cd ${{ secrets.DEV_WORK_DIR }} && git checkout ${{ secrets.DEV_BRANCH }} \
               && git pull origin main \
               && source venv/bin/activate \
               && pip install -r requirements.txt \
